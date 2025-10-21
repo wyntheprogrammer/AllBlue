@@ -1,0 +1,267 @@
+@{
+    ViewData["Title"] = "POS";
+}
+
+<div class="shadow-all-sides p-3 d-flex flex-column gap-3">
+
+    <div class="d-flex justify-content-between">
+        <div class="d-flex gap-2">
+            <div class="d-flex gap-2 align-items-center">
+                <i class="fs-6 bi-cart"></i> 
+                Point Of Sale
+            </div>
+            <button>
+                <i class="fs-6 bi-search"></i> 
+                Customer
+            </button>
+            <button>
+                <i class="fs-6 bi-arrow-return-left"></i> 
+                Return Gallon
+            </button>
+            <button>
+                <i class="fs-6 bi-plus-circle"></i> 
+                New Customer
+            </button>
+        </div>
+
+        <div class="d-flex gap-3">
+            <i class="fs-5 bi-arrow-clockwise"></i> 
+            <i class="fs-5 bi-fullscreen"></i> 
+        </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-between">
+        <div class="shadow-all-sides" style="width: 68%">
+
+            <div class="d-flex flex-row" style="width: 100%;">
+
+                <div style="width:70%">
+                </div>
+                <div class="d-flex flex-column p-2 gap-2" style="width:30%">
+
+                    <div class="dropdown">
+                        <button class="dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Deliver
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Marimar
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="d-flex flex-row p-2 gap-2">
+
+                <div class="d-flex flex-column">
+                    <button>Gallon</button>
+                    <button>Bottle</button>
+                </div>
+               
+                <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="font-small text-center" style="width: 40px" scope="col">#</th>
+                            <th class="font-small text-center" scope="col">ITEM</th>
+                            <th class="font-small text-center" scope="col">PRICE</th>
+                            <th class="font-small text-center" scope="col">CLIENT GAL</th>
+                            <th class="font-small text-center" scope="col">WRS GAL</th>
+                            <th class="font-small text-center" scope="col">FREE</th>
+                            <th class="font-small text-center" scope="col">TOTAL</th>
+                            <th class="font-small text-center" scope="col">BUY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="font-small text-center" scope="row">1</th>
+                            <td class="font-small text-center">5 Gallon - Slim</td>
+                            <td class="font-small text-center">20.00</td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td class="text-center">
+                                100
+                            </td>
+                            <td class="text-center">
+                                <input type="radio" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="font-small text-center" scope="row">2</th>
+                            <td class="font-small text-center">5 Gallon - Slim</td>
+                            <td class="font-small text-center">20.00</td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td class="text-center">
+                                100
+                            </td>
+                            <td class="text-center">
+                                <input type="radio" />
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="shadow-all-sides" style="width: 30%">
+            
+        </div>
+    </div>
+
+
+    <div class="d-flex flex-column align-items-center p-2 gap-2 shadow-all-sides">
+        <div class="text-center p-2"> <i class="bi bi-clock-history"></i> Today's Previous Transaction</div>
+
+        <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+            <thead class="thead-light">
+                <tr>
+                    <th class="font-small text-center" style="width: 40px" scope="col">#</th>
+                    <th class="font-small text-center" scope="col">NAME</th>
+                    <th class="font-small text-center" style="width: 400px;" scope="col">PRODUCT</th>
+                    <th class="font-small text-center" scope="col">SERVICE STATUS</th>
+                    <th class="font-small text-center" scope="col">DATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="font-small text-center" scope="row">1</th>
+                   
+                    <td class="font-small">
+                        <div>
+                            <i class="bi bi-three-dots-vertical"></i>
+                            <span>GINA RAZO</span>
+                        </div>
+                        <div>
+                            <i class="bi bi-three-dots-vertical"></i>
+                            <span class="font-extra-small">Ate Gina -Likod Pwesto</span>
+                        </div>   
+                        <div>
+                            <i class="bi bi-three-dots-vertical"></i>
+                            <span class="font-extra-small">Tanalong, Bayambang</span>
+                        </div>
+                    </td>
+
+                    <td class="font-small text-center">
+                         <table class="table table-striped"  style="width: 100%; table-layout: fixed;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="font-extra-small text-center" scope="col">ITEM</th>
+                                    <th class="font-extra-small text-center" scope="col">Client</th>
+                                    <th class="font-extra-small text-center" scope="col">WRS</th>
+                                    <th class="font-extra-small text-center" scope="col">QTY</th>
+                                    <th class="font-extra-small text-center" scope="col">FREE</th>
+                                    <th class="font-extra-small text-center" scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-extra-small text-center">1 Litter -Bottle</td>
+                                    <td class="font-extra-small text-center"></td>
+                                    <td class="font-extra-small text-center"></td>
+                                    <td class="font-extra-small text-center">100</td>
+                                    <td class="font-extra-small text-center"></td>
+                                    <td class="font-extra-small text-center"></td>
+                                </tr>
+                                <tr>
+                                    <th class="font-extra-small text-center" scope="row">TOTAL</th>
+                                    <td class="font-extra-small text-center"></td>
+                                    <td class="font-extra-small text-center"></td>
+                                    <td class="font-extra-small text-center">100</td>
+                                    <td class="font-extra-small text-center">5</td>
+                                    <td class="font-extra-small text-center">1,400.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+
+                    <td class="align-middle text-center text-white">
+                        <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
+                            Deliver
+                        </div>
+                        <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
+                            Paid
+                        </div>
+                    </td>
+
+                    <td class="text-center align-middle">
+                        <span class="font-small">Novermber 25, 2025</span>
+                    </td>
+                </tr>
+
+                
+            </tbody>
+        </table>
+
+        <nav aria-label="Student Pagination">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" 
+                        href="/Search?page=1&window=1&search=John&gender=Male">
+                        Previous
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link" 
+                        href="/Search?page=11&window=3&search=John&gender=Male">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+    </div>
+
+
+    
+</div>

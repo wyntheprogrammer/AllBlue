@@ -29,6 +29,10 @@ body {
     font-size: 0.80rem; 
 }
 
+.font-extra-small {
+    font-size: 0.60rem; 
+}
+
 .shadow-all-sides {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

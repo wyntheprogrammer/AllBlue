@@ -66,6 +66,13 @@ button.accept-policy {
   box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
 }
 
+.shadow-all-sides {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
 
 
 .sidebar {
@@ -89,6 +96,19 @@ button.accept-policy {
 }
 
 
+
+.hover-bg-grey:hover {
+  background-color: #EAE8E7;
+  color: black !important;
+  border-radius: 5px;
+}
+
+.hover-bg-grey:hover a span,
+.hover-bg-grey:hover a i {
+  transition: all 0.3s ease;
+  transform: scale(1.05); /* Slightly enlarge */
+  color: black !important;
+}
 
 
 
