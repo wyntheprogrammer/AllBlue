@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AllBlue</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/AllBlue.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="d-flex flex-row gap-2 align-items-center p-2 shadow-bottom">
+
+        <div class="d-flex gap-3 align-items-center" style="width: 250px;">
+            <div style="width: 50px; height: 50px; background-color: #dee2e6; border-radius: 100px;"> </div>
+            <span class="fs-5">AllBlue WRS</span>
+        </div>
+        
+        <div class="d-flex justify-content-between w-100">
+
+            <div class="w-auto gap-3 d-flex align-items-center">
+                <button id="toggleBtn" class="toggle-btn">
+                     <i class="bi bi-list"></i>
+                </button>
+                <div style="width: 200px; height: 50px; background-color:#dee2e6; border-radius: 100px;"> </div>
+            </div>
+
+            <div  class="w-auto d-flex align-items-center gap-2">
+                <i class="fs-5 bi-calendar-week-fill"></i>
+                <i class="fs-5 bi-bell-fill"></i>
+                <i class="fs-5 bi-three-dots-vertical"></i>
+                <div style="width: 50px; height: 50px; background-color: #dee2e6; border-radius: 100px;"> </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="d-flex flex-row row flex-nowrap p-2">
+
+        <div class="col-md-3 px-sm-2 sidebar expanded" id="sidebar">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black min-vh-100 shadow-right">
+                <ul class="nav w-100 h-100 d-flex flex-column overflow-hidden">
+                    <span class="extra-small text-primary">MAIN</span>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Dashboard" asp-action="Index">
+                            <i class="fs-5 bi-speedometer2"></i> 
+                            <span class="font-small ms-1 text">Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Students" asp-action="Index">
+                            <i class="fs-5 bi-receipt"></i> 
+                            <span class="font-small ms-1 text">POS</span>
+                        </a>
+                    </li>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Courses" asp-action="Index">
+                            <i class="fs-5 bi-graph-up"></i> 
+                            <span class="font-small ms-1 text">Monitoring</span>
+                        </a>
+                    </li>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Enrollments" asp-action="Index">
+                            <i class="fs-5 bi-file-earmark-text"></i> 
+                            <span class="font-small ms-1 text">Report</span>
+                        </a>
+                    </li>
+
+                    <span class="mt-3 extra-small text-primary">MANAGE</span>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-person-lines-fill	"></i> 
+                            <span class="font-small ms-1 text">Customer</span>
+                        </a>
+                    </li>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-cash-stack"></i> 
+                            <span class="font-small ms-1 text">Stock /Expenses</span>
+                        </a>
+                    </li>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-list-check"></i>
+                            <span class="font-small ms-1 text">Item List</span>
+                        </a>
+                    </li>
+
+                
+                    <span class="mt-3 extra-small text-primary">SETTINGS</span>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-gear"></i> 
+                            <span class="font-small ms-1 text">System Settings</span>
+                        </a>
+                    </li>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-building"></i> 
+                            <span class="font-small ms-1 text">Barangay / City</span>
+                        </a>
+                    </li>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-person-badge"></i> 
+                            <span class="font-small ms-1 text">Account Type</span>
+                        </a>
+                    </li>
+
+                    <span class="mt-3 extra-small text-primary">ADMIN</span>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-person-circle"></i> 
+                            <span class="font-small ms-1 text">User Account</span>
+                        </a>
+                    </li>
+                    <li class="hover-bg-grey">
+                        <a class="nav-link px-0 text-black" asp-controller="Marks" asp-action="Index">
+                            <i class="fs-5 bi-hdd-stack"></i> 
+                            <span class="font-small ms-1 text">Backup Database</span>
+                        </a>
+                    </li>
+
+
+                    <!-- Logout pinned to bottom -->
+                    <li class="hover-bg-red mt-auto mb-2 w-100 d-flex justify-content-center align-items-center">
+                        <a class="nav-link px-0 text-black" asp-controller="Account" asp-action="Logout">
+                            <i class="fs-4 bi-box-arrow-left"></i> <span class="ms-1">Logout</span>
+                        </a>
+                    </li>
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+
+        <div class="col py-3">
+            <main role="main" class="pb-3 d-flex flex-column gap-3">
+                @RenderBody()
+            </main>
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+<script>
+    document.getElementById('toggleBtn').addEventListener('click', function () {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('expanded');
+    sidebar.classList.toggle('collapsed');
+    });
+</script>
