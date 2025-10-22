@@ -1,0 +1,55 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Confirm Payment Modal -->
+<div class="modal fade" id="confirmPaymentModal" tabindex="-1" aria-labelledby="confirmPaymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body d-flex flex-column align-items-center p-2 gap-2">  
+                <div class="d-flex flex-column gap-2 p-2 text-danger fw-bold" style="width: 80%; background-color: #f8d7da;">
+                    <div class="d-flex flex-row w-100">
+                        <span class="w-50 d-flex justify-content-end align-items-center px-4">SUB TOTAL</span>
+                        <span class="w-50 d-flex justify-content-end fs-4">P 1,425.00</span>
+                    </div>
+                    <div class="d-flex flex-row w-100">
+                        <span class="w-50 d-flex justify-content-end align-items-center px-4">Discount</span>
+                        <span class="w-50 d-flex justify-content-end align-items-center"><input type="number" class="w-100" /></span>
+                    </div>
+                </div>
+
+
+                <div class="d-flex flex-column gap-2 p-2 text-warning fw-bold" style="width: 80%; background-color: #fff3cd;">
+                    <div class="d-flex flex-row w-100">
+                        <span class="w-50 d-flex justify-content-end align-items-center px-4">TOTAL DUE</span>
+                        <span class="w-50 d-flex justify-content-end fs-3">P 1,425.00</span>
+                    </div>
+                    <div class="d-flex flex-row w-100">
+                        <span class="w-50 d-flex justify-content-end align-items-center px-4 text-info">Cash</span>
+                        <span class="w-50 d-flex justify-content-end align-items-center"><input type="number" class="w-100" /></span>
+                    </div>
+                    <div class="d-flex flex-row w-100">
+                        <span class="w-50 d-flex justify-content-end align-items-center px-4 text-success">Changed</span>
+                        <span class="w-50 d-flex justify-content-end align-items-center"><input type="number" class="w-100" /></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                 <button class="bg-success text-white p-2 rounded" style="border: none">
+                    <i class="font-small bi-send"></i> 
+                    Submit Payment
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div>

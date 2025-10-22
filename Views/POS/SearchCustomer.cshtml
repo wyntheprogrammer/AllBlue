@@ -1,0 +1,125 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Search Modal -->
+<div class="modal fade" id="searchCustomerModal" tabindex="-1" aria-labelledby="searchCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Search Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body d-flex flex-column align-items-center p-2 gap-2">  
+
+                <div class="d-flex flex-row gap-2 w-100">
+                    <div class="form-group flex-grow-1">
+                        <input type="text" class="form-control" required/>
+                    </div>
+                    <div class="form-group flex-grow-1">
+                        <select  class="form-select" required>
+                            <option value="">All Barangay</option>
+                            <option value="Barangay 1">Barangay 1</option>
+                            <option value="Barangay 2">Barangay 2</option>
+                        </select>
+                    </div>
+                    <div class="form-group flex-grow-1">
+                        <select  class="form-select" required>
+                            <option value="">All City</option>
+                            <option value="City 1">City 1</option>
+                            <option value="City 2">City 2</option>
+                        </select>
+                    </div>
+                </div>  
+
+                <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="font-small" scope="col" style="width: 10px;"">#</th>
+                            <th class="font-small" scope="col"style="width: 200px;">NAME</th>
+                            <th class="font-small" scope="col">ADDRESS</th>
+                            <th class="font-small" scope="col">GALLON</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="font-small" scope="row">1</th>
+                            <td class="font-small" scope="row">GUEST</td>
+                            <td class="font-extra-small" scope="row">Use this account for pick up only</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th class="font-small" scope="row">2</th>
+                            <td class="font-small" scope="row">JUAN DELA CRUZ</td>
+                            <td class="font-small" scope="row">
+                                <div class="font-extra-small">Inanlorenza, Bayambang</div>
+                                <div class="font-extra-small">Tabi ng bahay ni Rosie</div>
+                            </td>
+                            <td>
+                                <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th class="font-extra-small text-center" scope="col">Item</th>
+                                            <th class="font-extra-small text-center" scope="col">Client</th>
+                                            <th class="font-extra-small text-center" scope="col">WRS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-extra-small text-center">5 Gallon - Slim</td>
+                                            <td class="font-extra-small text-center">0</td>
+                                            <td class="font-extra-small text-center">12</td>
+                                        </tr>
+                                    </tbody>
+                                </table>               
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>  
+
+                <nav aria-label="Pagination">
+                    <ul class="pagination">
+                        <li class="page-item ">
+                            <a class="page-link text-black" 
+                                href="/Search?page=1&window=1&search=John&gender=Male">
+                                Previous
+                            </a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link text-black" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link text-black" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link text-black" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link text-black" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link text-black" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link text-black" 
+                                href="/Search?page=11&window=3&search=John&gender=Male">
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                                    
+            </div>
+
+            <div class="modal-footer">
+            </div>
+            
+        </div>
+    </div>
+</div>

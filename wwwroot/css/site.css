@@ -38,3 +38,10 @@ body {
 }
 
 
+.page-item.active .page-link {
+  background-color: #e9ecef;
+  border: #e9ecef;
+}
+
+
+

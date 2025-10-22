@@ -30,8 +30,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/JPBACOLOD/AllBlue/Views/POS/AddCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUE9TXEFkZEN1c3RvbWVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JPBACOLOD/AllBlue/Views/POS/ConfirmPayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUE9TXENvbmZpcm1QYXltZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/JPBACOLOD/AllBlue/Views/POS/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUE9TXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JPBACOLOD/AllBlue/Views/POS/ReturnGallon.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUE9TXFJldHVybkdhbGxvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JPBACOLOD/AllBlue/Views/POS/SearchCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUE9TXFNlYXJjaEN1c3RvbWVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/JPBACOLOD/AllBlue/Views/Shared/Error.cshtml]

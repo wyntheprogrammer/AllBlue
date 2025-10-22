@@ -5,20 +5,20 @@
 <div class="shadow-all-sides p-3 d-flex flex-column gap-3">
 
     <div class="d-flex justify-content-between">
-        <div class="d-flex gap-2">
+        <div class="d-flex gap-4">
             <div class="d-flex gap-2 align-items-center">
                 <i class="fs-6 bi-cart"></i> 
                 Point Of Sale
             </div>
-            <button>
+            <button class="bg-danger text-white px-4 rounded" id="openSearchCustomerModal" style="border: none">
                 <i class="fs-6 bi-search"></i> 
                 Customer
             </button>
-            <button>
+            <button class="bg-primary text-white px-4 rounded" id="openReturnGallonModal" style="border: none">
                 <i class="fs-6 bi-arrow-return-left"></i> 
                 Return Gallon
             </button>
-            <button>
+            <button class="bg-success text-white px-4 rounded" id="openAddCustomerModal" style="border: none">
                 <i class="fs-6 bi-plus-circle"></i> 
                 New Customer
             </button>
@@ -35,31 +35,23 @@
 
             <div class="d-flex flex-row" style="width: 100%;">
 
-                <div style="width:70%">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="width:70%">
+                    <span class="fs-5 fw-bold">LINDA CAYABYAB</span>
+                    <span class="font-small">Inanlorenza, Bayambang</span>
                 </div>
                 <div class="d-flex flex-column p-2 gap-2" style="width:30%">
 
-                    <div class="dropdown">
-                        <button class="dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Deliver
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
+                    <select  class="form-select" required>
+                        <option value="">Deliver</option>
+                        <option value="Barangay 1">Barangay 1</option>
+                        <option value="Barangay 2">Barangay 2</option>
+                    </select>
 
-                    <div class="dropdown">
-                        <button class="dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Marimar
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
+                    <select  class="form-select" required>
+                        <option value="">Marimar</option>
+                        <option value="Barangay 1">Barangay 1</option>
+                        <option value="Barangay 2">Barangay 2</option>
+                    </select>
 
                 </div>
 
@@ -67,13 +59,13 @@
 
             <div class="d-flex flex-row p-2 gap-2">
 
-                <div class="d-flex flex-column">
-                    <button>Gallon</button>
-                    <button>Bottle</button>
+                <div class="d-flex flex-column gap-2">
+                    <button class="p-2" style="border: none">Gallon</button>
+                    <button class="p-2" style="border: none">Bottle</button>
                 </div>
                
                 <table class="table table-striped" style="width: 100%; table-layout: fixed;">
-                    <thead class="thead-light">
+                    <thead class="table-dark">
                         <tr>
                             <th class="font-small text-center" style="width: 40px" scope="col">#</th>
                             <th class="font-small text-center" scope="col">ITEM</th>
@@ -135,17 +127,55 @@
 
         </div>
 
-        <div class="shadow-all-sides" style="width: 30%">
-            
+        <div class="d-flex flex-column align-items-center shadow-all-sides p-2 gap-2" style="width: 30%; min-height: 350px;">
+
+            <div class="d-flex justify-content-between w-100 border-bottom">
+                <span class="fw-bold">Date</span>
+                <span class="font-small">22/10/2025</span>
+            </div>
+
+            <span class="">Order Item Summary</span>
+
+            <table class="table table-striped"  style="width: 100%; table-layout: fixed;">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="font-extra-small text-center" scope="col">ITEM</th>
+                        <th class="font-extra-small text-center" scope="col">QTY</th>
+                        <th class="font-extra-small text-center" scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-extra-small text-center">1 Litter -Bottle</td>
+                        <td class="font-extra-small text-center">100</td>
+                        <td class="font-extra-small text-center">1,425.00</td>
+                    </tr>
+                    <tr>
+                        <th class="font-extra-small text-center" scope="row">TOTAL</th>
+                        <td class="font-extra-small text-center">100</td>
+                        <td class="font-extra-small text-center">1,425.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="d-flex flex-row justify-content-between align-items-center mt-auto border-top border-bottom fw-bold" style="width: 80%;">
+                <span>SUB TOTAL</span>
+                <span class="fs-4">P 1,425.00</span>
+            </div>
+
+            <button class="bg-success text-white p-2 rounded" id="openConfirmPaymentModal" style="border: none">
+                <i class="font-small bi-send"></i> 
+                Confirm Payment
+            </button>
+
         </div>
     </div>
-
 
     <div class="d-flex flex-column align-items-center p-2 gap-2 shadow-all-sides">
         <div class="text-center p-2"> <i class="bi bi-clock-history"></i> Today's Previous Transaction</div>
 
         <table class="table table-striped" style="width: 100%; table-layout: fixed;">
-            <thead class="thead-light">
+            <thead class="table-dark">
                 <tr>
                     <th class="font-small text-center" style="width: 40px" scope="col">#</th>
                     <th class="font-small text-center" scope="col">NAME</th>
@@ -225,33 +255,33 @@
             </tbody>
         </table>
 
-        <nav aria-label="Student Pagination">
+        <nav aria-label="Pagination">
             <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" 
+                <li class="page-item ">
+                    <a class="page-link text-black" 
                         href="/Search?page=1&window=1&search=John&gender=Male">
                         Previous
                     </a>
                 </li>
 
                 <li class="page-item">
-                    <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
+                    <a class="page-link text-black" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
                 </li>
                 <li class="page-item active">
-                    <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
+                    <a class="page-link text-black" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
+                    <a class="page-link text-black" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
+                    <a class="page-link text-black" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
+                    <a class="page-link text-black" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
                 </li>
 
                 <li class="page-item">
-                    <a class="page-link" 
+                    <a class="page-link text-black" 
                         href="/Search?page=11&window=3&search=John&gender=Male">
                         Next
                     </a>
@@ -262,6 +292,105 @@
 
     </div>
 
-
-    
 </div>
+
+
+<div id="addCustomerContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openAddCustomerModal");
+        const container = document.getElementById("addCustomerContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/POS/AddCustomer")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("addCustomerModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>
+
+
+<div id="returnGallonContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openReturnGallonModal");
+        const container = document.getElementById("returnGallonContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/POS/ReturnGallon")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("returnGallonModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>
+
+
+<div id="searchCustomerContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openSearchCustomerModal");
+        const container = document.getElementById("searchCustomerContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/POS/SearchCustomer")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("searchCustomerModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>
+
+
+
+<div id="confirmPaymentContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openConfirmPaymentModal");
+        const container = document.getElementById("confirmPaymentContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/POS/ConfirmPayment")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("confirmPaymentModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>

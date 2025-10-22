@@ -1,0 +1,62 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Return Gallon Modal -->
+<div class="modal fade" id="returnGallonModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Add Customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column p-2">
+                     <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="font-small text-center" style="width: 40px" scope="col">#</th>
+                            <th class="font-small text-center" scope="col">ITEM</th>
+                            <th class="font-small text-center" scope="col">CLIENT GAL</th>
+                            <th class="font-small text-center" scope="col">WRS GAL</th>
+                            <th class="font-small text-center" scope="col">QTY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-small text-center" scope="row">1</td>
+                            <td class="font-small text-center">5 Gallon - Slim</td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td class="font-small text-center"></td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="font-small text-center" scope="row">1</td>
+                            <td class="font-small text-center">5 Gallon - Slim</td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" />
+                            </td>
+                            <td class="font-small text-center"></td>
+                        </tr>       
+                    </tbody>
+                </table>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
