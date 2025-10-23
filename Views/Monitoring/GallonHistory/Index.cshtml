@@ -1,0 +1,221 @@
+@{
+    ViewData["Title"] = "Monitoring";
+}
+
+<div class="shadow-all-sides p-3 d-flex flex-column gap-3">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex gap-2">
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="GallonHistory"
+                style="border:none; border-bottom: 2px solid #0d6efd">
+                <i class="fs-6 bi-droplet"></i> 
+                Dos Gallon History
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="PosTransaction" 
+                style="border:none">
+                <i class="fs-6 bi-receipt"></i> 
+                POS Transaction
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="Credit"
+                style="border:none">
+                <i class="fs-6 bi-credit-card"></i> 
+                Credit/Balanced
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="TopCustomer"
+                style="border:none">
+                <i class="fs-6 bi-person-badge"></i> 
+                Top Customer
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="NeedDeliver"
+                style="border:none">
+                <i class="fs-6 bi-truck"></i> 
+                Need Deliver
+                <div class="bg-danger font-extra-small text-white px-1 d-inline rounded-pill">10</div>
+            </a>
+        </div>
+
+        <div class="d-flex gap-3">
+            <i class="fs-5 bi-printer"></i> 
+            <i class="fs-5 bi-arrow-clockwise"></i> 
+            <i class="fs-5 bi-fullscreen"></i> 
+        </div>
+    </div>
+
+    <div class="d-flex flex-row gap-2 w-100">
+
+
+        <div class="d-flex flex-column align-items-center gap-2 p-2 border" style="width: 70%">
+
+            <div class="d-flex flex-row gap-2 w-100">
+                <div class="form-group flex-grow-1">
+                    <label class="fw-bold">Search</label>
+                    <input type="text" class="form-control" required/>
+                </div>
+                <div class="form-group flex-grow-1">
+                    <label class="fw-bold">Barangay</label>
+                    <select  class="form-select" required>
+                        <option value="">All Barangay</option>
+                        <option value="Barangay 1">Barangay 1</option>
+                        <option value="Barangay 2">Barangay 2</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="font-small" scope="col" style="width: 40px;">#</th>
+                        <th class="font-small" scope="col" style="width: 150px;">NAME</th>
+                        <th class="font-small" scope="col">GALLON</th>
+                        <th class="font-small" scope="col" style="width:150px">LAST RETURN</th>
+                        <th class="font-small" scope="col" style="width: 90px;">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-small" scope="row">1</td>
+                        <td class="font-small" scope="row">
+                            <div class="font-small">JUAN DELA CRUZ</div>
+                            <div class="font-extra-small">Inanlorenza, Bayambang</div>
+                            <div class="font-extra-small">Tabi ng bahay ni Rosie</div>
+                        </td>
+                        <td>
+                            <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="font-extra-small text-center" scope="col">Item</th>
+                                        <th class="font-extra-small text-center" scope="col">Client</th>
+                                        <th class="font-extra-small text-center" scope="col">WRS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-extra-small text-center">5 Gallon - Slim</td>
+                                        <td class="font-extra-small text-center">0</td>
+                                        <td class="font-extra-small text-center">12</td>
+                                    </tr>
+                                </tbody>
+                            </table>               
+                        </td>
+                        <td class="font-small text-center">November 15, 2019</td>
+                        <td class="text-center">
+                           <div class="dropdown">
+                                <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="dropdown-item" id="openActionReturnModal">
+                                            <i class="bi bi-arrow-return-left"></i> Return
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item" id="openActionHistoryModal">
+                                            <i class="bi bi-clock-history"></i> History
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>  
+
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    <li class="page-item ">
+                        <a class="page-link text-black" 
+                            href="/Search?page=1&window=1&search=John&gender=Male">
+                            Previous
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link text-black" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link text-black" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-black" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-black" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-black" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link text-black" 
+                            href="/Search?page=11&window=3&search=John&gender=Male">
+                            Next
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>  
+
+        <div style="width: 30%; background-color: #dee2e6">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="actionHistoryContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openActionHistoryModal");
+        const container = document.getElementById("actionHistoryContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/Monitoring/GallonActionHistory")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("actionHistoryModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>
+
+
+<div id="actionReturnContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openActionReturnModal");
+        const container = document.getElementById("actionReturnContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/Monitoring/GallonActionReturn")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("actionReturnModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>

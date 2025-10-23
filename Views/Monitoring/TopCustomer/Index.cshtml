@@ -1,0 +1,144 @@
+@{
+    ViewData["Title"] = "Monitoring";
+}
+
+<div class="shadow-all-sides p-3 align-items-center d-flex flex-column gap-3">
+
+    <div class="d-flex justify-content-between w-100">
+        <div class="d-flex gap-2">
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="GallonHistory"
+                style="border:none;">
+                <i class="fs-6 bi-droplet"></i> 
+                Dos Gallon History
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="PosTransaction" 
+                style="border:none;">
+                <i class="fs-6 bi-receipt"></i> 
+                POS Transaction
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="Credit">
+                <i class="fs-6 bi-credit-card"></i> 
+                Credit/Balanced
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="TopCustomer"
+                style="border:none;  border-bottom: 2px solid #0d6efd">
+                <i class="fs-6 bi-person-badge"></i> 
+                Top Customer
+            </a>
+            <a class="d-flex gap-2 px-3 align-items-center bg-white text-decoration-none text-black" 
+                asp-controller="Monitoring" asp-action="NeedDeliver"
+                style="border:none">
+                <i class="fs-6 bi-truck"></i> 
+                Need Deliver
+                <div class="bg-danger font-extra-small text-white px-1 d-inline rounded-pill">10</div>
+            </a>
+        </div>
+
+        <div class="d-flex gap-3">
+            <i class="fs-5 bi-printer"></i> 
+            <i class="fs-5 bi-arrow-clockwise"></i> 
+            <i class="fs-5 bi-fullscreen"></i> 
+        </div>
+    </div>
+
+    <div class="d-flex flex-row gap-2 border  p-2 w-100">
+
+        <div class="form-group flex-grow-1">
+            <label class="fw-bold">Search</label>
+            <input type="text" class="form-control" required/>
+        </div>
+
+        <div class="form-group flex-grow-1">
+            <label class="fw-bold">Barangay</label>
+            <select  class="form-select" required>
+                <option value="">All Barangay</option>
+                <option value="Barangay 1">Barangay 1</option>
+                <option value="Barangay 2">Barangay 2</option>
+            </select>
+        </div>
+
+        <div class="form-group flex-grow-1">
+            <label class="fw-bold">Date From</label>
+            <input type="date" class="form-control" required/>
+        </div>
+
+        <div class="form-group flex-grow-1">
+            <label class="fw-bold">Date To</label>
+            <input type="date" class="form-control" required/>
+        </div>
+
+        <div class="d-flex flex-column">
+            <label class="text-white">Filter</label>
+            <button class="bg-primary text-white h-100 px-3 rounded" id="openSearchCustomerModal" style="border: none">
+            <i class="fs-6 bi-funnel"></i> 
+                Filter Record
+            </button>
+        </div>
+        
+    </div>
+
+    <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+        <thead class="table-dark">
+            <tr>
+                <th class="font-small text-center" scope="col" style="width: 40px;">#</th>
+                <th class="font-small text-center" scope="col">NAME</th>
+                <th class="font-small text-center" scope="col">QUANTITY</th>
+                <th class="font-small text-center" scope="col">TOTAL</th>
+                <th class="font-small text-center" scope="col">LAST PURCHASED</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-small" scope="row">1</td>
+                <td class="font-small" scope="row">
+                    <div class="font-small">JUAN DELA CRUZ</div>
+                    <div class="font-extra-small">Inanlorenza, Bayambang</div>
+                    <div class="font-extra-small">Tabi ng bahay ni Rosie</div>
+                </td>
+                <td class="font-small text-center">100</td>
+                <td class="font-small text-center">1,400.00</td>
+                <td class="font-small text-center">November 15, 2019</td>
+            </tr>
+        </tbody>
+    </table>  
+
+    <nav aria-label="Pagination">
+        <ul class="pagination">
+            <li class="page-item ">
+                <a class="page-link text-black" 
+                    href="/Search?page=1&window=1&search=John&gender=Male">
+                    Previous
+                </a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link text-black" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
+            </li>
+            <li class="page-item active">
+                <a class="page-link text-black" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link text-black" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link text-black" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link text-black" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link text-black" 
+                    href="/Search?page=11&window=3&search=John&gender=Male">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+

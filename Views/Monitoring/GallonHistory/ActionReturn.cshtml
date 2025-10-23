@@ -1,0 +1,72 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Action History Modal -->
+<div class="modal fade" id="actionReturnModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Dos -Return Gallon</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-column p-2">
+
+                <div class="border d-flex flex-column gap-2 p-2">
+
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="d-flex flex-column border-bottom pb-2">
+                            <span class="fs-5 fw-bold">JORGE CASINGAL</span>
+                            <span class="font-small">Tanolong, Bayambang</span>
+                        </div>
+
+                        <div class="d-flex flex-column border-bottom pb-2 gap-2 w-50">
+                            <div class="d-flex justify-content-end gap-2 w-100">
+                                <span class="font-small">Date Return</span>
+                                <input type="text" class="font-small border w-50" />
+                            </div>
+                            <div class="d-flex justify-content-end gap-2">
+                                <span class="font-small">Tanolong, Bayambang</span>
+                                <select class="border w-50" required>
+                                    <option value="Marimar">Marimar</option>
+                                </select>
+                            </div>   
+                        </div>
+                    </div>
+                    
+                    
+                    <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="font-small text-center" style="width: 40px" scope="col">#</th>
+                                <th class="font-small text-center" scope="col">ITEM</th>
+                                <th class="font-small text-center" scope="col">CLIENT GALLON</th>
+                                <th class="font-small text-center" scope="col">WRS GALLON</th>
+                                <th class="font-small text-center" scope="col">QUANTITY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-small text-center" scope="row">1</td>
+                                <td class="font-small text-center">5 Gallon - Slim</td>
+                                <td class="font-small text-center">
+                                    <input type="text" class="border" />
+                                </td>
+                                <td class="font-small text-center">
+                                    <input type="text" class="border" />
+                                </td>
+                                <td class="font-small text-center"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>   
+                
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

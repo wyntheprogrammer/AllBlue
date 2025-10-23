@@ -1,0 +1,45 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Confirm Payment Modal -->
+<div class="modal fade" id="actionNoteModal" tabindex="-1" aria-labelledby="actionNoteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Add Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body d-flex flex-column align-items-center p-2 gap-2">  
+
+                <div class="d-flex flex-column p-2" style="width: 80%;">
+
+                    <div class="d-flex flex-row w-100 text-white p-2 fw-bold bg-primary">
+                        <i class="fs-5 bi-person"></i>
+                        <span class="fs-5">JUAN DELA CRUZ</span>
+                    </div>
+
+                    <div class="d-flex flex-column align-items-center p-2 text-danger w-100" style="background-color: #fff3cd;">
+                        <div style="width: 90%;"> 
+                            <span>Note For This Customer</span>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                 <button class="bg-success text-white p-2 rounded" style="border: none">
+                    <i class="font-small bi-check"></i> 
+                    Submit Note
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div>
