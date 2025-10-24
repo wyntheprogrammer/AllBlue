@@ -1,0 +1,104 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Action History Modal -->
+<div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Edit Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-row justify-content-between p-2">
+
+                    <div class="d-flex flex-column gap-2 p-2" style="width: 68%">
+                        <div class="form-group w-100">
+                            <label class="fw-bold">Title</label>
+                            <input type="text" class="form-control" required/>
+                        </div>
+
+                        <div class="d-flex flex-row gap-2">
+                           <div class="w-100">
+                                <label class="form-label fw-bold">Type</label>
+                                <select class="form-select" required>
+                                    <option value=""></option>
+                                    <option value="Container">Container</option>
+                                    <option value="Bottle">Bottle</option>
+                                    <option value="Seal">Seal</option>
+                                    <option value="Filter">Filter</option>
+                                    <option value="Packaging">Packaging</option>
+                                    <option value="Equipment">Equipment</option>
+                                    <option value="Bills">Bills</option>
+                                    <option value="Other Expenses">Other Expenses</option>
+                                </select>
+                            </div>
+
+                            <div class="w-100">
+                                <label class="form-label fw-bold">POS Item?</label>
+                                <select class="form-select" required>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="w-100">
+                                <label class="form-label fw-bold">Reorder Level</label>
+                                <input class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row gap-2">
+                            <div class="form-group w-100">
+                                <label class="fw-bold">Deliver</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group w-100">
+                                <label class="fw-bold">Pick-Up</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group w-100">
+                                <label class="fw-bold">Buy</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex flex-column">
+                            <label class="fw-bold">Description</label>
+                            <textarea class="form-control">
+                            </textarea>
+                        </div>
+                        
+                    </div>
+
+                    <div class="d-flex flex-column gap-4 p-2" style="width: 30%;">
+                        <div class="d-flex flex-column align-items-center">
+                            <label for="">Preview</label>
+                            <div class="border" style="width: 150px; height: 150px; background-color: #dee2e6;"> 
+                            </div>
+                        </div>
+
+                        <input type="file" class="form-control"/>
+
+                        <div class="w-100 d-flex justify-content-center gap-2 text-white">
+                            <div class="bg-success text-center p-2 d-inline-block">
+                                <i class="bi bi-check-lg"></i>
+                                Save
+                            </div>
+                            <div class="bg-danger text-center p-2 d-inline-block">
+                                <i class="bi bi-x"></i>
+                                Close
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

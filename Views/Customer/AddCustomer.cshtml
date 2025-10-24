@@ -1,0 +1,155 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Add Modal -->
+<div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Add Customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column p-2">
+
+                    <div class="d-flex flex-column gap-2 border p-2">
+                        <div class="d-flex flex-row gap-2">
+                            <div class="form-group flex-grow-1">
+                                <label>*First Name</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group flex-grow-1">
+                                <label>*Last Name</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group flex-grow-1">
+                                <label>Gender</label>
+                                <select  class="form-select" required>
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row gap-2">
+                            <div class="form-group flex-grow-1">
+                                <label>Alias / Comments</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex flex-row gap-2">
+                            <div class="form-group flex-grow-1">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" required/>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile 1</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile 2</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-column gap-2 border p-2">
+                        <div class="d-flex flex-row gap-2">
+                            <div class="form-group flex-grow-1">
+                                <label>House No.</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group flex-grow-1">
+                                <label>Purok / Sitio</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                            <div class="form-group flex-grow-1">
+                                <label>*Barangay</label>
+                                <select  class="form-select" required>
+                                    <option value="">Select barangay</option>
+                                    <option value="Barangay 1">Barangay 1</option>
+                                    <option value="Barangay 2">Barangay 2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row gap-2">
+                            <div class="form-group flex-grow-1">
+                                <label>*City</label>
+                                <select  class="form-select" required>
+                                    <option value="">Select city</option>
+                                    <option value="City 1">City 1</option>
+                                    <option value="City 2">City</option>
+                                </select>
+                            </div>
+                            <div class="form-group flex-grow-1">
+                                <label>Province</label>
+                                <input type="text" class="form-control" required/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border p-2">
+                        <i class="font-small">*Add initial number of gallon borrowed by this customer.</i>
+
+                        <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="font-small text-center" style="width: 40px" scope="col">#</th>
+                                        <th class="font-small text-center" scope="col">ITEM</th>
+                                        <th class="font-small text-center" scope="col">CLIENT GALLON</th>
+                                        <th class="font-small text-center" scope="col">WRS GALLON</th>
+                                        <th class="font-small text-center" scope="col">QUANTITY</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th class="font-small text-center" scope="row">1</th>
+                                        <td class="font-small text-center">5 Gallon - Slim</td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" />
+                                        </td>
+                                        <td class="text-center">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="font-small text-center" scope="row">2</th>
+                                        <td class="font-small text-center">5 Gallon - Round</td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" />
+                                        </td>
+                                        <td class="text-center">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </table>
+
+                    </div>
+
+                    
+                    
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add Customer</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Action History Modal -->
+<div class="modal fade" id="expensesHistoryModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Expenses History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-column p-2">
+
+                <div class="border d-flex flex-column gap-2 p-2">
+                
+                    <div class="d-flex flex-row justify-content-between align-items-center border-bottom pb-2 w-100">
+                        <span class="fs-5 fw-bold">5 Gallon - Slim</span>
+                        <button class="bg-danger text-white p-2 rounded" id="openAddCustomerModal" style="border: none">
+                            <i class="fs-6 bi-printer"></i> 
+                            <span class="font-small">Print History</span>
+                        </button>
+                    </div>
+                    
+                    <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="font-small text-center" scope="col" style="width: 40px" >#</th>
+                                <th class="font-small text-center" scope="col">QTY</th>
+                                <th class="font-small text-center" scope="col">PRICE</th>
+                                <th class="font-small text-center" scope="col" style="width: 150px" >COMMENTS</th>
+                                <th class="font-small text-center" scope="col">STATUS</th>
+                                <th class="font-small text-center" scope="col">TRANSACTION</th>
+                                <th class="font-small text-center" scope="col">DATE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-small text-center" scope="row">1</td>
+                                <td class="font-small text-center">500</td>
+                                <td class="font-small text-center">400.00</td>
+                                <td class="font-small text-center"></td>
+                                <td class="font-small text-center">
+                                    <div class="bg-warning text-white px-2 d-inline rounded-pill">In</div>
+                                </td>
+                                <td class="font-small text-center">
+                                    <div class="bg-success text-white px-2 d-inline rounded-pill">New Stock</div>
+                                </td>
+                                <td class="font-small text-center">2019-11-15</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>   
+                
+                
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
