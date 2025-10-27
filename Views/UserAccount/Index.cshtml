@@ -1,0 +1,194 @@
+@{
+    ViewData["Title"] = "Location City";
+}
+
+<div class="d-flex flex-column gap-5">
+
+    <div class="shadow-all-sides p-3 d-flex flex-column align-items-center gap-3">
+
+        <div class="d-flex justify-content-between border-bottom pb-2 w-100">
+            <div class="d-flex gap-2 align-items-center">
+                <i class="fs-6 bi-building"></i> 
+                User Account
+            </div>
+            <i class="fs-5 bi-fullscreen"></i> 
+        </div>
+
+
+        <div class="d-flex flex-row justify-content-between w-100">
+
+            <div class="d-flex flex-column">
+                <button class="bg-primary text-white p-2 rounded" id="openAddCustomerModal" style="border: none">
+                <i class="fs-6 bi-plus"></i> 
+                    New User
+                </button>
+            </div>
+
+            <div class="form-group d-flex flex-row">
+                <input type="text" placeholder="Search..." class="form-control" style="width: 300px;" required/>
+                <button class="border bg-white">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+        </div>
+
+
+        <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+            <thead class="table-dark">
+                <tr>
+                    <th class="font-small" scope="col" style="width: 40px;">#</th>
+                    <th class="font-small" scope="col">Name</th>
+                    <th class="font-small" scope="col">Username</th>
+                    <th class="font-small" scope="col">Email</th>
+                    <th class="font-small" scope="col">Contact</th>
+                    <th class="font-small" scope="col">Address</th>
+                    <th class="font-small" scope="col">Role</th>
+                    <th class="font-small" scope="col">Status</th>
+                    <th class="font-small text-center" scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-small" scope="row">1</td>
+                    <td class="font-small">
+                        Marimar C. Torralba
+                    </td>
+                    <td class="font-small">
+                        marimar
+                    </td>
+                    <td class="font-small"></td>
+                    <td class="font-small"></td>
+                    <td class="font-small"></td>
+                    <td class="font-small">
+                        Manager
+                    </td>
+                    <td class="font-small text-center">
+                        <div class="bg-success text-white px-2 d-inline rounded-pill">Active</div>
+                    </td>
+                    <td class="text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-gear"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="dropdown-item" id="openEditUserModal">
+                                        <i class="bi bi-pencil-fill"></i> Edit
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-item" id="openDeactivateUserModal">
+                                        <i class="bi bi-toggle-off"></i> Deactivate
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-item" id="openChangePasswordModal">
+                                        <i class="bi bi-lock-fill"></i> Password
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-item" id="openDeleteAccountModal">
+                                        <i class="bi bi-trash-fill"></i> Delete
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>  
+
+
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                <li class="page-item ">
+                    <a class="page-link text-black" 
+                        href="/Search?page=1&window=1&search=John&gender=Male">
+                        Previous
+                    </a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link text-black" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link text-black" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-black" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-black" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-black" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
+                </li>
+
+                <li class="page-item">
+                    <a class="page-link text-black" 
+                        href="/Search?page=11&window=3&search=John&gender=Male">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+</div>
+
+
+
+<div id="editUserContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openEditUserModal");
+        const container = document.getElementById("editUserContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/UserAccount/EditUser")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("editUserModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>
+
+<div id="changePasswordContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openChangePasswordModal");
+        const container = document.getElementById("changePasswordContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/UserAccount/ChangePassword")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("changePasswordModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                });
+             });
+         });
+</script>
+
+
+
+
+

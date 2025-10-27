@@ -1,0 +1,105 @@
+@{
+    Layout = null;
+};
+
+
+<!-- Action History Modal -->
+<div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Edit Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-row justify-content-between p-2">
+
+                    <div class="d-flex flex-column gap-2 p-2 flex-grow-1">
+                        <div class="form-group w-100">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="form-label">Description</label>
+                            <textarea class="form-control">
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2 p-2 flex-grow-1">
+                        <label class="form-label">Assign default menu:</label>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuPOS">
+                            <label class="form-check-label" for="menuPOS">POS</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuMonitoring">
+                            <label class="form-check-label" for="menuMonitoring">Monitoring</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuReport">
+                            <label class="form-check-label" for="menuReport">Report</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuStock">
+                            <label class="form-check-label" for="menuStock">Stock/Expenses</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuItemList">
+                            <label class="form-check-label" for="menuItemList">Item List</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2 p-2 flex-grow-1">
+                        <label class="form-label text-white">Assign default menu:</label>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuSystemSettings">
+                            <label class="form-check-label" for="menuSystemSettings">System Settings</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuBarangayCity">
+                            <label class="form-check-label" for="menuBarangayCity">Barangay/City</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuAccountType">
+                            <label class="form-check-label" for="menuAccountType">Account Type</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuUserAccount">
+                            <label class="form-check-label" for="menuUserAccount">User Account</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="menuBackupDatabases">
+                            <label class="form-check-label" for="menuBackupDatabases">Backup Databases</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100 d-flex justify-content-end gap-2 text-white">
+                        <div class="bg-success text-center p-2 d-inline-block">
+                            <i class="bi bi-check-lg"></i>
+                            Update
+                        </div>
+                        <div class="bg-danger text-center p-2 d-inline-block">
+                            <i class="bi bi-x"></i>
+                            Close
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

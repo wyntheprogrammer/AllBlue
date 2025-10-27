@@ -30,8 +30,40 @@
                 <i class="fs-5 bi-calendar-week-fill"></i>
                 <i class="fs-5 bi-bell-fill"></i>
                 <i class="fs-5 bi-three-dots-vertical"></i>
-                <div style="width: 50px; height: 50px; background-color: #dee2e6; border-radius: 100px;"> </div>
+                <div id="circleTrigger" style="width: 50px; height: 50px; background-color: #dee2e6; border-radius: 100px;"> 
+                </div>
             </div>
+
+            <!-- Floating Container (initially hidden) -->
+            <div id="floatingBox" class="position-absolute bg-light border p-3 mt-2" style="top: 55px; right: 10px; display: none; z-index: 100;">
+                <div class="d-flex flex-column justify-content-center align-items-center gap-2" style="width: 150px">
+                    <span>Wyn Bacolod</span>
+                    <div style="width: 80px; height: 80px; background-color:#dee2e6">
+                    </div>
+                    
+                    <div class="w-100 font-small">
+                    <a class="nav-link px-0 text-black" asp-controller="UserProfile" asp-action="Index">
+                        <i class="bi bi-person-fill"></i>
+                        Profile
+                        </a>
+                    </div>
+                    <div class="w-100 font-small">
+                        <i class="bi bi-box-arrow-left"></i>
+                        Log Out
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script to toggle visibility -->
+            <script>
+                const trigger = document.getElementById('circleTrigger');
+                const box = document.getElementById('floatingBox');
+
+                trigger.addEventListener('click', () => {
+                    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+                });
+            </script>
+
         </div>
 
     </header>
@@ -97,7 +129,7 @@
                         </a>
                     </li>
                     <li class="hover-bg-grey ps-2">
-                        <a class="nav-link px-0 text-black" asp-controller="Barangay" asp-action="Index">
+                        <a class="nav-link px-0 text-black" asp-controller="Location" asp-action="LocationCity">
                             <i class="fs-5 bi-building"></i> 
                             <span class="font-small ms-1 text">Barangay / City</span>
                         </a>
