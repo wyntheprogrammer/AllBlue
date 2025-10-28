@@ -32,6 +32,8 @@ Color
 
 Item Table
 Item ID
+Image
+Title
 Item Type
 POS Item
 Reorder
@@ -87,8 +89,27 @@ CREATE TABLE Barangay (
     FOREIGN KEY (City_ID) REFERENCES City(City_ID)
 );
 
+--Create Item Table
+CREATE TABLE Item (
+    Item_ID INTEGER PRIMARY KEY,
+    Image TEXT,
+    Title TEXT NOT NULL,
+    Item_Type TEXT,
+    POS_Item INTGER,
+    Reorder INTEGER,
+    Deliver INTEGER,
+    Pickup INTEGER,
+    Buy INTEGER,
+    Date DATE
+);
 
 
+5 Gallon - Slim
+5 Gallon - Round
+Wilkin - Container
+1 Liter - Bottle
+500 ml - Bottle
+350 ml - Bottle
 
 
 
