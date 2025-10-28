@@ -1,0 +1,97 @@
+Customer Table
+Customer ID
+First Name
+Last Name
+Gender
+Alias / Comments
+Date of Birth
+Mobile 1
+Mobile 2
+House No.
+Street
+Barangay ID
+CityID
+Province
+Item
+ClientGallon
+WRSGallon
+Quantity
+
+
+City Table
+City ID
+Name
+
+
+Barangay Table
+Barangay ID
+Name
+City ID
+Color
+
+
+Item Table
+Item ID
+Item Type
+POS Item
+Reorder
+Deliver
+Pickup
+Buy
+Date
+
+
+Payment Table
+Customer ID
+Item ID
+
+
+Order Table
+Order ID
+Item ID
+Client Gallon
+WRS Gallon 
+Quantity
+Free
+Price
+
+
+Transaction Table
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Create City table
+CREATE TABLE City (
+    City_ID INTEGER PRIMARY KEY,
+    Name TEXT NOT NULL
+);
+
+-- Create Barangay table
+CREATE TABLE Barangay (
+    Barangay_ID INTEGER PRIMARY KEY,
+    Name TEXT NOT NULL,
+    City_ID INTEGER,
+    Color TEXT,
+    FOREIGN KEY (City_ID) REFERENCES City(City_ID)
+);
+
+
+
+
+
+
+
+
+

@@ -2,53 +2,47 @@
     Layout = null;
 };
 
+@model AllBlue.Models.Barangay
 
-<!-- Action History Modal -->
-<div class="modal fade" id="editBarangayModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+<!-- Edit Barangay Modal -->
+<div class="modal fade" id="editBarangayModal" tabindex="-1" aria-labelledby="editBarangayModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+            <form id="editForm" asp-action="EditBarangay" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Edit Barangay</h5>
+                    <h5 class="modal-title" id="editBarangayModalLabel">Edit Barangay</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex flex-row  p-2 gap-2">
+                    <input type="hidden" asp-for="Barangay_ID" />
                     <div class="form-group flex-grow-1">
                         <label class="form-label">City</label>
-                        <select class="form-select" required>
+                        <select asp-for="City_ID" class="form-select" asp-items="ViewBag.CityList" required>
                             <option value=""></option>
-                            <option value="Container">Container</option>
-                            <option value="Bottle">Bottle</option>
-                            <option value="Seal">Seal</option>
-                            <option value="Filter">Filter</option>
-                            <option value="Packaging">Packaging</option>
-                            <option value="Equipment">Equipment</option>
-                            <option value="Bills">Bills</option>
-                            <option value="Other Expenses">Other Expenses</option>
                         </select>
                     </div>
 
                     <div class="form-group flex-grow-1">
                         <label class="form-label">Barangay</label>
-                        <input type="text" class="form-control" required/>
+                        <input type="text" asp-for="Name" class="form-control" required/>
                     </div>
 
                     <div class="form-group flex-grow-1">
                         <label class="form-label">Pick Color Code</label>
-                        <input type="color" class="form-control" required/>
+                        <input type="color" asp-for="Color" class="form-control" required/>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <div class="w-100 d-flex justify-content-end gap-2 text-white">
-                        <div class="bg-success text-center p-2 d-inline-block">
+                        <button type="submit" class="btn btn-success">
                             <i class="bi bi-check-lg"></i>
                             Save
-                        </div>
-                        <div class="bg-danger text-center p-2 d-inline-block">
+                        </button>
+                        <button type="close" class="btn btn-danger">
                             <i class="bi bi-x"></i>
                             Close
-                        </div>
+                        </button>
                     </div>
                 </div>
 

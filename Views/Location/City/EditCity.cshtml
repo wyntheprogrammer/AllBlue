@@ -1,0 +1,40 @@
+@{
+    Layout = null;
+};
+
+@model AllBlue.Models.City
+
+<!-- Edit City Modal -->
+<div class="modal fade" id="editCityModal" tabindex="-1" aria-labelledby="editCityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="editForm" asp-action="EditCity" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCityModalLabel">Edit City</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-2 gap-2">
+                    <input type="hidden" asp-for="City_ID" />
+
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" asp-for="Name" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100 d-flex justify-content-end gap-2 text-white">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-check-lg"></i>
+                            Save
+                        </button>
+                        <button type="close" class="btn btn-danger">
+                            <i class="bi bi-x"></i>
+                            Close
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
