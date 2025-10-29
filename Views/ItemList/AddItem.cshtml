@@ -1,29 +1,29 @@
 @{
     Layout = null;
-};
+}
 
+@model AllBlue.Models.Item
 
-<!-- Action History Modal -->
+<!-- Item Modal -->
 <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+            <form id="addForm" asp-controller="ItemList" asp-action="AddItem" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addModalLabel">Add Item</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex flex-row justify-content-between p-2">
-
                     <div class="d-flex flex-column gap-2 p-2" style="width: 68%">
                         <div class="form-group w-100">
-                            <label class="fw-bold">Title</label>
-                            <input type="text" class="form-control" required/>
+                            <label asp-for="Title" class="fw-bold">Title</label>
+                            <input type="text" asp-for="Title" class="form-control" />
                         </div>
 
                         <div class="d-flex flex-row gap-2">
                            <div class="w-100">
-                                <label class="form-label fw-bold">Type</label>
-                                <select class="form-select" required>
+                                <label asp-for="Item_Type" class="form-label fw-bold">Type</label>
+                                <select asp-for="Item_Type" class="form-select" >
                                     <option value=""></option>
                                     <option value="Container">Container</option>
                                     <option value="Bottle">Bottle</option>
@@ -37,37 +37,37 @@
                             </div>
 
                             <div class="w-100">
-                                <label class="form-label fw-bold">POS Item?</label>
-                                <select class="form-select" required>
+                                <label asp-for="POS_Item" class="form-label fw-bold">POS Item?</label>
+                                <select asp-for="POS_Item" class="form-select" >
                                     <option value=""></option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
                                 </select>
                             </div>
                             <div class="w-100">
-                                <label class="form-label fw-bold">Reorder Level</label>
-                                <input class="form-control" required />
+                                <label asp-for="Reorder" class="form-label fw-bold">Reorder Level</label>
+                                <input type="number" asp-for="Reorder" class="form-control"  />
                             </div>
                         </div>
 
                         <div class="d-flex flex-row gap-2">
                             <div class="form-group w-100">
-                                <label class="fw-bold">Deliver</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="Deliver" class="fw-bold">Deliver</label>
+                                <input type="number" asp-for="Deliver" class="form-control" />
                             </div>
                             <div class="form-group w-100">
-                                <label class="fw-bold">Pick-Up</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="Pickup" class="fw-bold">Pick-Up</label>
+                                <input type="number" asp-for="Pickup" class="form-control" />
                             </div>
                             <div class="form-group w-100">
-                                <label class="fw-bold">Buy</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="Buy" class="fw-bold">Buy</label>
+                                <input type="number" asp-for="Buy" class="form-control" />
                             </div>
                         </div>
 
-
                         <div class="d-flex flex-column">
-                            <label class="fw-bold">Description</label>
-                            <textarea class="form-control">
-                            </textarea>
+                            <label asp-for="Description" class="fw-bold">Description</label>
+                            <textarea asp-for="Description" class="form-control"></textarea>
                         </div>
                         
                     </div>
@@ -79,26 +79,40 @@
                             </div>
                         </div>
 
-                        <input type="file" class="form-control"/>
+                        <input type="file" name="Image" class="form-control"/>
+
 
                         <div class="w-100 d-flex justify-content-center gap-2 text-white">
-                            <div class="bg-success text-center p-2 d-inline-block">
+                            <button type="submit" name="submit" class="btn btn-success">
                                 <i class="bi bi-check-lg"></i>
                                 Save
-                            </div>
-                            <div class="bg-danger text-center p-2 d-inline-block">
-                                <i class="bi bi-x"></i>
-                                Close
-                            </div>
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                <i class="bi bi-x"></i> Close
+                            </button>
                         </div>
 
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                </div>
-
             </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+        const preview = document.querySelector('.border');
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                preview.style.backgroundImage = `url('${event.target.result}')`;
+                preview.style.backgroundSize = 'cover';
+                preview.style.backgroundPosition = 'center';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

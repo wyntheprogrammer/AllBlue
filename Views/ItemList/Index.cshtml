@@ -1,6 +1,9 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @{
     ViewData["Title"] = "ItemList";
 }
+
+@model List<Item>
 
 <div class="shadow-all-sides p-3 d-flex flex-column align-items-center gap-3">
 
@@ -19,20 +22,36 @@
             Add New Item
         </button>
 
-        <div class="d-flex flex-row">
-            <input type="text" class="form-control" style="width: 300px;" required/>
+        <form class="form-group d-flex flex-row" asp-controller="ItemList" asp-action="Index" method="get">
+            <input type="text" name="search" placeholder="Search by item" class="form-control" style="width: 300px;"/>
             <button class="border bg-white">
                 <i class="bi bi-search"></i>
             </button>
-        </div>
+        </form>
     </div>
     
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show w-100 m-0" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show w-100 m-0" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
     <table class="table table-striped" style="width: 100%; table-layout: fixed;">
         <thead class="table-dark">
             <tr>
                 <th class="font-small" scope="col" style="width: 40px;">#</th>
                 <th class="font-small" scope="col" style="width: 150px;">TITLE</th>
+                <th class="font-small text-center" scope="col" style="width: 150px;">DESCRIPTION</th>
                 <th class="font-small text-center" scope="col">TYPE</th>
                 <th class="font-small text-center" scope="col">POS ITEM</th>
                 <th class="font-small text-center" scope="col">REORDER</th>
@@ -44,70 +63,90 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="font-small" scope="row">1</td>
-                <td class="font-small" scope="row">5 Gallon Slim</td>
-                <td class="font-small text-center">Container</td>
-                <td class="font-small text-center">
-                    <div class="bg-success text-white px-2 d-inline rounded-pill">Yes</div>
-                </td>
-                <td class="font-small text-center">100</td>
-                <td class="font-small text-center">P 20.00</td>
-                <td class="font-small text-center">P 15.00</td>
-                <td class="font-small text-center">P 150.00</td>
-                <td class="font-small text-center">Aug 20, 2019</td>
-                <td class="text-center">
-                    <div class="dropdown">
-                        <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-gear"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="dropdown-item" id="openEditItemModal">
-                                    <i class="bi bi-pencil-fill"></i> Edit
-                                </div>
-                            </li>
-                            <li>
-                                <div class="dropdown-item" id="openDeleteItemModal">
-                                    <i class="bi bi-trash-fill"></i> Delete
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                </td>
-            </tr>
+            @if (Model !=null && Model.Any())
+            {
+                @foreach (var item in Model){
+                    <tr>
+                        <td class="font-small" scope="row">@item.Item_ID</td>
+                        <td class="font-small" scope="row">@item.Title</td>
+                        <td class="font-small" scope="row">@item.Description</td>
+                        <td class="font-small text-center">@item.Item_Type</td>
+                        <td class="font-small text-center">
+                            @if(item.POS_Item == 1) {
+                                <div class="bg-success text-white px-2 d-inline rounded-pill">Yes</div>
+                            } else {
+                                <div class="bg-danger text-white px-2 d-inline rounded-pill">No</div>
+                            }
+                        </td>
+                        <td class="font-small text-center">@item.Reorder</td>
+                        <td class="font-small text-center">@item.Deliver</td>
+                        <td class="font-small text-center">@item.Pickup</td>
+                        <td class="font-small text-center">@item.Buy</td>
+                        <td class="font-small text-center">@item.Date</td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="dropdown-item openEditItemModal"
+                                            data-id="@item.Item_ID">
+                                            <i class="bi bi-pencil-fill"></i> Edit
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item openDeleteItemModal"
+                                            data-id="@item.Item_ID">
+                                            <i class="bi bi-trash-fill"></i> Delete
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            } else 
+            {
+                <tr>
+                    <td colspan="10" class="text-center text-muted">No Item found.</td>
+                </tr>
+            }
+            
         </tbody>
     </table>  
 
     <nav aria-label="Pagination">
         <ul class="pagination">
-            <li class="page-item ">
+            <li class="page-item @(ViewBag.Window == 1 ? "disabled" : "")">
                 <a class="page-link" 
-                    href="/Search?page=1&window=1&search=John&gender=Male">
+                    asp-action="Index"
+                    asp-route-page="@((ViewBag.StartPage - 5) > 0 ? ViewBag.StartPage - 5 : 1)"
+                    asp-route-window="@(ViewBag.Window -1)"
+                    asp-route-search="@ViewBag.Search">
                     Previous
                 </a>
             </li>
 
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
-            </li>
+            @for (int i = ViewBag.StartPage; i <= ViewBag.EndPage; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                    <a class = "page-link"
+                        asp-action="Index"
+                        asp-route-page="@i"
+                        asp-route-window="@ViewBag.Window"
+                        asp-route-search="@ViewBag.Search">
+                        @i
+                    </a>
+                </li>
+            }
 
-            <li class="page-item">
+            <li class="page-item @(ViewBag.EndPage == ViewBag.TotalPages ? "disabled" : "")">
                 <a class="page-link" 
-                    href="/Search?page=11&window=3&search=John&gender=Male">
+                    asp-action="Index"
+                    asp-route-page="@((ViewBag.EndPage + 1) <= ViewBag.TotalPages ? ViewBag.EndPage + 1 : ViewBag.TotalPages)"
+                    asp-route-window="@(ViewBag.Window + 1)"
+                    asp-route-search="@ViewBag.Search">
                     Next
                 </a>
             </li>
@@ -146,24 +185,58 @@
 <div id="editItemContainer"></div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById("openEditItemModal");
+        const button = document.querySelectorAll(".openEditItemModal");
         const container = document.getElementById("editItemContainer");
 
-        button.addEventListener("click", function (){
-            fetch("/ItemList/EditItem")
-                .then(response => response.text())
-                .then(html => {
-                    container.innerHTML = html;
-                    const modal = document.getElementById("editItemModal");
-                    if(modal) {
-                        const modalInstance = new bootstrap.Modal(modal);
-                        modalInstance.show();
-                    }
-                })
-                .catch(error => {
-                    console.error("Error loading modal:", error);
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+                const itemId = this.getAttribute("data-id");
+
+                fetch(`/ItemList/EditItem?id=${itemId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                        const modal = document.getElementById("editItemModal");
+                        if(modal) {
+                            const modalInstance = new bootstrap.Modal(modal);
+                            modalInstance.show();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error loading modal:", error);
+                    });
                 });
-             });
-         });
+            });
+        })
+        
 </script>
 
+
+<div id="deleteItemContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.querySelectorAll(".openDeleteItemModal");
+        const container = document.getElementById("deleteItemContainer");
+
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+                const itemId = this.getAttribute("data-id");
+
+                fetch(`/ItemList/DeleteItem?id=${itemId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                        const modal = document.getElementById("deleteItemModal");
+                        if(modal) {
+                            const modalInstance = new bootstrap.Modal(modal);
+                            modalInstance.show();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error loading modal:", error);
+                    });
+                });
+            });
+        })
+        
+</script>
