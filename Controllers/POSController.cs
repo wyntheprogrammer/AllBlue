@@ -1,21 +1,28 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using AllBlue.Models;
+using SQLitePCL;
+using Microsoft.EntityFrameworkCore;
 
 namespace AllBlue.Controllers;
 
 public class POSController : Controller
 {
     private readonly ILogger<POSController> _logger;
+    private readonly AppDbContext _context;
 
-    public POSController(ILogger<POSController> logger)
+    public POSController(ILogger<POSController> logger, AppDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View();
+        var item = _context.Item
+            .ToList();
+
+        return View(item);  
     }
 
 
@@ -34,8 +41,16 @@ public class POSController : Controller
     ////////////////////////////////////////////////////////////////////////////////////////
     public IActionResult SearchCustomer()
     {
-        return View();
+        var customer = _context.Customer
+            .Include(c => c.barangay)
+            .Include(c => c.city)
+            .Include(c => c.item)
+            .ToList();
+
+        return PartialView("SearchCustomer", customer);   
     }
+
+
 
 
     ////////////////////////////////////////////////////////////////////////////////////////

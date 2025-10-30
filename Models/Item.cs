@@ -9,7 +9,7 @@ namespace AllBlue.Models
     {
         [Key]
         public int Item_ID { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Item_Type { get; set; }

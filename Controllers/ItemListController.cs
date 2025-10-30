@@ -56,8 +56,7 @@ public class ItemListController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddItem(Item item, IFormFile Image)
-    {
+    public async Task<IActionResult> AddItem(Item item, IFormFile Image){
         if (ModelState.IsValid)
         {
             try
@@ -79,21 +78,19 @@ public class ItemListController : Controller
 
                 _context.Item.Add(item);
                 await _context.SaveChangesAsync();
-                
-                TempData["SuccessMessage"] = "Item added successfully!";
+
+                TempData["SuccessMessage"] = "Item added successfully.";
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
             }
-            
-            return RedirectToAction("Index");
-
         }
+        
+        return RedirectToAction("Index"); 
 
-        return RedirectToAction("Index");
     }
-
 
     [HttpGet]
     public IActionResult EditItem(int id)
@@ -107,48 +104,50 @@ public class ItemListController : Controller
     }
 
     [HttpPost]
-    // public async Task<IActionResult> EditItem(Item item, IFormFile Image)
-    // {
-    //     var existingItem = _context.Item.FirstOrDefault(i => i.Item_ID == item.Item_ID);
-    //     if (existingItem == null)
-    //     {
-    //         TempData["ErrorMessage"] = "Failed to update item.";
-    //         return NotFound();
-    //     }
+    public async Task<IActionResult> EditItem(Item item, IFormFile Image)
+    {
+        var existingItem = _context.Item.FirstOrDefault(i => i.Item_ID == item.Item_ID);
+        if (existingItem == null)
+        {
+            TempData["ErrorMessage"] = "Failed to update item.";
+            return NotFound();
+        }
 
-    //     try
-    //     {
-    //         if (Image != null && Image.Length > 0)
-    //         {
-    //             var uniqueFileName = item.Title + DateTime.Now.ToString("_yyyyMMddHHmmssfff") + Path.GetExtension(Image.FileName);
-    //             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Item", uniqueFileName);
+        try
+        {
+            if (Image != null && Image.Length > 0)
+            {
+                var uniqueFileName = item.Title + DateTime.Now.ToString("_yyyyMMddHHmmssfff") + Path.GetExtension(Image.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Item", uniqueFileName);
 
-    //             using (var stream = new FileStream(filePath, FileMode.Create))
-    //             {
-    //                 await Image.CopyToAsync(stream);
-    //             }
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Image.CopyToAsync(stream);
+                }
 
-    //             existingItem.Image = uniqueFileName;
-    //         }
+                existingItem.Image = uniqueFileName;
+            }
 
-    //         existingItem.Title = item.Title;
-    //         existingItem.Item_Type = item.Item_Type;
-    //         existingItem.POS_Item = item.POS_Item;
-    //         existingItem.Reorder = item.Reorder;
-    //         existingItem.Deliver = item.Deliver;
-    //         existingItem.Pickup = item.Pickup;
-    //         existingItem.Buy = item.Buy;
+            existingItem.Date = DateTime.Today;
 
-    //         _context.SaveChanges();
-    //         TempData["SuccessMessage"] = "Item updated successfully!";
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         TempData["ErrorMessage"] = ex.Message;
-    //     }
+            existingItem.Title = item.Title;
+            existingItem.Item_Type = item.Item_Type;
+            existingItem.POS_Item = item.POS_Item;
+            existingItem.Reorder = item.Reorder;
+            existingItem.Deliver = item.Deliver;
+            existingItem.Pickup = item.Pickup;
+            existingItem.Buy = item.Buy;
 
-    //     return RedirectToAction("Index");
-    // }
+            _context.SaveChanges();
+            TempData["SuccessMessage"] = "Item updated successfully!";
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
+
+        return RedirectToAction("Index");
+    }
 
 
     [HttpGet]
@@ -160,7 +159,7 @@ public class ItemListController : Controller
             return NotFound();
         }
 
-        return PartialView("DeleteItem", item);
+        return View("DeleteItem", item);
     }
 
     [HttpPost]

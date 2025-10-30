@@ -6,7 +6,7 @@ Gender
 Alias / Comments
 Date of Birth
 Mobile 1
-Mobile 2
+Mobile 
 House No.
 Street
 Barangay ID
@@ -94,6 +94,7 @@ CREATE TABLE Item (
     Item_ID INTEGER PRIMARY KEY,
     Image TEXT,
     Title TEXT NOT NULL,
+    Description TEXT,
     Item_Type TEXT,
     POS_Item INTGER,
     Reorder INTEGER,
@@ -104,6 +105,28 @@ CREATE TABLE Item (
 );
 
 
+CREATE TABLE Customer (
+	Customer_ID INTEGER PRIMARY KEY,
+	First_Name TEXT,
+	Last_Name TEXT,
+	Gender TEXT,
+	Alias TEXT,
+	Birth DATE,
+	House_No TEXT,
+	Street TEXT,
+	Barangay_ID INT,
+	City_ID INT,
+	Province TEXT, 
+	Item_ID INT,
+	Client_Gallon INT,
+	WRS_Gallon INT,
+	Quantity INT,
+	FOREIGN KEY (Barangay_ID) REFERENCES Barangay(Barangay_ID),
+	FOREIGN KEY (City_ID) REFERENCES City(City_ID),
+	FOREIGN KEY (Item_ID) REFERENCES Item(Item_ID)
+)
+
+
 5 Gallon - Slim
 5 Gallon - Round
 Wilkin - Container
@@ -112,6 +135,19 @@ Wilkin - Container
 350 ml - Bottle
 
 
+INSERT INTO Item (Item_ID, Image, Title, Description, Item_Type, POS_Item, Reorder, Deliver, Pickup, Buy, Date) VALUES
+(1, '5g_slim.jpg', '5 Gallon - Slim', 'Water Container', 1, 10, 1, 1, 1, '2025-10-28'),
+(2, '5g_round.jpg', '5 Gallon - Round', 'Water Container', 1, 15, 1, 1, 1, '2025-10-28'),
+(3, 'wilkin_container.jpg', 'Wilkin - Container', 'Water Container', 0, 20, 1, 0, 1, '2025-10-28'),
+(4, '1l_bottle.jpg', '1 Liter - Bottle', 'Bottle', 1, 30, 1, 1, 1, '2025-10-28'),
+(5, '500ml_bottle.jpg', '500 ml - Bottle', 'Bottle', 1, 50, 1, 1, 1, '2025-10-28'),
+(6, '350ml_bottle.jpg', '350 ml - Bottle', 'Bottle', 0, 60, 1, 1, 1, '2025-10-28'),
+(7, 'refill_cap.jpg', 'Refill Cap', 'Accessory', 0, 100, 1, 0, 0, '2025-10-28'),
+(8, 'cleaning_kit.jpg', 'Cleaning Kit', 'Maintenance', 0, 20, 0, 0, 1, '2025-10-28'),
+(9, 'delivery_cart.jpg', 'Delivery Cart', 'Equipment', 0, 5, 1, 0, 0, '2025-10-28'),
+(10, 'empty_container.jpg', 'Empty Container Return', 'Service', 0, 0, 0, 1, 0, '2025-10-28'),
+(11, 'label_sticker.jpg', 'Label Sticker', 'Packaging', 0, 200, 0, 0, 1, '2025-10-28'),
+(12, 'promo_coupon.jpg', 'Promo Coupon', 'Marketing', 0, 0, 0, 0, 0, '2025-10-28');
 
 
 

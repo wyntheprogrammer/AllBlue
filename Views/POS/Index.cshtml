@@ -2,6 +2,8 @@
     ViewData["Title"] = "POS";
 }
 
+@model List<Item>
+
 <div class="shadow-all-sides p-3 d-flex flex-column gap-3">
 
     <div class="d-flex justify-content-between">
@@ -60,11 +62,65 @@
             <div class="d-flex flex-row p-2 gap-2">
 
                 <div class="d-flex flex-column gap-2">
-                    <button class="p-2" style="border: none">Gallon</button>
-                    <button class="p-2" style="border: none">Bottle</button>
+                    <button type="button" id="gallonBtn" class="p-2 rounded" style="border: none; background-color: black; color: white;">Gallon</button>
+                    <button type="button" id="bottleBtn" class="p-2 rounded" style="border: none">Bottle</button>
                 </div>
                
-                <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                <div id="gallonContainer">
+                    <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="font-small text-center" style="width: 40px" scope="col">#</th>
+                                <th class="font-small text-center" scope="col">ITEM</th>
+                                <th class="font-small text-center" scope="col">PRICE</th>
+                                <th class="font-small text-center" scope="col">CLIENT GAL</th>
+                                <th class="font-small text-center" scope="col">WRS GAL</th>
+                                <th class="font-small text-center" scope="col">FREE</th>
+                                <th class="font-small text-center" scope="col">TOTAL</th>
+                                <th class="font-small text-center" scope="col">BUY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model.Where(i => i.Item_Type == "Container")) 
+                                {
+                                    <tr>
+                                        <th class="font-small text-center" scope="row">@item.Item_ID</th>
+                                        <td class="font-small text-center">@item.Title</td>
+                                        <td class="font-small text-center">20.00</td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm" />
+                                        </td>
+                                        <td class="text-center">
+                                            100
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" />
+                                        </td>
+                                    </tr>
+                                }
+                            } else 
+                            {
+                            <tr>
+                                <td colspan="8" class="text-center text-muted">No Item found.</td>
+                            </tr>   
+                            }
+                                                
+                        </tbody>
+                    </table>
+                </div>
+        
+                
+
+                <div id="bottleContainer" style="display: none">
+                    <table class="table table-striped" style="width: 100%; table-layout: fixed;">
                     <thead class="table-dark">
                         <tr>
                             <th class="font-small text-center" style="width: 40px" scope="col">#</th>
@@ -78,51 +134,77 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model.Where(i => i.Item_Type == "Bottle")) 
+                            {
+                                <tr>
+                                    <th class="font-small text-center" scope="row">@item.Item_ID</th>
+                                    <td class="font-small text-center">@item.Title</td>
+                                    <td class="font-small text-center">10.00</td>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm" />
+                                    </td>
+                                    <td class="text-center">
+                                        100
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="radio" />
+                                    </td>
+                                </tr>
+                            }
+                        } else 
+                        {
                         <tr>
-                            <th class="font-small text-center" scope="row">1</th>
-                            <td class="font-small text-center">5 Gallon - Slim</td>
-                            <td class="font-small text-center">20.00</td>
-                            <td>
-                                <input type="text" class="form-control form-control-sm" />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control form-control-sm" />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control form-control-sm" />
-                            </td>
-                            <td class="text-center">
-                                100
-                            </td>
-                            <td class="text-center">
-                                <input type="radio" />
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th class="font-small text-center" scope="row">2</th>
-                            <td class="font-small text-center">5 Gallon - Slim</td>
-                            <td class="font-small text-center">20.00</td>
-                            <td>
-                                <input type="text" class="form-control form-control-sm" />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control form-control-sm" />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control form-control-sm" />
-                            </td>
-                            <td class="text-center">
-                                100
-                            </td>
-                            <td class="text-center">
-                                <input type="radio" />
-                            </td>
-                        </tr>
-                        
+                            <td colspan="8" class="text-center text-muted">No Item found.</td>
+                        </tr>   
+                        }
+                                             
                     </tbody>
                 </table>
+                </div>
+                
 
+                
+<script>
+    const gallonBtn = document.getElementById('gallonBtn');
+    const bottleBtn = document.getElementById('bottleBtn');
+
+    const gallonContainer = document.getElementById('gallonContainer');
+    const bottleContainer = document.getElementById('bottleContainer');
+
+    gallonBtn.addEventListener('click', () =>{
+        gallonContainer.style.display = "block";
+        bottleContainer.style.display = "none";
+
+        gallonBtn.style.backgroundColor = "black";
+        bottleBtn.style.backgroundColor = "";
+
+        gallonBtn.style.color = "white";
+        bottleBtn.style.color = "";
+    });
+
+
+    bottleBtn.addEventListener('click', () =>{
+        gallonContainer.style.display = "none";
+        bottleContainer.style.display = "block";
+
+        gallonBtn.style.backgroundColor = "";
+        bottleBtn.style.backgroundColor = "black";
+        
+        gallonBtn.style.color = "";
+        bottleBtn.style.color = "white";
+
+    });
+
+</script>
+               
             </div>
 
         </div>
@@ -251,7 +333,6 @@
                     </td>
                 </tr>
 
-                
             </tbody>
         </table>
 
@@ -393,3 +474,5 @@
              });
          });
 </script>
+
+

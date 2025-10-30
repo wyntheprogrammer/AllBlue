@@ -5,6 +5,30 @@
       "PackagePath": "staticwebassets\\AllBlue.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\Item\\Label Sticker_20251030162429242.png",
+      "PackagePath": "staticwebassets\\Images\\Item\\Label Sticker_20251030162429242.png"
+    },
+    {
+      "Id": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\Item\\Sample.png",
+      "PackagePath": "staticwebassets\\Images\\Item\\Sample.png"
+    },
+    {
+      "Id": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\Item\\Sample3.png",
+      "PackagePath": "staticwebassets\\Images\\Item\\Sample3.png"
+    },
+    {
+      "Id": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\Item\\q_20251030092453442.png",
+      "PackagePath": "staticwebassets\\Images\\Item\\q_20251030092453442.png"
+    },
+    {
+      "Id": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\Item\\qw_20251030095257773.png",
+      "PackagePath": "staticwebassets\\Images\\Item\\qw_20251030095257773.png"
+    },
+    {
+      "Id": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\Item\\sasas_20251030162817504.png",
+      "PackagePath": "staticwebassets\\Images\\Item\\sasas_20251030162817504.png"
+    },
+    {
       "Id": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

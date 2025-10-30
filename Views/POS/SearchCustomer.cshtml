@@ -2,6 +2,7 @@
     Layout = null;
 };
 
+@model List<Customer>
 
 <!-- Search Modal -->
 <div class="modal fade" id="searchCustomerModal" tabindex="-1" aria-labelledby="searchCustomerModalLabel" aria-hidden="true">
@@ -52,32 +53,44 @@
                             <td></td>
                         </tr>
 
-                        <tr>
-                            <th class="font-small" scope="row">2</th>
-                            <td class="font-small" scope="row">JUAN DELA CRUZ</td>
-                            <td class="font-small" scope="row">
-                                <div class="font-extra-small">Inanlorenza, Bayambang</div>
-                                <div class="font-extra-small">Tabi ng bahay ni Rosie</div>
-                            </td>
-                            <td>
-                                <table class="table table-striped" style="width: 100%; table-layout: fixed;">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th class="font-extra-small text-center" scope="col">Item</th>
-                                            <th class="font-extra-small text-center" scope="col">Client</th>
-                                            <th class="font-extra-small text-center" scope="col">WRS</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="font-extra-small text-center">5 Gallon - Slim</td>
-                                            <td class="font-extra-small text-center">0</td>
-                                            <td class="font-extra-small text-center">12</td>
-                                        </tr>
-                                    </tbody>
-                                </table>               
-                            </td>
-                        </tr>
+                        @if (Model !=null && Model.Any())
+                        {
+                            @foreach (var customer in Model){
+                                <tr>
+                                    <th class="font-small" scope="row">@customer.Customer_ID</th>
+                                    <td class="font-small" scope="row">@customer.First_Name  @customer.Last_Name</td>
+                                    <td class="font-small" scope="row">
+                                        <div class="font-small">
+                                            <i class="bi-geo-alt"></i> 
+                                                @customer.barangay.Name, @customer.city.Name
+                                        </div>
+                                        <div class="font-small">
+                                            <i class="bi-chat-dots"></i> 
+                                                @customer.Alias</div>
+                                    </td>
+                                    <td>
+                                        <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th class="font-extra-small text-center" scope="col">Item</th>
+                                                    <th class="font-extra-small text-center" scope="col">Client</th>
+                                                    <th class="font-extra-small text-center" scope="col">WRS</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="font-extra-small text-center">@customer.item.Title</td>
+                                                    <td class="font-extra-small text-center">@customer.Client_Gallon</td>
+                                                    <td class="font-extra-small text-center">@customer.WRS_Gallon</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>               
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        
+
                     </tbody>
                 </table>  
 

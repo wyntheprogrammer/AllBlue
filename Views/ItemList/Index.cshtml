@@ -68,7 +68,14 @@
                 @foreach (var item in Model){
                     <tr>
                         <td class="font-small" scope="row">@item.Item_ID</td>
-                        <td class="font-small" scope="row">@item.Title</td>
+                        <td class="font-small" scope="row">
+                            <div class="d-flex flex-row w-100 gap-2">
+                                 <div style="height: 20px; width: 20px; overflow: hidden;">
+                                    <img src="~/Images/Item/@item.Image" alt="" style="width:100%; object-fit: contain;">
+                                </div>
+                                <span> @item.Title</span>
+                            </div>
+                        </td>
                         <td class="font-small" scope="row">@item.Description</td>
                         <td class="font-small text-center">@item.Item_Type</td>
                         <td class="font-small text-center">
