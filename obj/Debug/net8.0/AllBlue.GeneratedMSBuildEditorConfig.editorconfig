@@ -26,6 +26,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\JPBACOLOD\AllBlue
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/JPBACOLOD/AllBlue/Views/AccountType/AddAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFR5cGVcQWRkQWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JPBACOLOD/AllBlue/Views/AccountType/DeleteAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFR5cGVcRGVsZXRlQWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/JPBACOLOD/AllBlue/Views/AccountType/EditAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFR5cGVcRWRpdEFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -204,6 +212,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/JPBACOLOD/AllBlue/Views/SystemSettings/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3lzdGVtU2V0dGluZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JPBACOLOD/AllBlue/Views/UserAccount/AddUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFjY291bnRcQWRkVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/JPBACOLOD/AllBlue/Views/UserAccount/ChangePassword.cshtml]

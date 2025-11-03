@@ -1,6 +1,8 @@
 @{
-    ViewData["Title"] = "Location City";
+    ViewData["Title"] = "Account Type";
 }
+
+@model List<AccountType>
 
 <div class="d-flex flex-column gap-5">
 
@@ -8,7 +10,7 @@
 
         <div class="d-flex justify-content-between border-bottom pb-2 w-100">
             <div class="d-flex gap-2 align-items-center">
-                <i class="fs-6 bi-building"></i> 
+                <i class="fs-6 bi-person-badge"></i> 
                 Account Type
             </div>
             <i class="fs-5 bi-fullscreen"></i> 
@@ -18,20 +20,36 @@
         <div class="d-flex flex-row justify-content-between w-100">
 
             <div class="d-flex flex-column">
-                <button class="bg-primary text-white p-2 rounded" id="openAddCustomerModal" style="border: none">
+                <button class="bg-primary text-white p-2 rounded" id="openAddAccountModal" style="border: none">
                 <i class="fs-6 bi-plus"></i> 
                     Add New Account Type
                 </button>
             </div>
 
-            <div class="form-group d-flex flex-row">
-                <input type="text" placeholder="Search..." class="form-control" style="width: 300px;" required/>
+            <form class="form-group d-flex flex-row" asp-controller="AccountType" asp-action="Index" method="get">
+                <input type="text" name="search" placeholder="Search by title." class="form-control" style="width: 300px;"/>
                 <button class="border bg-white">
                     <i class="bi bi-search"></i>
                 </button>
-            </div>
+            </form>
 
         </div>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show w-100 m-0" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show w-100 m-0" role="alert">
+                @TempData["ErrorMessage"]
+                <button type = "button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
 
 
         <table class="table table-striped" style="width: 100%; table-layout: fixed;">
@@ -46,77 +64,90 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="font-small" scope="row">1</td>
-                    <td class="font-small">
-                        Manager
-                    </td>
-                    <td class="font-small">
-                        Manager
-                    </td>
-                    <td class="font-small">
-                        <div class="bg-success text-white px-2 d-inline rounded-pill">POS</div>
-                        <div class="bg-success text-white px-2 d-inline rounded-pill">Monitoring</div>
-                        <div class="bg-success text-white px-2 d-inline rounded-pill">Report</div>
-                        <div class="bg-success text-white px-2 d-inline rounded-pill">POS</div>
-                        <div class="bg-success text-white px-2 d-inline rounded-pill">POS</div>
-                        <div class="bg-success text-white px-2 d-inline rounded-pill">POS</div>
-                    </td>
-                    <td class="font-small text-center">
-                        <div class="bg-success text-white px-2 d-inline rounded-pill">Active</div>
-                    </td>
-                    <td class="text-center">
-                        <div class="dropdown">
-                            <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-gear"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="dropdown-item" id="openEditAccountModal">
-                                        <i class="bi bi-pencil-fill"></i> Edit
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-item" id="openDeleteAccountModal">
-                                        <i class="bi bi-trash-fill"></i> Delete
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
+                @if (Model !=null && Model.Any())
+                {
+                    @foreach (var accountType in Model){
+                        <tr>
+                            <td class="font-small" scope="row">@accountType.Account_Type_ID</td>
+                            <td class="font-small">
+                                @accountType.Title
+                            </td>
+                            <td class="font-small">
+                                @accountType.Description
+                            </td>
+                            <td class = "font-small">
+                                @foreach (var menu in accountType.Menu.Split(','))
+                                {
+                                    <div class="bg-success text-white px-2 d-inline rounded-pill">@menu.Trim()</div>
+                                }
+                            </td>
+                            <td class="font-small text-center">
+                                <div class="bg-success text-white px-2 d-inline rounded-pill">Active</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="dropdown">
+                                    <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        <i class="bi bi-gear"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <div class="dropdown-item openEditAccountModal"
+                                                data-id="@accountType.Account_Type_ID">
+                                                <i class="bi bi-pencil-fill"></i> Edit
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dropdown-item openDeleteAccountModal"
+                                                data-id="@accountType.Account_Type_ID">
+                                                <i class="bi bi-trash-fill"></i> Delete
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                } else 
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No Account Type found.</td>
+                    </tr>
+                }
             </tbody>
         </table>  
 
 
-        <nav aria-label="Pagination">
+        <nav aria-label="Account Type Pagination">
             <ul class="pagination">
-                <li class="page-item ">
+                <li class="page-item @(ViewBag.Window == 1 ? "disabled" : "")">
                     <a class="page-link" 
-                        href="/Search?page=1&window=1&search=John&gender=Male">
+                        asp-action="Index"
+                        asp-route-page="@((ViewBag.StartPage - 5) > 0 ? ViewBag.StartPage - 5 : 1)"
+                        asp-route-window="@(ViewBag.Window - 1)"
+                        asp-route-search="@ViewBag.Search">
                         Previous
                     </a>
                 </li>
 
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
-                </li>
+                @for (int i = ViewBag.StartPage; i <= ViewBag.EndPage; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                        <a class = "page-link"
+                            asp-action="Index"
+                            asp-route-page="@i"
+                            asp-route-window="@ViewBag.Window"
+                            asp-route-search="@ViewBag.Search">
+                        @i
+                        </a>
+                    </li>
+                }
 
-                <li class="page-item">
+                <li class="page-item @(ViewBag.EndPage == ViewBag.TotalPages ? "disabled" : "")">
                     <a class="page-link" 
-                        href="/Search?page=11&window=3&search=John&gender=Male">
+                        asp-action="Index"
+                        asp-route-page="@((ViewBag.EndPage + 1) <= ViewBag.TotalPages ? ViewBag.EndPage + 1 : ViewBag.TotalPages)"
+                        asp-route-window="@(ViewBag.Window + 1)"
+                        asp-route-search="@ViewBag.Search">
                         Next
                     </a>
                 </li>
@@ -129,14 +160,43 @@
 
 
 
+<div id="addAccountContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openAddAccountModal");
+        const container = document.getElementById("addAccountContainer");
+
+        button.addEventListener("click", function (){
+            fetch("/AccountType/AddAccount")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("addAccountModal");
+                    if(modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading modal:", error);
+                })
+        })
+    })
+</script>
+
+
+
 <div id="editAccountContainer"></div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById("openEditAccountModal");
+        const button = document.querySelectorAll(".openEditAccountModal");
         const container = document.getElementById("editAccountContainer");
 
-        button.addEventListener("click", function (){
-            fetch("/AccountType/EditAccount")
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+                const accountId = this.getAttribute("data-id");
+
+            fetch(`/AccountType/EditAccount?id=${accountId}`)
                 .then(response => response.text())
                 .then(html => {
                     container.innerHTML = html;
@@ -148,11 +208,42 @@
                 })
                 .catch(error => {
                     console.error("Error loading modal:", error);
-                });
-             });
-         });
+                })
+             })
+         })
+    })
+        
+        
 </script>
 
+
+<div id="deleteAccountContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.querySelectorAll(".openDeleteAccountModal");
+        const container = document.getElementById("deleteAccountContainer");
+
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+                const accountId = this.getAttribute("data-id");
+
+                fetch(`/AccountType/DeleteAccount?id=${accountId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                        const modal =document.getElementById("deleteAccountModal");
+                        if(modal) {
+                            const modalInstance = new bootstrap.Modal(modal);
+                            modalInstance.show();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error loading modal:", error);
+                    })
+            })
+        })
+    })
+</script>
 
 
 
