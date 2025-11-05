@@ -61,11 +61,50 @@ Price
 Transaction Table
 
 
+User Account
+User_ID
+Image
+First_Name
+Middle_Name
+Last_Name
+Contact
+Email
+Gender
+Account_Type_ID
+Address
+
+
+Account Type
+Account_Type_ID
+Title 
+Description
+Menu
+Status
+
+POS
+Monitoring
+Report
+Stock/Expenses
+Item List
+System Settings
+Barangay/City
+Account Type
+User Account
+Backup Database
 
 
 
 
 
+User Account
+User_Account_ID
+Name
+Username
+Email
+Contact
+Address
+Account_Type_ID
+Status
 
 
 
@@ -127,13 +166,39 @@ CREATE TABLE Customer (
 )
 
 
+CREATE TABLE AccountType (
+    Account_Type_ID INTEGER PRIMARY KEY,
+    Title TEXT NOT NULL,
+    Description TEXT,
+    Menu TEXT
+);
+
+
+CREATE TABLE UserAccount (
+    User_Account_ID INTEGER PRIMARY KEY,
+    Image TEXT,
+    Firstname TEXT NOT NULL,
+    Middlename TEXT,
+    Lastname TEXT NOT NULL,
+    Username TEXT,
+    Email TEXT,
+    Password TEXT,
+    Contact TEXT,
+    Gender TEXT,
+    Address TEXT,
+    Account_Type_ID INTEGER NOT NULL,
+    Status TEXT CHECK(Status IN ('Active', 'Inactive')) DEFAULT 'Active',
+    FOREIGN KEY (Account_Type_ID) REFERENCES AccountType(Account_Type_ID)
+);
+
+
+
 5 Gallon - Slim
 5 Gallon - Round
 Wilkin - Container
 1 Liter - Bottle
 500 ml - Bottle
-350 ml - Bottle
-
+350 ml - Bottl
 
 INSERT INTO Item (Item_ID, Image, Title, Description, Item_Type, POS_Item, Reorder, Deliver, Pickup, Buy, Date) VALUES
 (1, '5g_slim.jpg', '5 Gallon - Slim', 'Water Container', 1, 10, 1, 1, 1, '2025-10-28'),
@@ -148,6 +213,23 @@ INSERT INTO Item (Item_ID, Image, Title, Description, Item_Type, POS_Item, Reord
 (10, 'empty_container.jpg', 'Empty Container Return', 'Service', 0, 0, 0, 1, 0, '2025-10-28'),
 (11, 'label_sticker.jpg', 'Label Sticker', 'Packaging', 0, 200, 0, 0, 1, '2025-10-28'),
 (12, 'promo_coupon.jpg', 'Promo Coupon', 'Marketing', 0, 0, 0, 0, 0, '2025-10-28');
+
+
+
+INSERT INTO AccountType (Account_Type_ID, Title, Description, Menu) VALUES
+(1, 'Admin', 'Full access to all modules and system settings.', 'POS,Monitoring,Report,Stock/Expenses,Item List,System Settings,Barangay/City,Account Type,User Account,Backup Database'),
+(2, 'Manager', 'Oversees operations, inventory, and reporting. Limited access to system settings.', 'POS,Monitoring,Report,Stock/Expenses,Item List,Barangay/City,User Account'),
+(3, 'Staff', 'Handles POS transactions and customer service.', 'POS,Item List,Monitoring'),
+(4, 'Delivery', 'Manages delivery schedules and updates delivery status.', 'POS,Monitoring'),
+(5, 'Viewer', 'Read-only access to reports and monitoring modules.', 'Monitoring,Report');
+
+
+INSERT INTO UserAccount (User_Account_ID, Image, Firstname, Middlename ,Lastname, Username, Email, Password, Contact, Gender, Address, Account_Type_ID, Status) VALUES
+(1, 'Sample.png', 'Juan', '', 'Dela Cruz', 'admin01', 'admin@allblue.ph', '123', '09171234567', 'Male', 'Mandaluyong City', 1, 'Active'),
+(2, 'Sample.png', 'Maria', '', 'Santos', 'manager01', 'manager@allblue.ph', '123', '09181234567', 'Female','Pasig City', 2, 'Active'),
+(3, 'Sample.png', 'Carlos', '',  'Reyes', 'staff01', 'staff@allblue.ph', '123', '09191234567', 'Male', 'San Juan City', 3, 'Active'),
+(4, 'Sample.png', 'Liza', '', 'Tan', 'delivery01', 'delivery@allblue.ph', '123', '09201234567', 'Female', 'Quezon City', 4, 'Inactive'),
+(5, 'Sample.png', 'Ramon', '', 'Cruz', 'viewer01', 'viewer@allblue.ph', '123', '09211234567', 'Male', 'Makati City', 5, 'Active');
 
 
 

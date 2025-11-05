@@ -50,3 +50,11 @@ body {
   border-color: #ced4da;
 }
 
+
+
+
+table td {
+  word-wrap: break-word;
+  word-break: break-all; /* or use break-word for nicer wrapping */
+  white-space: normal;
+}

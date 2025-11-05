@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
     public DbSet<City> City { get; set; }
     public DbSet<Barangay> Barangay { get; set; }
     public DbSet<Item> Item { get; set; }
-    public DbSet<AccountType> AccountType {get; set;}
+    public DbSet<AccountType> AccountType { get; set; }
+    public DbSet<UserAccount> UserAccount { get; set; }
 
 }
