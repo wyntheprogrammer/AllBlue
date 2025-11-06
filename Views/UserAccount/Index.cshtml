@@ -87,7 +87,11 @@
                                 @userAccount.accountType.Title
                             </td>
                             <td class="font-small text-center">
-                                <div class="bg-success text-white px-2 d-inline rounded-pill">Active</div>
+                                @if (userAccount.Status == "Active") {
+                                    <div class="bg-success text-white px-2 d-inline rounded-pill">Active</div>
+                                } else {
+                                    <div class="bg-danger text-white px-2 d-inline rounded-pill">Inactive</div>
+                                }
                             </td>
                             <td class="text-center">
                                 <div class="dropdown">
@@ -176,6 +180,34 @@
 
 </div>
 
+<div id="deactivateUserContainer"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.querySelectorAll(".openDeactivateUserModal");
+        const container = document.getElementById("deactivateUserContainer");
+
+        button.forEach(button => {
+            button.addEventListener("click", function () {
+                const userId = this.getAttribute("data-id");
+
+                fetch(`/UserAccount/DeativateUser?id=${userId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                        const modal = document.getElementById("deactivateUserModal");
+                        if(modal) {
+                            const modalInstance = new bootstrap.Modal(modal);
+                            modalInstance.show()
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error loading modal:", error);
+                    })
+            })
+        })
+    })
+</script>
+
 
 <div id="addUserContainer"></div>
 <script>
@@ -257,36 +289,6 @@
              });
         })
     });
-</script>
-
-
-
-<div id="deactivateContainer"></div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const button = document.querySelectorAll(".openDeactivateUserModal");
-        const container = document.getElementById("deactivateUserContainer");
-
-        button.forEach(button => {
-            button.addEventListener("click", function (){
-                const userId = this.getAttribute("data-id");
-
-                fetch(`/UserAccount/DeactivateAccount?id=${userId}`)
-                    .then(response => response.text())
-                    .then(html => {
-                        container.innerhtml = html;
-                        const modal = document.getElementById("editUserAccountModal");
-                        if(modal) {
-                            const modalInstance = new bootstrap.Modal(modal);
-                            modalInstance.show();
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error loading modal: ", error);
-                    })
-            })
-        })
-    })
 </script>
 
 

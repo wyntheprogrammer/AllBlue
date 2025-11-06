@@ -222,6 +222,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFjY291bnRcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/JPBACOLOD/AllBlue/Views/UserAccount/DeactivateUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFjY291bnRcRGVhY3RpdmF0ZVVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JPBACOLOD/AllBlue/Views/UserAccount/DeleteUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFjY291bnRcRGVsZXRlVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/JPBACOLOD/AllBlue/Views/UserAccount/EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFjY291bnRcRWRpdFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

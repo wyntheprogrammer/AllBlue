@@ -149,7 +149,7 @@ public class UserAccountController : Controller
         if(existingUser == null) 
         {
             TempData["ErrorMessage"] = "Failed to update user";
-            return NotFound();
+            return RedirectToAction("Index");
         }
 
         try {
@@ -169,17 +169,21 @@ public class UserAccountController : Controller
             existingUser.Password = "123";
             existingUser.Status = "Active";
             
-
+            existingUser.Firstname = userAccount.Firstname;
+            existingUser.Middlename = userAccount.Middlename;
+            existingUser.Lastname = userAccount.Lastname;
             existingUser.Username = userAccount.Username;
             existingUser.Email = userAccount.Email;
             existingUser.Contact = userAccount.Contact;
             existingUser.Gender = userAccount.Gender;
             existingUser.Address = userAccount.Address;
-            existingUser.User_Account_ID = userAccount.User_Account_ID;
-            existingUser.Status = userAccount.Status;
+            existingUser.Account_Type_ID = userAccount.Account_Type_ID;
 
             _context.SaveChanges();
+           
             TempData["SuccessMessage"] = "User Account updated successfully!";
+            return RedirectToAction("Index");
+
         }
         catch (Exception ex)
         {
@@ -199,10 +203,8 @@ public class UserAccountController : Controller
     }
 
 
-
-
     [HttpGet]
-    public IActionResult DeactivateUser(int id)
+    public IActionResult DeativateUser(int id)
     {
         var userAccount = _context.UserAccount.FirstOrDefault(u => u.User_Account_ID == id);
         if (userAccount == null)
@@ -220,7 +222,7 @@ public class UserAccountController : Controller
         var existingUser = _context.UserAccount.FirstOrDefault(u => u.User_Account_ID == userAccount.User_Account_ID);
         if(existingUser == null)
         {
-            TempData["ErrorMessage"] = "Failed to deactivate user.";
+            TempData["ErrorMessage"] = "Failed to update user status.";
             return NotFound();
         }
 
@@ -229,7 +231,7 @@ public class UserAccountController : Controller
             existingUser.Status = userAccount.Status;
 
             _context.SaveChanges();
-            TempData["SuccessMessage"] = "User Account deactivated successfully.";       
+            TempData["SuccessMessage"] = "User Account status updated successfully.";       
         } catch (Exception ex)
         {
             TempData["ErrorMessage"] = ex.Message;
@@ -291,7 +293,7 @@ public class UserAccountController : Controller
             return NotFound();
         }
 
-        return PartialView("Index", userAccount);
+        return PartialView("DeleteUser", userAccount);
     }
 
     [HttpPost]

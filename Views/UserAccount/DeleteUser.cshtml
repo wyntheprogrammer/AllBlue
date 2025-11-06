@@ -1,0 +1,21 @@
+@model AllBlue.Models.UserAccount
+
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-controller="UserAccount" asp-action="DeleteUser" method="post">
+                <input type="hidden" asp-for="User_Account_ID" />
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete <strong>@Model.Firstname @Model.Lastname</strong>?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Delete User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

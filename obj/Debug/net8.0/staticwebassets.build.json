@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AS2q0EjHU0p2f68xh2c8LfpktLgbnIV5pWGNq6uqZTo=",
+  "Hash": "nVuhSxVLn/BoKmFAs7azn3jG6P5f6vc6mFH4Ilnsnc4=",
   "Source": "AllBlue",
   "BasePath": "_content/AllBlue",
   "Mode": "Default",
@@ -262,6 +262,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\User\\bacolod_20251105111751152.png"
+    },
+    {
+      "Identity": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\User\\Dela Cruz2_20251105153742547.png",
+      "SourceId": "AllBlue",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\",
+      "BasePath": "_content/AllBlue",
+      "RelativePath": "Images/User/Dela Cruz2_20251105153742547.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\User\\Dela Cruz2_20251105153742547.png"
     },
     {
       "Identity": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\js\\site.js",
