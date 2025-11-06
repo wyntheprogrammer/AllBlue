@@ -137,7 +137,6 @@ public class UserAccountController : Controller
 
         ViewBag.AccountTypeList = new SelectList(accountTypeList, "Value", "Text");
 
-
         return PartialView("EditUser", user);
     }
 
@@ -211,7 +210,7 @@ public class UserAccountController : Controller
         {
             return NotFound();
         }
-
+            
         return PartialView("DeactivateUser", userAccount);
     }
 
