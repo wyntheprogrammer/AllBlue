@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nVuhSxVLn/BoKmFAs7azn3jG6P5f6vc6mFH4Ilnsnc4=",
+  "Hash": "THr4Y8y1ZhD2n3qYcMLr+yAlZ0+cgYJ3FCufJhiQNrg=",
   "Source": "AllBlue",
   "BasePath": "_content/AllBlue",
   "Mode": "Default",
@@ -264,12 +264,12 @@
       "OriginalItemSpec": "wwwroot\\Images\\User\\bacolod_20251105111751152.png"
     },
     {
-      "Identity": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\User\\Dela Cruz2_20251105153742547.png",
+      "Identity": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\User\\Dela Cruz2_20251105153742547 - Copy.png",
       "SourceId": "AllBlue",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\",
       "BasePath": "_content/AllBlue",
-      "RelativePath": "Images/User/Dela Cruz2_20251105153742547.png",
+      "RelativePath": "Images/User/Dela Cruz2_20251105153742547 - Copy.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -280,7 +280,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\User\\Dela Cruz2_20251105153742547.png"
+      "OriginalItemSpec": "wwwroot\\Images\\User\\Dela Cruz2_20251105153742547 - Copy.png"
+    },
+    {
+      "Identity": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\Images\\User\\Sample.png",
+      "SourceId": "AllBlue",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\",
+      "BasePath": "_content/AllBlue",
+      "RelativePath": "Images/User/Sample.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\User\\Sample.png"
     },
     {
       "Identity": "C:\\Users\\JPBACOLOD\\AllBlue\\wwwroot\\js\\site.js",

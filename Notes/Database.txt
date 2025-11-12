@@ -214,6 +214,8 @@ INSERT INTO Item (Item_ID, Image, Title, Description, Item_Type, POS_Item, Reord
 (11, 'label_sticker.jpg', 'Label Sticker', 'Packaging', 0, 200, 0, 0, 1, '2025-10-28'),
 (12, 'promo_coupon.jpg', 'Promo Coupon', 'Marketing', 0, 0, 0, 0, 0, '2025-10-28');
 
+SELECT * FROM useraccount
+WHERE contact IS NULL;
 
 
 INSERT INTO AccountType (Account_Type_ID, Title, Description, Menu) VALUES
@@ -225,12 +227,31 @@ INSERT INTO AccountType (Account_Type_ID, Title, Description, Menu) VALUES
 
 
 INSERT INTO UserAccount (User_Account_ID, Image, Firstname, Middlename ,Lastname, Username, Email, Password, Contact, Gender, Address, Account_Type_ID, Status) VALUES
-(1, 'Sample.png', 'Juan', '', 'Dela Cruz', 'admin01', 'admin@allblue.ph', '123', '09171234567', 'Male', 'Mandaluyong City', 1, 'Active'),
-(2, 'Sample.png', 'Maria', '', 'Santos', 'manager01', 'manager@allblue.ph', '123', '09181234567', 'Female','Pasig City', 2, 'Active'),
-(3, 'Sample.png', 'Carlos', '',  'Reyes', 'staff01', 'staff@allblue.ph', '123', '09191234567', 'Male', 'San Juan City', 3, 'Active'),
-(4, 'Sample.png', 'Liza', '', 'Tan', 'delivery01', 'delivery@allblue.ph', '123', '09201234567', 'Female', 'Quezon City', 4, 'Inactive'),
-(5, 'Sample.png', 'Ramon', '', 'Cruz', 'viewer01', 'viewer@allblue.ph', '123', '09211234567', 'Male', 'Makati City', 5, 'Active');
+(1, 'Sample.png', 'Juan', '', 'Dela Cruz', 'Juan', 'admin@allblue.ph', '123', '09171234567', 'Male', 'Mandaluyong City', 1, 'Active'),
+(2, 'Sample.png', 'Maria', '', 'Santos', 'Maria', 'manager@allblue.ph', '123', '09181234567', 'Female','Pasig City', 2, 'Active'),
+(3, 'Sample.png', 'Carlos', '',  'Reyes', 'Carlos', 'staff@allblue.ph', '123', '09191234567', 'Male', 'San Juan City', 3, 'Active'),
+(4, 'Sample.png', 'Liza', '', 'Tan', 'Liza', 'delivery@allblue.ph', '123', '09201234567', 'Female', 'Quezon City', 4, 'Inactive'),
+(5, 'Sample.png', 'Ramon', '', 'Cruz', 'Ramon', 'viewer@allblue.ph', '123', '09211234567', 'Male', 'Makati City', 5, 'Active'),
+(6, 'Sample.png', 'Ana', '', 'Lopez', 'Ana', 'ana.staff@allblue.ph', '123', '09221234567', 'Female', 'Taguig City', 4, 'Active'),
+(7, 'Sample.png', 'Mark', '', 'Villanueva', 'Mark', 'mark.staff@allblue.ph', '123', '09231234567', 'Male', 'Parañaque City', 4, 'Active'),
+(8, 'Sample.png', 'Grace', '', 'Lim', 'Grace', 'grace.staff@allblue.ph', '123', '09241234567', 'Female', 'Manila City', 4, 'Active');
 
+
+Order Table
+Customer_ID
+User_Account_ID
+Item_ID
+Price
+Client_Gal
+WRS_Gal
+Free
+Total
+Status
+
+
+Payment Table
+Order_ID
+Total
 
 
 

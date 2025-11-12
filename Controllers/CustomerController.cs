@@ -7,10 +7,12 @@ namespace AllBlue.Controllers;
 public class CustomerController : Controller
 {
     private readonly ILogger<CustomerController> _logger;
+    private readonly AppDbContext _context;
 
-    public CustomerController(ILogger<CustomerController> logger)
+    public CustomerController(ILogger<CustomerController> logger, AppDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()

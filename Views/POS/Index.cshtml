@@ -4,6 +4,7 @@
 
 @model List<Item>
 
+
 <div class="shadow-all-sides p-3 d-flex flex-column gap-3">
 
     <div class="d-flex justify-content-between">
@@ -44,15 +45,12 @@
                 <div class="d-flex flex-column p-2 gap-2" style="width:30%">
 
                     <select  class="form-select" required>
-                        <option value="">Deliver</option>
-                        <option value="Barangay 1">Pickup</option>
-                        <option value="Barangay 2">Barangay 2</option>
+                        <option value="Deliver">Deliver</option>
+                        <option value="Pickup">Pickup</option>
                     </select>
 
-                    <select  class="form-select" required>
-                        <option value="">Marimar</option>
-                        <option value="Barangay 1">Barangay 1</option>
-                        <option value="Barangay 2">Barangay 2</option>
+                    <select  class="form-select" asp-items="ViewBag.UserList">
+                        <option value=""></option>
                     </select>
 
                 </div>
@@ -88,7 +86,9 @@
                                     <tr>
                                         <th class="font-small text-center" scope="row">@item.Item_ID</th>
                                         <td class="font-small text-center">@item.Title</td>
-                                        <td class="font-small text-center"></td>
+                                        <td class="font-small text-center">
+                                        
+                                        </td>
                                         <td>
                                             <input type="text" class="form-control form-control-sm" />
                                         </td>
@@ -428,27 +428,75 @@
 
 <div id="searchCustomerContainer"></div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById("openSearchCustomerModal");
-        const container = document.getElementById("searchCustomerContainer");
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("openSearchCustomerModal");
+    const container = document.getElementById("searchCustomerContainer");
 
-        button.addEventListener("click", function (){
-            fetch("/POS/SearchCustomer")
-                .then(response => response.text())
-                .then(html => {
-                    container.innerHTML = html;
-                    const modal = document.getElementById("searchCustomerModal");
-                    if(modal) {
-                        const modalInstance = new bootstrap.Modal(modal);
-                        modalInstance.show();
-                    }
-                })
-                .catch(error => {
-                    console.error("Error loading modal:", error);
-                });
-             });
-         });
+    button.addEventListener("click", function () {
+        fetch("/POS/SearchCustomer")
+            .then(response => response.text())
+            .then(html => {
+                container.innerHTML = html;
+                const modal = document.getElementById("searchCustomerModal");
+                if (modal) {
+                    const modalInstance = new bootstrap.Modal(modal);
+                    modalInstance.show();
+                }
+            });
+    });
+
+    container.addEventListener("click", function (e) {
+        if (e.target.classList.contains("pagination-link")) {
+            e.preventDefault();
+            loadFilteredResults(e.target.getAttribute("href"));
+        }
+    });
+
+    container.addEventListener("click", function (e) {
+        if (e.target.id === "applyFilter") {
+            e.preventDefault();
+            loadFilteredResults("/POS/SearchCustomer");
+        }
+    });
+
+     // Handle row click
+    container.addEventListener("click", function (e) {
+        const row = e.target.closest(".clickable-row");
+        if (row) {
+            const customerId = row.getAttribute("data-id");
+            if (customerId) {
+                window.location.href = `/POS/Index?customerId=${customerId}`;
+            }
+        }
+    });
+
+    function loadFilteredResults(baseUrl) {
+        const keyword = document.getElementById("searchKeyword").value;
+        const barangay = document.getElementById("filterBarangay").value;
+        const city = document.getElementById("filterCity").value;
+
+        const url = new URL(baseUrl, window.location.origin);
+        url.searchParams.set("keyword", keyword);
+        url.searchParams.set("selectedBarangayID", barangay);
+        url.searchParams.set("selectedCityID", city);
+
+        fetch(url, {
+            headers: { "X-Requested-With": "XMLHttpRequest" }
+        })
+        .then(response => response.text())
+        .then(html => {
+            const modalBody = document.querySelector("#searchCustomerModal #modalBodyContent");
+            if (modalBody) {
+                modalBody.innerHTML = html;
+            }
+        });
+    }
+});
 </script>
+
+
+
+
 
 
 <div id="confirmPaymentContainer"></div>

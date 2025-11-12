@@ -132,10 +132,21 @@ public class UserAccountController : Controller
         var accountTypeList = _context.AccountType.Select(a => new SelectListItem
         {
             Value = a.Account_Type_ID.ToString(),
-            Text = a.Title 
+            Text = a.Title
         }).ToList();
 
+
         ViewBag.AccountTypeList = new SelectList(accountTypeList, "Value", "Text");
+
+
+
+        var imagePath = _context.UserAccount
+            .Where(u => u.User_Account_ID == id)
+            .Select(u => new { u.Image })
+            .FirstOrDefault();
+
+        ViewBag.ImagePath = "~/Images/User/" + imagePath.Image;
+
 
         return PartialView("EditUser", user);
     }
@@ -165,18 +176,16 @@ public class UserAccountController : Controller
                 existingUser.Image = uniqueFileName;
             }
 
-            existingUser.Password = "123";
-            existingUser.Status = "Active";
             
             existingUser.Firstname = userAccount.Firstname;
-            existingUser.Middlename = userAccount.Middlename;
+            existingUser.Middlename = string.IsNullOrWhiteSpace(userAccount.Middlename) ? "" : userAccount.Middlename.Trim();
             existingUser.Lastname = userAccount.Lastname;
-            existingUser.Username = userAccount.Username;
-            existingUser.Email = userAccount.Email;
             existingUser.Contact = userAccount.Contact;
+            existingUser.Email = userAccount.Email;
             existingUser.Gender = userAccount.Gender;
-            existingUser.Address = userAccount.Address;
+            existingUser.Username = userAccount.Username;
             existingUser.Account_Type_ID = userAccount.Account_Type_ID;
+            existingUser.Address = userAccount.Address;
 
             _context.SaveChanges();
            

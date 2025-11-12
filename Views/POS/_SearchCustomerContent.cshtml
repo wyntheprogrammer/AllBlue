@@ -1,0 +1,89 @@
+@model AllBlue.Models.CustomerBarangayCityViewModel
+
+<table class="table table-striped" style="width: 100%; table-layout: fixed;">
+    <thead class="table-dark">
+        <tr>
+            <th class="font-small" scope="col" style="width: 10px;"">#</th>
+            <th class="font-small" scope="col"style="width: 200px;">NAME</th>
+            <th class="font-small" scope="col">ADDRESS</th>
+            <th class="font-small" scope="col">GALLON</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="font-small" scope="row">1</th>
+            <td class="font-small" scope="row">GUEST</td>
+            <td class="font-extra-small" scope="row">Use this account for pick up only</td>
+            <td></td>
+        </tr>
+
+        @if (Model !=null && Model.Customers.Any())
+        {
+            @foreach (var customer in Model.Customers){
+                <tr class="clickable-row" data-id="@customer.Customer_ID" style="cursor: pointer;">
+                    <th class="font-small" scope="row">@customer.Customer_ID</th>
+                    <td class="font-small" scope="row">@customer.First_Name  @customer.Last_Name</td>
+                    <td class="font-small" scope="row">
+                        <div class="font-small">
+                            <i class="bi-geo-alt"></i> 
+                                @customer.barangay.Name, @customer.city.Name
+                        </div>
+                        <div class="font-small">
+                            <i class="bi-chat-dots"></i> 
+                                @customer.Alias</div>
+                    </td>
+                    <td>
+                        <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="font-extra-small text-center" scope="col">Item</th>
+                                    <th class="font-extra-small text-center" scope="col">Client</th>
+                                    <th class="font-extra-small text-center" scope="col">WRS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-extra-small text-center">@customer.item.Title</td>
+                                    <td class="font-extra-small text-center">@customer.Client_Gallon</td>
+                                    <td class="font-extra-small text-center">@customer.WRS_Gallon</td>
+                                </tr>
+                            </tbody>
+                        </table>               
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>  
+
+<nav aria-label="Customer Pagination">
+    <ul class="pagination">
+        <li class="page-item @(ViewBag.Window == 1 ? "disabled" : "")">
+            <a class="page-link pagination-link"
+               href="@Url.Action("SearchCustomer", new { page = ViewBag.StartPage - 1, window = ViewBag.Window - 1 })">
+                Previous
+            </a>
+        </li>
+
+        @for (int i = ViewBag.StartPage; i <= ViewBag.EndPage; i++)
+        {
+            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                <a class="page-link pagination-link"
+                   href="@Url.Action("SearchCustomer", new { page = i, window = ViewBag.Window })">
+                    @i
+                </a>
+            </li>
+        }
+
+        <li class="page-item @(ViewBag.EndPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link pagination-link"
+               href="@Url.Action("SearchCustomer", new { page = ViewBag.EndPage + 1, window = ViewBag.Window + 1 })">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+

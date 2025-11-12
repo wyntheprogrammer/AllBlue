@@ -2,12 +2,13 @@
     Layout = null;
 };
 
+@model AllBlue.Models.Customer
 
 <!-- Add Modal -->
 <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+            <form asp-action="AddCustomer" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addModalLabel">Add Customer</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -17,16 +18,16 @@
                     <div class="d-flex flex-column gap-2 border p-2">
                         <div class="d-flex flex-row gap-2">
                             <div class="form-group flex-grow-1">
-                                <label>*First Name</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="First_Name" >*First Name</label>
+                                <input asp-for="First_Name" type="text" class="form-control" required/>
                             </div>
                             <div class="form-group flex-grow-1">
-                                <label>*Last Name</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="Last_Name">*Last Name</label>
+                                <input asp-for="Last_Name" type="text" class="form-control" required/>
                             </div>
                             <div class="form-group flex-grow-1">
-                                <label>Gender</label>
-                                <select  class="form-select" required>
+                                <label asp-for="Gender">Gender</label>
+                                <select asp-for="Gender" class="form-select" required>
                                     <option value="">Select gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -47,8 +48,8 @@
                         
                         <div class="d-flex flex-row gap-2">
                             <div class="form-group flex-grow-1">
-                                <label>Date of Birth</label>
-                                <input type="date" class="form-control" required/>
+                                <label asp-for="Birth">Date of Birth</label>
+                                <input asp-for="Birth" type="date" class="form-control" required/>
                             </div>
                             <div class="form-group">
                                 <label>Mobile 1</label>
@@ -64,16 +65,16 @@
                     <div class="d-flex flex-column gap-2 border p-2">
                         <div class="d-flex flex-row gap-2">
                             <div class="form-group flex-grow-1">
-                                <label>House No.</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="House_No">House No.</label>
+                                <input asp-for="House_No" type="text" class="form-control" required/>
                             </div>
                             <div class="form-group flex-grow-1">
-                                <label>Purok / Sitio</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="Street">Purok / Sitio</label>
+                                <input asp-for="Street" type="text" class="form-control" required/>
                             </div>
                             <div class="form-group flex-grow-1">
-                                <label>*Barangay</label>
-                                <select  class="form-select" required>
+                                <label asp-for="Barangay_ID">*Barangay</label>
+                                <select asp-for="Barangay_ID" class="form-select" required>
                                     <option value="">Select barangay</option>
                                     <option value="Barangay 1">Barangay 1</option>
                                     <option value="Barangay 2">Barangay 2</option>
@@ -83,16 +84,16 @@
 
                         <div class="d-flex flex-row gap-2">
                             <div class="form-group flex-grow-1">
-                                <label>*City</label>
-                                <select  class="form-select" required>
+                                <label asp-for="City_ID">*City</label>
+                                <select asp-for="City_ID" class="form-select" required>
                                     <option value="">Select city</option>
                                     <option value="City 1">City 1</option>
                                     <option value="City 2">City</option>
                                 </select>
                             </div>
                             <div class="form-group flex-grow-1">
-                                <label>Province</label>
-                                <input type="text" class="form-control" required/>
+                                <label asp-for="Province" >Province</label>
+                                <input asp-for="Province" type="text" class="form-control" required/>
                             </div>
                         </div>
                     </div>
@@ -136,6 +137,7 @@
                                         <td class="text-center">
                                         </td>
                                     </tr>
+
                                 </tbody>
                         </table>
 
