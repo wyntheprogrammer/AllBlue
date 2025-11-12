@@ -39,12 +39,12 @@
             <div class="d-flex flex-row" style="width: 100%;">
 
                 <div class="d-flex flex-column justify-content-center align-items-center" style="width:70%">
-                    <span class="fs-5 fw-bold">LINDA CAYABYAB</span>
-                    <span class="font-small">Inanlorenza, Bayambang</span>
+                    <span class="fs-5 fw-bold">@ViewBag.CustomerName</span>
+                    <span class="font-small">@ViewBag.CustomerAddress</span>
                 </div>
                 <div class="d-flex flex-column p-2 gap-2" style="width:30%">
 
-                    <select  class="form-select" required>
+                    <select class="form-select delivery-mode">
                         <option value="Deliver">Deliver</option>
                         <option value="Pickup">Pickup</option>
                     </select>
@@ -90,13 +90,27 @@
                                         
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control form-control-sm" />
+                                            <input 
+                                                type="text" 
+                                                class="form-control form-control-sm -gal" 
+                                                data-item-name="@item.Title"
+                                                data-deliver="@item.Deliver"
+                                                data-pickup="@item.Pickup" 
+                                                data-price="@item.Deliver" />
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control form-control-sm" />
+                                            <input type="text" 
+                                                class="form-control form-control-sm wrs-gal"
+                                                data-deliver="@item.Deliver"
+                                                data-pickup="@item.Pickup" 
+                                                data-price="@item.Deliver" />
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control form-control-sm" />
+                                            <input type="text" 
+                                                class="form-control form-control-sm free-gal"
+                                                data-deliver="@item.Deliver"
+                                                data-pickup="@item.Pickup" 
+                                                data-price="@item.Deliver" />
                                         </td>
                                         <td class="text-center">
                                             
@@ -143,13 +157,27 @@
                                     <td class="font-small text-center">@item.Title</td>
                                     <td class="font-small text-center">10.00</td>
                                     <td>
-                                        <input type="text" class="form-control form-control-sm" />
+                                        <input 
+                                                type="text" 
+                                                class="form-control form-control-sm client-gal" 
+                                                data-item-name="@item.Title"
+                                                data-deliver="@item.Deliver"
+                                                data-pickup="@item.Pickup" 
+                                                data-price="@item.Deliver" />
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-control-sm" />
+                                        <input type="text" 
+                                            class="form-control form-control-sm wrs-gal" 
+                                            data-deliver="@item.Deliver"
+                                            data-pickup="@item.Pickup" 
+                                            data-price="@item.Deliver" />
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control form-control-sm" />
+                                        <input type="text"
+                                            class="form-control form-control-sm free-gal"
+                                            data-deliver="@item.Deliver"
+                                            data-pickup="@item.Pickup" 
+                                            data-price="@item.Deliver" />
                                     </td>
                                     <td class="text-center">
                                         100
@@ -172,38 +200,38 @@
                 
 
                 
-<script>
-    const gallonBtn = document.getElementById('gallonBtn');
-    const bottleBtn = document.getElementById('bottleBtn');
+                <script>
+                    const gallonBtn = document.getElementById('gallonBtn');
+                    const bottleBtn = document.getElementById('bottleBtn');
 
-    const gallonContainer = document.getElementById('gallonContainer');
-    const bottleContainer = document.getElementById('bottleContainer');
+                    const gallonContainer = document.getElementById('gallonContainer');
+                    const bottleContainer = document.getElementById('bottleContainer');
 
-    gallonBtn.addEventListener('click', () =>{
-        gallonContainer.style.display = "block";
-        bottleContainer.style.display = "none";
+                    gallonBtn.addEventListener('click', () =>{
+                        gallonContainer.style.display = "block";
+                        bottleContainer.style.display = "none";
 
-        gallonBtn.style.backgroundColor = "black";
-        bottleBtn.style.backgroundColor = "";
+                        gallonBtn.style.backgroundColor = "black";
+                        bottleBtn.style.backgroundColor = "";
 
-        gallonBtn.style.color = "white";
-        bottleBtn.style.color = "";
-    });
+                        gallonBtn.style.color = "white";
+                        bottleBtn.style.color = "";
+                    });
 
 
-    bottleBtn.addEventListener('click', () =>{
-        gallonContainer.style.display = "none";
-        bottleContainer.style.display = "block";
+                    bottleBtn.addEventListener('click', () =>{
+                        gallonContainer.style.display = "none";
+                        bottleContainer.style.display = "block";
 
-        gallonBtn.style.backgroundColor = "";
-        bottleBtn.style.backgroundColor = "black";
-        
-        gallonBtn.style.color = "";
-        bottleBtn.style.color = "white";
+                        gallonBtn.style.backgroundColor = "";
+                        bottleBtn.style.backgroundColor = "black";
+                        
+                        gallonBtn.style.color = "";
+                        bottleBtn.style.color = "white";
 
-    });
+                    });
 
-</script>
+                </script>
                
             </div>
 
@@ -218,7 +246,7 @@
 
             <span class="">Order Item Summary</span>
 
-            <table class="table table-striped"  style="width: 100%; table-layout: fixed;">
+            <table id="summaryTable" class="table table-striped"  style="width: 100%; table-layout: fixed;">
                 <thead class="table-dark">
                     <tr>
                         <th class="font-extra-small text-center" scope="col">ITEM</th>
@@ -228,21 +256,21 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="font-extra-small text-center">1 Litter -Bottle</td>
-                        <td class="font-extra-small text-center">100</td>
-                        <td class="font-extra-small text-center">1,425.00</td>
+                        <td class="font-extra-small text-center">(Item name here)</td>
+                        <td class="font-extra-small text-center">(qty)</td>
+                        <td class="font-extra-small text-center">(price)</td>
                     </tr>
                     <tr>
                         <th class="font-extra-small text-center" scope="row">TOTAL</th>
-                        <td class="font-extra-small text-center">100</td>
-                        <td class="font-extra-small text-center">1,425.00</td>
+                        <td class="font-extra-small text-center">(total qty)</td>
+                        <td class="font-extra-small text-center">(total price)</td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="d-flex flex-row justify-content-between align-items-center mt-auto border-top border-bottom fw-bold" style="width: 80%;">
                 <span>SUB TOTAL</span>
-                <span class="fs-4">P 1,425.00</span>
+                <span id="subtotal" class="fs-4">(P 1,425.00)</span>
             </div>
 
             <button class="bg-success text-white p-2 rounded" id="openConfirmPaymentModal" style="border: none">
@@ -428,70 +456,70 @@
 
 <div id="searchCustomerContainer"></div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const button = document.getElementById("openSearchCustomerModal");
-    const container = document.getElementById("searchCustomerContainer");
+    document.addEventListener("DOMContentLoaded", function () {
+        const button = document.getElementById("openSearchCustomerModal");
+        const container = document.getElementById("searchCustomerContainer");
 
-    button.addEventListener("click", function () {
-        fetch("/POS/SearchCustomer")
-            .then(response => response.text())
-            .then(html => {
-                container.innerHTML = html;
-                const modal = document.getElementById("searchCustomerModal");
-                if (modal) {
-                    const modalInstance = new bootstrap.Modal(modal);
-                    modalInstance.show();
-                }
-            });
-    });
+        button.addEventListener("click", function () {
+            fetch("/POS/SearchCustomer")
+                .then(response => response.text())
+                .then(html => {
+                    container.innerHTML = html;
+                    const modal = document.getElementById("searchCustomerModal");
+                    if (modal) {
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    }
+                });
+        });
 
-    container.addEventListener("click", function (e) {
-        if (e.target.classList.contains("pagination-link")) {
-            e.preventDefault();
-            loadFilteredResults(e.target.getAttribute("href"));
-        }
-    });
-
-    container.addEventListener("click", function (e) {
-        if (e.target.id === "applyFilter") {
-            e.preventDefault();
-            loadFilteredResults("/POS/SearchCustomer");
-        }
-    });
-
-     // Handle row click
-    container.addEventListener("click", function (e) {
-        const row = e.target.closest(".clickable-row");
-        if (row) {
-            const customerId = row.getAttribute("data-id");
-            if (customerId) {
-                window.location.href = `/POS/Index?customerId=${customerId}`;
-            }
-        }
-    });
-
-    function loadFilteredResults(baseUrl) {
-        const keyword = document.getElementById("searchKeyword").value;
-        const barangay = document.getElementById("filterBarangay").value;
-        const city = document.getElementById("filterCity").value;
-
-        const url = new URL(baseUrl, window.location.origin);
-        url.searchParams.set("keyword", keyword);
-        url.searchParams.set("selectedBarangayID", barangay);
-        url.searchParams.set("selectedCityID", city);
-
-        fetch(url, {
-            headers: { "X-Requested-With": "XMLHttpRequest" }
-        })
-        .then(response => response.text())
-        .then(html => {
-            const modalBody = document.querySelector("#searchCustomerModal #modalBodyContent");
-            if (modalBody) {
-                modalBody.innerHTML = html;
+        container.addEventListener("click", function (e) {
+            if (e.target.classList.contains("pagination-link")) {
+                e.preventDefault();
+                loadFilteredResults(e.target.getAttribute("href"));
             }
         });
-    }
-});
+
+        container.addEventListener("click", function (e) {
+            if (e.target.id === "applyFilter") {
+                e.preventDefault();
+                loadFilteredResults("/POS/SearchCustomer");
+            }
+        });
+
+        // Handle row click
+        container.addEventListener("click", function (e) {
+            const row = e.target.closest(".clickable-row");
+            if (row) {
+                const customerId = row.getAttribute("data-id");
+                if (customerId) {
+                    window.location.href = `/POS/Index?id=${customerId}`;
+                }
+            }
+        });
+
+        function loadFilteredResults(baseUrl) {
+            const keyword = document.getElementById("searchKeyword").value;
+            const barangay = document.getElementById("filterBarangay").value;
+            const city = document.getElementById("filterCity").value;
+
+            const url = new URL(baseUrl, window.location.origin);
+            url.searchParams.set("keyword", keyword);
+            url.searchParams.set("selectedBarangayID", barangay);
+            url.searchParams.set("selectedCityID", city);
+
+            fetch(url, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+            .then(response => response.text())
+            .then(html => {
+                const modalBody = document.querySelector("#searchCustomerModal #modalBodyContent");
+                if (modalBody) {
+                    modalBody.innerHTML = html;
+                }
+            });
+        }
+    });
 </script>
 
 
@@ -521,6 +549,79 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
              });
          });
+</script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const allInputs = document.querySelectorAll('input[data-item-name]');
+        const deliveryModeSelect = document.querySelector('.delivery-mode');
+        const summaryTableBody = document.querySelector('#summaryTable tbody');
+        const subtotalDisplay = document.querySelector('#subtotal');
+
+        function updatePricesByMode() {
+            const mode = deliveryModeSelect.value;
+            allInputs.forEach(input => {
+                const newPrice = mode === 'Pickup' ? input.dataset.pickup : input.dataset.deliver;
+                input.dataset.price = newPrice;
+            });
+        }
+
+        function updateSummary() {
+            let summaryData = [];
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            allInputs.forEach(input => {
+                const qty = parseFloat(input.value) || 0;
+                const itemName = input.dataset.itemName;
+                const price = parseFloat(input.dataset.price) || 0;
+
+                if (qty > 0) {
+                    const itemTotal = price * qty;
+                    summaryData.push({ itemName, qty, itemTotal });
+                    totalQty += qty;
+                    totalPrice += itemTotal;
+                }
+            });
+
+            summaryTableBody.innerHTML = '';
+
+            summaryData.forEach(data => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="font-extra-small text-center">${data.itemName}</td>
+                    <td class="font-extra-small text-center">${data.qty}</td>
+                    <td class="font-extra-small text-center">P ${data.itemTotal.toFixed(2)}</td>
+                `;
+                summaryTableBody.appendChild(row);
+            });
+
+            const totalRow = document.createElement('tr');
+            totalRow.innerHTML = `
+                <th class="font-extra-small text-center" scope="row">TOTAL</th>
+                <td class="font-extra-small text-center">${totalQty}</td>
+                <td class="font-extra-small text-center">P ${totalPrice.toFixed(2)}</td>
+            `;
+            summaryTableBody.appendChild(totalRow);
+
+            subtotalDisplay.textContent = `P ${totalPrice.toFixed(2)}`;
+        }
+
+        // Initial price setup
+        updatePricesByMode();
+        updateSummary();
+
+        allInputs.forEach(input => {
+            input.addEventListener('input', updateSummary);
+        });
+
+        deliveryModeSelect.addEventListener('change', function () {
+            updatePricesByMode();
+            updateSummary();
+        });
+    });
 </script>
 
 

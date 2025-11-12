@@ -18,19 +18,28 @@ public class POSController : Controller
         _context = context;
     }
 
-    public IActionResult Index(int id)
+   public IActionResult Index(int? id)
     {
-        var customer = _context.Customer.FirstOrDefault(c => c.Customer_ID == id);
-        if (customer == null)
+        if (id.HasValue)
         {
-            return NotFound();
+            var customer = _context.Customer
+                .Include(c => c.barangay)
+                .Include(c => c.city)
+                .FirstOrDefault(c => c.Customer_ID == id.Value);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.CustomerName = $"{customer.First_Name} {customer.Last_Name}";
+            ViewBag.CustomerAddress = $"{customer.barangay.Name}, {customer.city.Name}"; 
+        }
+        else
+        {
+            ViewBag.CustomerName = "Guest";
         }
 
-        ViewBag.CustomerName = $"{customer.First_Name} {customer.Last_Name}";
-
-        var item = _context.Item
-            .ToList();
-
+        var item = _context.Item.ToList();
 
         var userList = _context.UserAccount
             .Where(u => u.Account_Type_ID == 4)
@@ -42,8 +51,9 @@ public class POSController : Controller
 
         ViewBag.UserList = new SelectList(userList, "Value", "Text");
 
-        return View(item);  
+        return View(item);
     }
+
 
 
 
