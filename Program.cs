@@ -16,7 +16,7 @@ builder.Services.AddSession(options =>
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(@"Data Source=C:\Users\JPBACOLOD\AllBlue\Database\allblue.db"));
+    options.UseSqlite(@"Data Source=C:\Users\jpbacolod\source\repos\AllBlue\Database\allblue.db"));
 
 
 var app = builder.Build();

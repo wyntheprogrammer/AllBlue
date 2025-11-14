@@ -13,7 +13,28 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body d-flex flex-column align-items-center p-2 gap-2">  
+            <div class="modal-body d-flex flex-column align-items-center p-2 gap-2">
+                Customer ID
+                <input type="text" id="CustomerID" value="@Model.CustomerID" />
+
+                User ID
+                <input type="text" id="selectedUserID" value="@Model.SelectedUserID" />
+
+                ITEMS
+                @foreach (var item in Model.Items)
+                {
+                    <input type="text" value="@item.ItemID" />
+                    <input type="text" value="@item.ClientGal" />
+                    <input type="text" value="@item.WRSGal" />
+                    <input type="text" value="@item.FreeGal" />
+                    <input type="text" value="@item.Qty" />
+                    <input type="text" value="@item.Total" />
+                }
+
+                Total QTY
+                <input type="text" id="TotalQty" value="@Model.TotalQty" />
+                Total Price
+                <input type="text" id="TotalPrice" value="@Model.TotalPrice"/>
                 <div class="d-flex flex-column gap-2 p-2 text-danger fw-bold" style="width: 80%; background-color: #f8d7da;">
                     <div class="d-flex flex-row w-100">
                         <span class="w-50 d-flex justify-content-end align-items-center px-4">SUB TOTAL</span>

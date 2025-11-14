@@ -31,6 +31,7 @@ public class POSController : Controller
                 return NotFound();
             }
 
+            ViewBag.CustomerID = customer.Customer_ID;
             ViewBag.CustomerName = $"{customer.First_Name} {customer.Last_Name}";
             ViewBag.CustomerAddress = $"{customer.barangay.Name}, {customer.city.Name}"; 
         }
@@ -204,9 +205,15 @@ public class POSController : Controller
     ////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////// Search Customer Modal ////////////////////////////////// 
     ////////////////////////////////////////////////////////////////////////////////////////
-    public IActionResult ConfirmPayment()
+    public IActionResult ConfirmPayment([FromBody] ConfirmPaymentViewModel model)
     {
-        return View();
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+            return BadRequest(string.Join("; ", errors));
+        }
+
+        return View(model);
     }
 
 }

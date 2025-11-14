@@ -238,20 +238,25 @@ INSERT INTO UserAccount (User_Account_ID, Image, Firstname, Middlename ,Lastname
 
 
 Order Table
-Customer_ID
-User_Account_ID
-Item_ID
-Price
-Client_Gal
-WRS_Gal
-Free
-Total
-Status
+Order_ID 
+Customer_ID -done
+User_Account_ID -done
+Item_ID -done
+Price 
+Client_Gal -done
+WRS_Gal -done
+Free -done
+Quantity
+Total -done
+Buy
 
 
 Payment Table
+Payment_ID
 Order_ID
-Total
-
+Quantity -done
+Total -done
+Status
+Date
 
 

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JPBACOLOD\\AllBlue\\AllBlue.csproj": {}
+    "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\AllBlue.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JPBACOLOD\\AllBlue\\AllBlue.csproj": {
+    "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\AllBlue.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JPBACOLOD\\AllBlue\\AllBlue.csproj",
+        "projectUniqueName": "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\AllBlue.csproj",
         "projectName": "AllBlue",
-        "projectPath": "C:\\Users\\JPBACOLOD\\AllBlue\\AllBlue.csproj",
-        "packagesPath": "C:\\Users\\JPBACOLOD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JPBACOLOD\\AllBlue\\obj\\",
+        "projectPath": "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\AllBlue.csproj",
+        "packagesPath": "C:\\Users\\jpbacolod\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\JPBACOLOD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jpbacolod\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,12 +44,17 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "DevExpress.Data": {
+              "target": "Package",
+              "version": "[25.1.6, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.10, )"
@@ -84,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
