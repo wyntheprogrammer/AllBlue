@@ -4,6 +4,8 @@ using AllBlue.Models;
 using SQLitePCL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
+using DevExpress.Data;
 
 namespace AllBlue.Controllers;
 
@@ -18,7 +20,7 @@ public class POSController : Controller
         _context = context;
     }
 
-   public IActionResult Index(int? id)
+    public IActionResult Index(int? id, int page = 1, int pageSize = 5, int window = 1)
     {
         if (id.HasValue)
         {
@@ -33,14 +35,14 @@ public class POSController : Controller
 
             ViewBag.CustomerID = customer.Customer_ID;
             ViewBag.CustomerName = $"{customer.First_Name} {customer.Last_Name}";
-            ViewBag.CustomerAddress = $"{customer.barangay.Name}, {customer.city.Name}"; 
+            ViewBag.CustomerAddress = $"{customer.barangay.Name}, {customer.city.Name}";
         }
         else
         {
             ViewBag.CustomerName = "Guest";
         }
 
-        var item = _context.Item.ToList();
+        var items = _context.Item.ToList();
 
         var userList = _context.UserAccount
             .Where(u => u.Account_Type_ID == 4)
@@ -52,7 +54,62 @@ public class POSController : Controller
 
         ViewBag.UserList = new SelectList(userList, "Value", "Text");
 
-        return View(item);
+
+        var orders = _context.Order
+            .Include(o => o.customer)
+            .Include(o => o.payment)
+            .Include(o => o.item)
+            .Include(o => o.userAccount)
+            .ToList()
+            .GroupBy(o => o.Payment_ID)
+            .Select(g => new OrderDisplayItem
+            {
+                OrderID = g.Key,
+                CustomerName = g.First().customer.First_Name,
+                CustomerAddress = g.First().customer.Street,
+                UserName = g.First().userAccount.Username,
+                Date = g.First().payment.Date,
+                Service = g.First().payment.Service,
+                Status = g.First().payment.Status,
+                Products = g.Select(o => new OrderProductItem
+                {
+                    ItemName = o.item.Title,
+                    ClientGal = o.Client_Gal ?? 0,  
+                    WRSGal = o.WRS_Gal ?? 0,
+                    QTY = o.Quantity ?? 0,
+                    FreeGal = o.Free_Gal ?? 0,
+                    Price = o.Total
+                }).ToList()
+
+            }).ToList();
+
+
+        int totalOrder = orders.Count();
+        int totalPages = (int)Math.Ceiling((double)totalOrder / pageSize);
+
+        int windowSize = 5;
+        int startPage = ((window - 1) * windowSize) + 1;
+        int endPage = Math.Min(startPage + windowSize - 1, totalPages);
+
+        var pagedOrder = orders
+            .OrderBy(o => o.OrderID)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.StartPage = startPage;
+        ViewBag.EndPage = endPage;
+        ViewBag.Window = window;
+
+        var model = new IndexViewModel
+        {
+            Items = items,
+            Orders = pagedOrder
+        };
+
+        return View(model);
     }
 
 
@@ -215,5 +272,77 @@ public class POSController : Controller
 
         return View(model);
     }
+
+
+    [HttpPost]
+    public IActionResult SubmitOrder(ConfirmPaymentViewModel model, int? Cash)
+    {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState
+            .SelectMany(x => x.Value.Errors.Select(err => new { x.Key, err.ErrorMessage }))
+            .ToList();
+
+            return Json(errors);
+        }
+
+        try
+        {
+            // 1. Save Payment
+            var payment = new Payment
+            {
+                Quantity = int.TryParse(model.TotalQty, out var qty) ? qty : 0,
+                Total = model.TotalPrice,
+                Service = model.SelectedService,
+                Status = "Paid",
+                Date = model.Date
+            };
+
+            _context.Payment.Add(payment);
+            _context.SaveChanges(); // Generate Payment_ID
+
+            // 2. Save Orders
+            if (model.Items != null && model.Items.Count > 0)
+            {
+                foreach (var item in model.Items)
+                {
+                    try
+                    {
+                        var order = new Order
+                        {
+                            Payment_ID = payment.Payment_ID,
+                            Customer_ID = model.CustomerID,
+                            User_Account_ID = model.SelectedUserID,
+                            Item_ID = item.ItemID,
+                            Client_Gal = item.ClientGal,
+                            WRS_Gal = item.WRSGal,
+                            Free_Gal = item.FreeGal,
+                            Quantity = item.Qty,
+                            Total = item.Total
+                        };
+
+                        _context.Order.Add(order);
+                        _context.SaveChanges(); // save each order separately
+                    }
+                    catch (Exception ex)
+                    {
+                        var msg = $"Failed inserting Order: Payment_ID={payment.Payment_ID}, Customer_ID={model.CustomerID}, User_ID={model.SelectedUserID}, Item_ID={item.ItemID}";
+                        return StatusCode(500, $"FK Error: {msg}\nException: {ex.InnerException?.Message}");
+                    }
+                }
+
+
+            }
+
+            return RedirectToAction("Index");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Error saving data: {ex.Message} \n {ex.InnerException?.Message}");
+        }
+    }
+
+
+
 
 }

@@ -1,9 +1,9 @@
-@{
+﻿@{
     ViewData["Title"] = "POS";
 }
 
 
-@model List<Item>
+@model AllBlue.Models.IndexViewModel
 
 
 <div class="shadow-all-sides p-3 d-flex flex-column gap-3">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="d-flex flex-column p-2 gap-2" style="width:30%">
 
-                    <select class="form-select delivery-mode">
+                    <select class="form-select delivery-mode" id="select-service">
                         <option value="Deliver">Deliver</option>
                         <option value="Pickup">Pickup</option>
                     </select>
@@ -79,9 +79,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (Model != null && Model.Any())
+                            @if (Model?.Items != null && Model.Items.Any())
                             {
-                                @foreach (var item in Model.Where(i => i.Item_Type == "Container")) 
+                                @foreach (var item in Model.Items.Where(i => i.Item_Type == "Container")) 
                                 {
                                     <tr>
                                         <th class="font-small text-center" scope="row">@item.Item_ID</th>
@@ -139,9 +139,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model != null && Model.Any())
+                        @if (Model?.Items != null && Model.Items.Any())
                         {
-                            @foreach (var item in Model.Where(i => i.Item_Type == "Bottle")) 
+                            @foreach (var item in Model.Items.Where(i => i.Item_Type == "Bottle")) 
                             {
                                 <tr>
                                     <th class="font-small text-center" scope="row">@item.Item_ID</th>
@@ -224,9 +224,9 @@
 
         <div class="d-flex flex-column align-items-center shadow-all-sides p-2 gap-2" style="width: 30%; min-height: 350px;">
 
-            <div class="d-flex justify-content-between w-100 border-bottom">
-                <span class="fw-bold">Date</span>
-                <span class="font-small">22/10/2025</span>
+            <div class="d-flex w-100 border-bottom pb-2">
+                <span class="fw-bold w-100">Date</span>
+                <input type="date" id="date" name="date" value="" class="font-extra-small form-control" />
             </div>
 
             <span class="">Order Item Summary</span>
@@ -285,103 +285,104 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th class="font-small text-center" scope="row">1</th>
-                   
-                    <td class="font-small">
-                        <div>
-                            <i class="bi bi-three-dots-vertical"></i>
-                            <span>GINA RAZO</span>
-                        </div>
-                        <div>
-                            <i class="bi bi-three-dots-vertical"></i>
-                            <span class="font-extra-small">Ate Gina -Likod Pwesto</span>
-                        </div>   
-                        <div>
-                            <i class="bi bi-three-dots-vertical"></i>
-                            <span class="font-extra-small">Tanalong, Bayambang</span>
-                        </div>
-                    </td>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <th class="font-small text-center" scope="row">@order.OrderID</th>
 
-                    <td class="font-small text-center">
-                         <table class="table table-striped"  style="width: 100%; table-layout: fixed;">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th class="font-extra-small text-center" scope="col">ITEM</th>
-                                    <th class="font-extra-small text-center" scope="col">Client</th>
-                                    <th class="font-extra-small text-center" scope="col">WRS</th>
-                                    <th class="font-extra-small text-center" scope="col">QTY</th>
-                                    <th class="font-extra-small text-center" scope="col">FREE</th>
-                                    <th class="font-extra-small text-center" scope="col">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="font-extra-small text-center">1 Litter -Bottle</td>
-                                    <td class="font-extra-small text-center"></td>
-                                    <td class="font-extra-small text-center"></td>
-                                    <td class="font-extra-small text-center">100</td>
-                                    <td class="font-extra-small text-center"></td>
-                                    <td class="font-extra-small text-center"></td>
-                                </tr>
-                                <tr>
-                                    <th class="font-extra-small text-center" scope="row">TOTAL</th>
-                                    <td class="font-extra-small text-center"></td>
-                                    <td class="font-extra-small text-center"></td>
-                                    <td class="font-extra-small text-center">100</td>
-                                    <td class="font-extra-small text-center">5</td>
-                                    <td class="font-extra-small text-center">1,400.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <td class="font-small">
+                            <div>
+                                <i class="bi bi-three-dots-vertical"></i>
+                                <span>@order.CustomerName</span>
+                            </div>
+                            <div>
+                                <i class="bi bi-three-dots-vertical"></i>
+                                <span class="font-extra-small">Ate Gina -Likod Pwesto</span>
+                            </div>
+                            <div>
+                                <i class="bi bi-three-dots-vertical"></i>
+                                <span class="font-extra-small">@order.CustomerAddress</span>
+                            </div>
+                        </td>
 
-                    </td>
+                        <td class="font-small text-center">
+                            <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="font-extra-small text-center" scope="col">ITEM</th>
+                                        <th class="font-extra-small text-center" scope="col">Client</th>
+                                        <th class="font-extra-small text-center" scope="col">WRS</th>
+                                        <th class="font-extra-small text-center" scope="col">QTY</th>
+                                        <th class="font-extra-small text-center" scope="col">FREE</th>
+                                        <th class="font-extra-small text-center" scope="col">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var product in order.Products)
+                                    {
+                                        <tr>
+                                            <td class="font-extra-small text-center">@product.ItemName</td>
+                                            <td class="font-extra-small text-center">@product.ClientGal</td>
+                                            <td class="font-extra-small text-center">@product.WRSGal</td>
+                                            <td class="font-extra-small text-center">@product.QTY</td>
+                                            <td class="font-extra-small text-center">@product.FreeGal</td>
+                                            <td class="font-extra-small text-center">@product.Price</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
 
-                    <td class="align-middle text-center text-white">
-                        <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
-                            Deliver
-                        </div>
-                        <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
-                            Paid
-                        </div>
-                    </td>
+                        </td>
 
-                    <td class="text-center align-middle">
-                        <span class="font-small">Novermber 25, 2025</span>
-                    </td>
-                </tr>
+                        <td class="align-middle text-center text-white">
+                            <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
+                                @order.Service
+                            </div>
+                            <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
+                                @order.Status
+                            </div>
+                        </td>
+
+                        <td class="text-center align-middle">
+                            <span class="font-small">@order.Date.ToString("MMMM dd, yyyy")</span>
+                        </td>
+                    </tr>
+                }
+
+                
 
             </tbody>
         </table>
 
         <nav aria-label="Pagination">
             <ul class="pagination">
-                <li class="page-item ">
+                <li class="page-item @(ViewBag.Window == 1 ? "disabled" : "")">
                     <a class="page-link" 
-                        href="/Search?page=1&window=1&search=John&gender=Male">
+                        asp-action="Index"
+                        asp-route-page="@((ViewBag.StartPage - 5) > 0 ? ViewBag.StartPage - 5 : 1)"
+                        asp-route-window="@ViewBag.Window - 1">
                         Previous
                     </a>
                 </li>
 
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
-                </li>
 
-                <li class="page-item">
+                @for (int i = ViewBag.StartPage; i <= ViewBag.Endpage; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "actve" : "")">
+                        <a class="page-link"
+                            asp-action="Index"
+                            asp-route-page="@i"
+                            asp-route-window="@ViewBag.Window">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                <li class="page-item @(ViewBag.EndPage == ViewBag.TotalPages ? "disabled" : "")">
                     <a class="page-link" 
-                        href="/Search?page=11&window=3&search=John&gender=Male">
+                        asp-action="Index"
+                        asp-route-page="@((ViewBag.EndPage + 1) <= ViewBag.TotalPages ? ViewBag.EndPage + 1 : ViewBag.TotalPages)"
+                        asp-route-window="@(ViewBag.Window + 1)">
                         Next
                     </a>
                 </li>
@@ -533,6 +534,15 @@
                 return;
             }
 
+            const selectService = document.getElementById("select-service").value
+            if(!selectService){
+                alert("Please select a service first.");
+                return;
+            }
+
+
+            const date = document.getElementById("date").value
+
             // Collect all rows
             const rows = document.querySelectorAll("#gallonContainer tbody tr,  #bottleContainer tbody tr");
             const items = [];
@@ -574,6 +584,8 @@
             const payload = {
                 CustomerID: parseInt(customerID, 10),
                 SelectedUserID: parseInt(selectedUserId, 10),
+                SelectedService: selectService,
+                Date: date,
                 Items: items,
                 TotalQty: totalQty,
                 TotalPrice: totalPrice
@@ -628,64 +640,79 @@
             });
         }
 
-        function updateSummary() {
-            let summaryMap = {}; 
-            let totalQty = 0;
-            let totalPrice = 0;
 
-            allInputs.forEach(input => {
-                const qty = parseFloat(input.value) || 0;
-                const itemName = input.dataset.itemName;
-                const price = parseFloat(input.dataset.price) || 0;
+            function updateSummary() {
+        let summaryMap = {};
+        let totalQty = 0;
+        let totalPrice = 0;
 
-                const row = input.closest('tr');
-                const totalCell = row.querySelector('.total-cell');
+        // Loop through each table row
+        document.querySelectorAll('#gallonContainer tbody tr, #bottleContainer tbody tr').forEach(row => {
+            const price = parseFloat(row.querySelector('input[data-item-name]').dataset.price) || 0;
 
-                if (qty > 0) {
-                    if (!summaryMap[itemName]) {
-                        summaryMap[itemName] = { qty: 0, itemTotal: 0 };
-                    }
+            const client = parseFloat(row.querySelector('.client-gal')?.value) || 0;
+            const wrs = parseFloat(row.querySelector('.wrs-gal')?.value) || 0;
+            const freeGal = parseFloat(row.querySelector('.free-gal')?.value) || 0;
 
-                    summaryMap[itemName].qty += qty;
-                    totalQty += qty;
+            const itemName = row.querySelector('input[data-item-name]')?.dataset.itemName;
+            const totalCell = row.querySelector('.total-cell');
 
-                    if (!input.classList.contains('free-gal')) {
-                        summaryMap[itemName].itemTotal += price * qty;
-                        totalPrice += price * qty;
+            // PAID gallons = client + wrs only
+            const paidGallons = client + wrs;
 
-                        if(totalCell) {
-                            totalCell.textContent = `${totalPrice.toFixed(2)}`;
-                        }
-                    }
+            // PER ROW total
+            const rowTotal = paidGallons * price;
+
+            // Update row total cell
+            totalCell.textContent = rowTotal > 0 ? `${rowTotal.toFixed(2)}` : "";
+
+            // Build summary
+            if (paidGallons + freeGal > 0) {
+                if (!summaryMap[itemName]) {
+                    summaryMap[itemName] = { qty: 0, itemTotal: 0 };
                 }
-            });
 
-            // clear table
-            summaryTableBody.innerHTML = '';
+                // TOTAL quantity (paid + free)
+                summaryMap[itemName].qty += client + wrs + freeGal;
 
-            // render grouped rows
-            Object.keys(summaryMap).forEach(itemName => {
-                const data = summaryMap[itemName];
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="font-extra-small text-center">${itemName}</td>
-                    <td class="font-extra-small text-center">${data.qty}</td>
-                    <td class="font-extra-small text-center">P ${data.itemTotal.toFixed(2)}</td>
-                `;
-                summaryTableBody.appendChild(row);
-            });
+                // Paid only added to money total
+                summaryMap[itemName].itemTotal += rowTotal;
 
-            // total row
-            const totalRow = document.createElement('tr');
-            totalRow.innerHTML = `
-                <th class="font-extra-small text-center" scope="row">TOTAL</th>
-                <td class="font-extra-small text-center" id="total-qty">${totalQty}</td>
-                <td class="font-extra-small text-center" id="total-price">P ${totalPrice.toFixed(2)}</td>
+                totalQty += client + wrs + freeGal;
+                totalPrice += rowTotal;
+            }
+        });
+
+        // Clear summary
+        summaryTableBody.innerHTML = "";
+
+        // Render summary rows
+        Object.keys(summaryMap).forEach(itemName => {
+            const data = summaryMap[itemName];
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td class="font-extra-small text-center">${itemName}</td>
+                <td class="font-extra-small text-center">${data.qty}</td>
+                <td class="font-extra-small text-center">${data.itemTotal.toFixed(2)}</td>
             `;
-            summaryTableBody.appendChild(totalRow);
+            summaryTableBody.appendChild(row);
+        });
 
-            subtotalDisplay.textContent = `P ${totalPrice.toFixed(2)}`;
-        }
+        // Total row
+        const totalRow = document.createElement('tr');
+        totalRow.innerHTML = `
+            <th class="font-extra-small text-center">TOTAL</th>
+            <td class="font-extra-small text-center" id="total-qty">${totalQty}</td>
+            <td class="font-extra-small text-center" id="total-price">${totalPrice.toFixed(2)}</td>
+        `;
+        summaryTableBody.appendChild(totalRow);
+
+        subtotalDisplay.textContent = `${totalPrice.toFixed(2)}`;
+    }
+
+
+
+
 
         // Initial price setup
         updatePricesByMode();
@@ -703,3 +730,11 @@
 </script>
 
 
+
+<script>
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() +1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    document.getElementById('date').value = `${yyyy}-${mm}-${dd}`;
+</script>

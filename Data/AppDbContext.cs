@@ -13,4 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<AccountType> AccountType { get; set; }
     public DbSet<UserAccount> UserAccount { get; set; }
 
+    public DbSet<Order> Order { get; set; }
+    public DbSet<Payment> Payment { get; set; }
+
 }

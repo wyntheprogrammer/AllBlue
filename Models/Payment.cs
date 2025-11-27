@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AllBlue.Models
@@ -7,10 +8,15 @@ namespace AllBlue.Models
     public class Payment
     {
         [Key]
-        public required int Payment_ID { get; set; }
-        public required int Order_ID { get; set; }
-        public required int Total { get; set; }
-        public required string Status { get; set; }
-        public required DateOnly Date { get; set; }
+        public int Payment_ID { get; set; }
+        public string Total { get; set; }
+        public string Status { get; set; }
+        
+        public int? Quantity { get; set; }
+        public string? Service { get; set; }
+        public DateOnly Date { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
+
     }
 }

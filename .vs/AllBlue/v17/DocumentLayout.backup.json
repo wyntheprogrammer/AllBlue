@@ -1,0 +1,332 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\views\\pos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:views\\pos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\orderdisplayviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\orderdisplayviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\poscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\poscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\confirmpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\confirmpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\views\\pos\\confirmpayment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:views\\pos\\confirmpayment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\itemuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\itemuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\allblue.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:allblue.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\views\\itemlist\\additem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:views\\itemlist\\additem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\views\\pos\\_searchcustomercontent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:views\\pos\\_searchcustomercontent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\accounttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\accounttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ConfirmPayment.cshtml",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\ConfirmPayment.cshtml",
+              "RelativeDocumentMoniker": "Views\\POS\\ConfirmPayment.cshtml",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\ConfirmPayment.cshtml",
+              "RelativeToolTip": "Views\\POS\\ConfirmPayment.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAADwvzIAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-13T01:50:04.509Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConfirmPaymentViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\ConfirmPaymentViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ConfirmPaymentViewModel.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\ConfirmPaymentViewModel.cs",
+              "RelativeToolTip": "Models\\ConfirmPaymentViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T01:49:45.648Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Payment.cs",
+              "RelativeToolTip": "Models\\Payment.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T00:36:40.577Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "Models\\Order.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Order.cs",
+              "RelativeToolTip": "Models\\Order.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAADwvxAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T06:12:27.208Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "POSController.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\POSController.cs",
+              "RelativeDocumentMoniker": "Controllers\\POSController.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\POSController.cs",
+              "RelativeToolTip": "Controllers\\POSController.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAYwGsAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T01:53:10.272Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\POS\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\Index.cshtml",
+              "RelativeToolTip": "Views\\POS\\Index.cshtml",
+              "ViewState": "AgIAAIABAAAAAAAAAAAAwIMBAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T08:01:21.403Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderDisplayViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\OrderDisplayViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\OrderDisplayViewModel.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\OrderDisplayViewModel.cs",
+              "RelativeToolTip": "Models\\OrderDisplayViewModel.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAzwBsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T05:03:49.374Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "Models\\Customer.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Customer.cs",
+              "RelativeToolTip": "Models\\Customer.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T05:29:02.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AllBlue",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\AllBlue.csproj",
+              "RelativeDocumentMoniker": "AllBlue.csproj",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\AllBlue.csproj",
+              "RelativeToolTip": "AllBlue.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-27T02:39:27.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Item.cs",
+              "RelativeDocumentMoniker": "Models\\Item.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Item.cs",
+              "RelativeToolTip": "Models\\Item.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T05:41:19.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T07:30:27.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ItemUser.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\ItemUser.cs",
+              "RelativeDocumentMoniker": "Models\\ItemUser.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\ItemUser.cs",
+              "RelativeToolTip": "Models\\ItemUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T06:36:28.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AddItem.cshtml",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\ItemList\\AddItem.cshtml",
+              "RelativeDocumentMoniker": "Views\\ItemList\\AddItem.cshtml",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\ItemList\\AddItem.cshtml",
+              "RelativeToolTip": "Views\\ItemList\\AddItem.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACkAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-17T08:00:41.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_SearchCustomerContent.cshtml",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\_SearchCustomerContent.cshtml",
+              "RelativeDocumentMoniker": "Views\\POS\\_SearchCustomerContent.cshtml",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\_SearchCustomerContent.cshtml",
+              "RelativeToolTip": "Views\\POS\\_SearchCustomerContent.cshtml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAEQAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-13T02:06:28.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T02:06:01.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AccountTypeController.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\AccountTypeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountTypeController.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\AccountTypeController.cs",
+              "RelativeToolTip": "Controllers\\AccountTypeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T06:20:12.927Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
