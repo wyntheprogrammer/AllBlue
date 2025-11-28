@@ -239,6 +239,7 @@ INSERT INTO UserAccount (User_Account_ID, Image, Firstname, Middlename ,Lastname
 
 Order Table
 Order_ID 
+Payment_ID
 Customer_ID 
 User_Account_ID 
 Item_ID 
@@ -251,7 +252,6 @@ Total
 
 Payment Table
 Payment_ID
-Order_ID
 Quantity 
 Total
 Service 

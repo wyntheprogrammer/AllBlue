@@ -7,28 +7,48 @@
       "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:views\\pos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\orderdisplayviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\orderdisplayviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\poscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\poscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\itemlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\itemlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\confirmpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\confirmpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\allblue.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:allblue.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\views\\pos\\confirmpayment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:views\\pos\\confirmpayment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\confirmpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\confirmpaymentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\poscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\poscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\orderdisplayviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\orderdisplayviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\accounttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\accounttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\models\\itemuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,14 +63,6 @@
       "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\allblue.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:allblue.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\views\\itemlist\\additem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:views\\itemlist\\additem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -61,10 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|c:\\users\\jpbacolod\\source\\repos\\allblue\\controllers\\accounttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF515187-B38A-5EEE-7FAE-68A796F4790A}|AllBlue.csproj|solutionrelative:controllers\\accounttypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -84,7 +92,7 @@
               "RelativeDocumentMoniker": "Views\\POS\\ConfirmPayment.cshtml",
               "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\ConfirmPayment.cshtml",
               "RelativeToolTip": "Views\\POS\\ConfirmPayment.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAADwvzIAAABnAAAAAAAAAA==",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAiwE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-13T01:50:04.509Z",
               "IsPinned": true,
@@ -92,13 +100,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ConfirmPaymentViewModel.cs",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\ConfirmPaymentViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ConfirmPaymentViewModel.cs",
               "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\ConfirmPaymentViewModel.cs",
               "RelativeToolTip": "Models\\ConfirmPaymentViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAiwBEAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-27T01:49:45.648Z",
               "IsPinned": true,
@@ -106,13 +114,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Payment.cs",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Payment.cs",
               "RelativeDocumentMoniker": "Models\\Payment.cs",
               "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Payment.cs",
               "RelativeToolTip": "Models\\Payment.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAmwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-13T00:36:40.577Z",
               "IsPinned": true,
@@ -120,27 +128,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Order.cs",
-              "RelativeDocumentMoniker": "Models\\Order.cs",
-              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Order.cs",
-              "RelativeToolTip": "Models\\Order.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAADwvxAAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T06:12:27.208Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "POSController.cs",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\POSController.cs",
               "RelativeDocumentMoniker": "Controllers\\POSController.cs",
               "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\POSController.cs",
               "RelativeToolTip": "Controllers\\POSController.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAYwGsAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAP4AAAAAAAAAAAAmwAwBAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-13T01:53:10.272Z",
               "IsPinned": true,
@@ -154,7 +148,7 @@
               "RelativeDocumentMoniker": "Views\\POS\\Index.cshtml",
               "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\Index.cshtml",
               "RelativeToolTip": "Views\\POS\\Index.cshtml",
-              "ViewState": "AgIAAIABAAAAAAAAAAAAwIMBAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAIUCAAAAAAAAAAAAAIkCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-12T08:01:21.403Z",
               "IsPinned": true,
@@ -162,13 +156,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "OrderDisplayViewModel.cs",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\OrderDisplayViewModel.cs",
               "RelativeDocumentMoniker": "Models\\OrderDisplayViewModel.cs",
               "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\OrderDisplayViewModel.cs",
               "RelativeToolTip": "Models\\OrderDisplayViewModel.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAzwBsAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAqwBcAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-27T05:03:49.374Z",
               "IsPinned": true,
@@ -212,41 +206,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Customer.cs",
-              "RelativeDocumentMoniker": "Models\\Customer.cs",
-              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Customer.cs",
-              "RelativeToolTip": "Models\\Customer.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T05:29:02.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AllBlue",
-              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\AllBlue.csproj",
+              "DocumentIndex": 3,
+              "Title": "AllBlue.csproj",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\AllBlue.csproj",
               "RelativeDocumentMoniker": "AllBlue.csproj",
-              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\AllBlue.csproj",
+              "ToolTip": "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\AllBlue.csproj",
               "RelativeToolTip": "AllBlue.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-11-27T02:39:27.609Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Item.cs",
-              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Item.cs",
-              "RelativeDocumentMoniker": "Models\\Item.cs",
-              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Item.cs",
-              "RelativeToolTip": "Models\\Item.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ItemListController.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\ItemListController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ItemListController.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\ItemListController.cs",
+              "RelativeToolTip": "Controllers\\ItemListController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAA5wD4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T05:41:19.172Z",
+              "WhenOpened": "2025-11-28T01:53:04.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Controllers\\CustomerController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T01:52:59.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T00:44:42.868Z",
               "EditorCaption": ""
             },
             {
@@ -264,7 +271,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 14,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "Models\\Customer.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Customer.cs",
+              "RelativeToolTip": "Models\\Customer.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T05:29:02.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Item.cs",
+              "RelativeDocumentMoniker": "Models\\Item.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\Item.cs",
+              "RelativeToolTip": "Models\\Item.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T05:41:19.172Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "ItemUser.cs",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Models\\ItemUser.cs",
               "RelativeDocumentMoniker": "Models\\ItemUser.cs",
@@ -272,12 +303,24 @@
               "RelativeToolTip": "Models\\ItemUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T06:36:28.201Z",
+              "WhenOpened": "2025-11-13T06:36:28.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AccountTypeController.cs",
+              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\AccountTypeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountTypeController.cs",
+              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\AccountTypeController.cs",
+              "RelativeToolTip": "Controllers\\AccountTypeController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T06:20:12.927Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "AddItem.cshtml",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\ItemList\\AddItem.cshtml",
               "RelativeDocumentMoniker": "Views\\ItemList\\AddItem.cshtml",
@@ -285,12 +328,11 @@
               "RelativeToolTip": "Views\\ItemList\\AddItem.cshtml",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAACkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-17T08:00:41.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-17T08:00:41.722Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "_SearchCustomerContent.cshtml",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Views\\POS\\_SearchCustomerContent.cshtml",
               "RelativeDocumentMoniker": "Views\\POS\\_SearchCustomerContent.cshtml",
@@ -302,7 +344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
@@ -311,18 +353,6 @@
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-13T02:06:01.105Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AccountTypeController.cs",
-              "DocumentMoniker": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\AccountTypeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AccountTypeController.cs",
-              "ToolTip": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\Controllers\\AccountTypeController.cs",
-              "RelativeToolTip": "Controllers\\AccountTypeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T06:20:12.927Z"
             }
           ]
         }

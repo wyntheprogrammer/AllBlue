@@ -17,43 +17,43 @@
             <form asp-controller="POS" asp-action="SubmitOrder" method="post" enctype="multipart/form-data">
 
                 <div class="modal-body d-flex flex-column align-items-center p-2 gap-2">
-                    Customer ID
-                    <input type="text" name="CustomerID" id="CustomerID" value="@Model.CustomerID" />
+                    @* Customer ID *@
+                    <input type="hidden" name="CustomerID" id="CustomerID" value="@Model.CustomerID" />
 
-                    User ID
-                    <input type="text" name="selectedUserID" id="selectedUserID" value="@Model.SelectedUserID" />
+                    @* User ID *@
+                    <input type="hidden" name="selectedUserID" id="selectedUserID" value="@Model.SelectedUserID" />
 
-                    Service
-                    <input type="text" name="SelectedService" id="selectedService" value="@Model.SelectedService" />
+                    @* Service *@
+                    <input type="hidden" name="SelectedService" id="selectedService" value="@Model.SelectedService" />
 
-                    Date
-                    <input type="text" name="Date" value="@Model.Date" />
+                    @* Date *@
+                    <input type="hidden" name="Date" value="@Model.Date" />
 
-                    ITEMS
+                    @* ITEMS *@
                     @for (int i = 0; i < Model.Items.Count; i++)
                     {
-                        <input type="text" name="Items[@i].ItemID" value="@Model.Items[i].ItemID" />
-                        <input type="text" name="Items[@i].ClientGal" value="@Model.Items[i].ClientGal" />
-                        <input type="text" name="Items[@i].WRSGal" value="@Model.Items[i].WRSGal" />
-                        <input type="text" name="Items[@i].FreeGal"  value="@Model.Items[i].FreeGal" />
-                        <input type="text" name="Items[@i].Qty"  value="@Model.Items[i].Qty" />
-                        <input type="text" name="Items[@i].Total"  value="@Model.Items[i].Total" />
+                        <input type="hidden" name="Items[@i].ItemID" value="@Model.Items[i].ItemID" />
+                        <input type="hidden" name="Items[@i].ClientGal" value="@Model.Items[i].ClientGal" />
+                        <input type="hidden" name="Items[@i].WRSGal" value="@Model.Items[i].WRSGal" />
+                        <input type="hidden" name="Items[@i].FreeGal"  value="@Model.Items[i].FreeGal" />
+                        <input type="hidden" name="Items[@i].Qty"  value="@Model.Items[i].Qty" />
+                        <input type="hidden" name="Items[@i].Total"  value="@Model.Items[i].Total" />
                     }
 
-                    Total QTY
-                    <input type="text" name="TotalQty" id="TotalQty" value="@Model.TotalQty" />
-                    Total Price
-                    <input type="text" name="TotalPrice" id="TotalPrice" value="@Model.TotalPrice"/>
+                    @* Total QTY *@
+                    <input type="hidden" name="TotalQty" id="TotalQty" value="@Model.TotalQty" />
+                    @* Total Price *@
+                    <input type="hidden" name="TotalPrice" id="TotalPrice" value="@Model.TotalPrice"/>
                 
                     <div class="d-flex flex-column gap-2 p-2 text-danger fw-bold" style="width: 80%; background-color: #f8d7da;">
                         <div class="d-flex flex-row w-100">
                             <span class="w-50 d-flex justify-content-end align-items-center px-4">SUB TOTAL</span>
-                            <span class="w-50 d-flex justify-content-end fs-4">@Model.TotalPrice</span>
+                            <span class="w-50 d-flex justify-content-end fs-4" id="subTotal">@Model.TotalPrice</span>
                         </div>
                         <div class="d-flex flex-row w-100">
                             <span class="w-50 d-flex justify-content-end align-items-center px-4">Discount</span>
                             <span class="w-50 d-flex justify-content-end align-items-center">
-                                    <input type="number" class="w-100" />
+                                    <input type="text" id="discountInput" class="w-100" />
                             </span>
                         </div>
                     </div>
@@ -62,19 +62,21 @@
                     <div class="d-flex flex-column gap-2 p-2 text-warning fw-bold" style="width: 80%; background-color: #fff3cd;">
                         <div class="d-flex flex-row w-100">
                             <span class="w-50 d-flex justify-content-end align-items-center px-4">TOTAL DUE</span>
-                            <span class="w-50 d-flex justify-content-end fs-3">@Model.TotalPrice </span>
+                            <span class="w-50 d-flex justify-content-end fs-3" id="totalDue">@Model.TotalPrice </span>
                         </div>
                         <div class="d-flex flex-row w-100">
                             <span class="w-50 d-flex justify-content-end align-items-center px-4 text-info">Cash</span>
                             <span class="w-50 d-flex justify-content-end align-items-center">
-                                <input type="number" name="Cash" class="w-100" />
+                                <input type="number" name="Cash" id="cashInput" class="w-100" />
                             </span>
                         </div>
                         <div class="d-flex flex-row w-100">
                             <span class="w-50 d-flex justify-content-end align-items-center px-4 text-success">Changed</span>
-                            <span class="w-50 d-flex justify-content-end align-items-center"><input type="number" class="w-100" /></span>
+                            <span class="w-50 d-flex justify-content-end align-items-center"><input type="number" name="Changed" id="changeInput" class="w-100" /></span>
                         </div>
                     </div>
+
+                    <input type="text" id="status" name="Status"  class="w-100" value="Unpaid" readonly />
 
                 </div>
 
@@ -90,3 +92,39 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    const totalDue = document.getElementById('totalDue');
+    const cashInput = document.getElementById('cashInput');
+    const changeInput = document.getElementById('changeInput');
+    const statusInput = document.getElementById('status');
+    const discountInput = document.getElementById('discountInput');
+
+    function updateStatus() {
+            console.log('updateStatus triggered'); // <-- debug line
+
+        let total = parseFloat(totalDue.textContent) || 0;
+        let cash = parseFloat(cashInput.value) || 0;
+        let discountText = discountInput.value.trim();
+        
+        if (discountText !== ""){
+            statusInput.value = 'Discount';
+            changeInput.value = 0;
+        } else if (cash >= total ){
+            statusInput.value = 'Paid';
+            changeInput.value = cash - total;
+        } else if  (cash > 0 && cash < total) {
+            statusInput.value = `Balance remaining: ${ (total - cash).toFixed(2)}`;
+            changeInput.value = 0; 
+        } else {
+            statusInput.value = 'Unpaid';
+            changeInput.value = 0;
+        }
+
+    }
+
+    cashInput.addEventListener('input', updateStatus);
+    discountInput.addEventListener('input', updateStatus);
+
+</script>

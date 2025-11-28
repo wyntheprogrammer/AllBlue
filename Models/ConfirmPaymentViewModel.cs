@@ -15,10 +15,12 @@
         public int CustomerID { get; set; }
         public int SelectedUserID { get; set; } 
         public string SelectedService { get; set; }
+        public string? Status { get; set; }
         public List<ConfirmPaymentItem> Items { get; set; }
         public DateOnly Date { get; set; }
         public string TotalQty { get; set; }
         public string TotalPrice { get; set; }
+        public string? Changed { get; set; }
 
     }
 }

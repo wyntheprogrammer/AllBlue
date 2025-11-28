@@ -10,6 +10,7 @@ namespace AllBlue.Models
         [Key]
         public int Payment_ID { get; set; }
         public string Total { get; set; }
+        public string? Changed { get; set; }
         public string Status { get; set; }
         
         public int? Quantity { get; set; }

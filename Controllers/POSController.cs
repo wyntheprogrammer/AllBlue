@@ -275,7 +275,7 @@ public class POSController : Controller
 
 
     [HttpPost]
-    public IActionResult SubmitOrder(ConfirmPaymentViewModel model, int? Cash)
+    public IActionResult SubmitOrder(ConfirmPaymentViewModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -293,8 +293,9 @@ public class POSController : Controller
             {
                 Quantity = int.TryParse(model.TotalQty, out var qty) ? qty : 0,
                 Total = model.TotalPrice,
+                Changed = model.Changed,
                 Service = model.SelectedService,
-                Status = "Paid",
+                Status = model.Status,
                 Date = model.Date
             };
 

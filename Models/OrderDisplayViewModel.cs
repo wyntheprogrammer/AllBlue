@@ -23,7 +23,7 @@ namespace AllBlue.Models
         public string UserName { get; set; }
         public List<OrderProductItem> Products { get; set; }
         public string Service { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public DateOnly Date {  get; set; }
     }
 

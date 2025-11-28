@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FG7kgy4AnRA=",
+  "dgSpecHash": "FBTBjlnVojc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jpbacolod\\source\\repos\\AllBlue\\AllBlue.csproj",
+  "projectFilePath": "C:\\Users\\jpbacolod\\Source\\Repos\\AllBlue\\AllBlue.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jpbacolod\\.nuget\\packages\\devexpress.data\\25.1.6\\devexpress.data.25.1.6.nupkg.sha512",
     "C:\\Users\\jpbacolod\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

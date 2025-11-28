@@ -334,11 +334,20 @@
 
                         </td>
 
+                        @{
+                            string bgClass = order.Status switch
+                            {
+                                "Unpaid" => "bg-danger",
+                                "Discount" => "bg-warning", // orange
+                                _ => "bg-success"  // default for Paid or others
+                            };
+                        }
+
                         <td class="align-middle text-center text-white">
                             <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
                                 @order.Service
                             </div>
-                            <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
+                            <div class="font-extra-small @bgClass p-2 rounded-pill" style="display: inline-block;">
                                 @order.Status
                             </div>
                         </td>
@@ -610,6 +619,40 @@
                     const modalInstance = new bootstrap.Modal(modal);
                     modalInstance.show();
                 }
+
+
+                const totalDue = document.getElementById('totalDue');
+                const cashInput = document.getElementById('cashInput');
+                const changeInput = document.getElementById('changeInput');
+                const statusInput = document.getElementById('status');
+                const discountInput = document.getElementById('discountInput');
+
+                function updateStatus() {
+                        console.log('updateStatus triggered'); // <-- debug line
+
+                    let total = parseFloat(totalDue.textContent) || 0;
+                    let cash = parseFloat(cashInput.value) || 0;
+                    let discountText = discountInput.value.trim();
+
+                    if (discountText !== ""){
+                        statusInput.value = 'Discount';
+                        changeInput.value = 0;
+                    } else if (cash >= total ){
+                        statusInput.value = 'Paid';
+                        changeInput.value = cash - total;
+                    } else if  (cash > 0 && cash < total) {
+                        statusInput.value = `Balance remaining: ${ (total - cash).toFixed(2)}`;
+                        changeInput.value = 0;
+                    } else {
+                        statusInput.value = 'Unpaid';
+                        changeInput.value = 0;
+                    }
+
+                }
+
+                cashInput.addEventListener('input', updateStatus);
+                discountInput.addEventListener('input', updateStatus);
+
             })
             .catch(error => {
                 console.error("Error loading modal:", error);
