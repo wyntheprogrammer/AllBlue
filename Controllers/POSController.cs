@@ -310,6 +310,7 @@ public class POSController : Controller
                 Total = model.TotalPrice,
                 Service = model.SelectedService,
                 Status = model.Status,
+                Note = model.Note,
                 Date = model.Date
             };
 

@@ -261,6 +261,7 @@ Balanced
 Total
 Service 
 Status
+Note
 Date 
 
 

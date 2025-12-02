@@ -42,33 +42,42 @@ public class MonitoringController : Controller
     //////////////////////////////// POS Transaction Module /////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    public IActionResult POSTransaction(int id, int page = 1, int pageSize = 5, int window = 1, string search = "", int? selectedBarangayID = null, string dateFrom = "", string dateTo = "")
+    public IActionResult POSTransaction(
+    int id,
+    int page = 1,
+    int pageSize = 5,
+    int window = 1,
+    string search = "",
+    int? selectedBarangayID = null,
+    string dateFrom = "",
+    string dateTo = "")
     {
-        var orders = _context.Order
-            .Include(o => o.customer)
-                .ThenInclude(c => c.barangay)
-            .Include(o => o.payment)
+        // ------------------------------------------------------
+        // 1. LOAD PAYMENTS WITH RELATED DATA
+        // ------------------------------------------------------
+        var payments = _context.Payment
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.customer)
+                    .ThenInclude(c => c.barangay)
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.userAccount)
             .ToList()
-            .GroupBy(o => o.Payment_ID)
-            .Select(g => {
-                var cust = g.First().customer;
-                var pay = g.First().payment;
+
+            // Convert to display items (one per payment)
+            .Select(payment =>
+            {
+                var firstOrder = payment.Orders.FirstOrDefault();
+                var cust = firstOrder?.customer;
                 var barangay = cust?.barangay;
 
                 return new OrderDisplayItem
                 {
-                    OrderID = g.Key,
+                    PaymentID = payment.Payment_ID,
 
-                    // NULL SAFE Full Name
-                    CustomerName = string.Join(" ",
-                        new[]
-                        {
-                            cust?.First_Name,
-                            cust?.Last_Name
-                        }.Where(x => !string.IsNullOrWhiteSpace(x))
-                    ),
+                    CustomerName = cust == null
+                        ? ""
+                        : $"{cust.First_Name} {cust.Last_Name}".Trim(),
 
-                    // NULL SAFE Address
                     CustomerAddress = string.Join(", ",
                         new[]
                         {
@@ -77,125 +86,129 @@ public class MonitoringController : Controller
                         }.Where(x => !string.IsNullOrWhiteSpace(x))
                     ),
 
-                    Date = pay.Date,
-                    Free = pay.Free,
-                    Quantity = pay.Quantity ?? 0,
-                    Balanced = pay.Balanced ?? 0,
-                    Service = pay.Service,
-                    Status = pay.Status,
-                    Total = pay.Total,
+                    Date = payment.Date,
+                    Free = payment.Free,
+                    Quantity = payment.Quantity ?? 0,
+                    Balanced = payment.Balanced ?? 0,
+                    Service = payment.Service,
+                    Status = payment.Status,
+                    Total = payment.Total,
                     Barangay_ID = cust?.Barangay_ID ?? 0
                 };
             })
             .ToList();
 
+        // ------------------------------------------------------
+        // 2. SEARCH FILTER
+        // ------------------------------------------------------
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var keyword = search.ToLower().Trim();
 
-            // -------------------------------
-            // Search Filter
-            // -------------------------------
-
-            if (!string.IsNullOrWhiteSpace(search))
-            {
-                var normalized = search.Trim().ToLower();
-
-                orders = orders
-                    .Where(o =>
-                        o.CustomerName.ToLower().Contains(normalized) ||
-                        o.CustomerAddress.ToLower().Contains(normalized))
-                    .ToList();
-            }
-
-            // -------------------------------
-            // 📍 Barangay Filter
-            // -------------------------------
-
-            if (selectedBarangayID.HasValue)
-            {
-                orders = orders
-                    .Where(o => o.Barangay_ID == selectedBarangayID.Value)
-                    .ToList();
-            }
-
-
-            // -------------------------------
-            // 📅 Date From / Date To Filter
-            // -------------------------------
-            if (!string.IsNullOrWhiteSpace(dateFrom) || !string.IsNullOrWhiteSpace(dateTo))
-            {
-                DateTime fromDateTime, toDateTime;
-                DateOnly fromDateOnly, toDateOnly;
-
-                bool hasFrom = DateTime.TryParse(dateFrom, out fromDateTime);
-                bool hasTo = DateTime.TryParse(dateTo, out toDateTime);
-
-                if (hasFrom)
-                {
-                    fromDateOnly = DateOnly.FromDateTime(fromDateTime);
-                    orders = orders.Where(o => o.Date >= fromDateOnly).ToList();
-                }
-
-                if (hasTo)
-                {
-                    toDateOnly = DateOnly.FromDateTime(toDateTime);
-                    orders = orders.Where(o => o.Date <= toDateOnly).ToList();
-                }
-            }
-
-
-
-            // Pagination
-            int totalOrder = orders.Count();
-            int totalPages = (int)Math.Ceiling((double)totalOrder / pageSize);
-
-            int windowSize = 5;
-            int startPage = ((window - 1) * windowSize) + 1;
-            int endPage = Math.Min(startPage + windowSize - 1, totalPages);
-
-            var pagedOrder = orders
-                .OrderBy(o => o.OrderID)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
+            payments = payments
+                .Where(p =>
+                    p.CustomerName.ToLower().Contains(keyword) ||
+                    p.CustomerAddress.ToLower().Contains(keyword))
                 .ToList();
+        }
 
-            ViewBag.CurrentPage = page;
-            ViewBag.TotalPages = totalPages;
-            ViewBag.StartPage = startPage;
-            ViewBag.EndPage = endPage;
-            ViewBag.Window = window;
-            ViewBag.Search = search;
-            ViewBag.DateFrom = dateFrom;
-            ViewBag.DateTo = dateTo;
+        // ------------------------------------------------------
+        // 3. BARANGAY FILTER
+        // ------------------------------------------------------
+        if (selectedBarangayID.HasValue)
+        {
+            payments = payments
+                .Where(p => p.Barangay_ID == selectedBarangayID)
+                .ToList();
+        }
 
+        // ------------------------------------------------------
+        // 4. DATE FILTER
+        // ------------------------------------------------------
+        if (!string.IsNullOrWhiteSpace(dateFrom))
+        {
+            if (DateTime.TryParse(dateFrom, out var df))
+            {
+                var from = DateOnly.FromDateTime(df);
+                payments = payments.Where(p => p.Date >= from).ToList();
+            }
+        }
 
+        if (!string.IsNullOrWhiteSpace(dateTo))
+        {
+            if (DateTime.TryParse(dateTo, out var dt))
+            {
+                var to = DateOnly.FromDateTime(dt);
+                payments = payments.Where(p => p.Date <= to).ToList();
+            }
+        }
 
-            // Barangay List
-            var barangay = _context.Barangay.ToList();
+        // ------------------------------------------------------
+        // 5. PAGINATION
+        // ------------------------------------------------------
+        int total = payments.Count;
+        int totalPages = (int)Math.Ceiling((double)total / pageSize);
 
-            ViewBag.barangayList = new SelectList(
-                barangay.Select(b => new SelectListItem
-                {
-                    Value = b.Barangay_ID.ToString(),
-                    Text = b.Name
-                }).ToList(),
-                "Value",
-                "Text"
-            );
+        int windowSize = 5;
+        int startPage = ((window - 1) * windowSize) + 1;
+        int endPage = Math.Min(startPage + windowSize - 1, totalPages);
 
+        var paged = payments
+            .OrderBy(p => p.OrderID)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
 
-        return View("~/Views/Monitoring/POSTransaction/Index.cshtml", pagedOrder);
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.StartPage = startPage;
+        ViewBag.EndPage = endPage;
+        ViewBag.Window = window;
+        ViewBag.Search = search;
+        ViewBag.DateFrom = dateFrom;
+        ViewBag.DateTo = dateTo;
+
+        // ------------------------------------------------------
+        // 6. Barangay List
+        // ------------------------------------------------------
+        var brgy = _context.Barangay.ToList();
+
+        ViewBag.barangayList = new SelectList(
+            brgy.Select(b => new SelectListItem
+            {
+                Value = b.Barangay_ID.ToString(),
+                Text = b.Name
+            }),
+            "Value",
+            "Text"
+        );
+
+        return View("~/Views/Monitoring/POSTransaction/Index.cshtml", paged);
     }
 
-    [HttpGet]
+
+
+   [HttpGet]
     public IActionResult POSTransactionActionHistory(int id)
     {
-        var order = _context.Order.FirstOrDefault(o => o.Order_ID == id);
-        if (order == null)
+        var payments = _context.Payment
+            .Where(p => p.Payment_ID == id) // <- filter by Payment_ID
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.customer)
+                    .ThenInclude(c => c.barangay)
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.userAccount)
+            .ToList();
+
+        if (!payments.Any())
         {
             return NotFound();
         }
 
-        return PartialView("~/Views/Monitoring/POSTransaction/ActionHistory.cshtml", order);
+        return PartialView("~/Views/Monitoring/POSTransaction/ActionHistory.cshtml", payments);
     }
+
+
 
 
 
@@ -204,10 +217,118 @@ public class MonitoringController : Controller
     //////////////////////////////// Credit / Balanced Module /////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    public IActionResult Credit()
+    public IActionResult Credit(
+        int id, int page = 1, int pageSize = 5, int window = 1, string search = "",
+        int? selectedBarangayID = null, string dateFrom = "", string dateTo = ""
+    )
     {
-        return View("~/Views/Monitoring/Credit/Index.cshtml");
+        // Step 1: Load payments with related entities into memory
+        var paymentsFromDb = _context.Payment
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.customer)
+                    .ThenInclude(c => c.barangay)
+            .ToList(); // EF-safe, now we can use null propagation and statement bodies
+
+        // Step 2: Project into OrderDisplayItem
+        var payments = paymentsFromDb
+            .Select(payment =>
+            {
+                var firstOrder = payment.Orders.FirstOrDefault();
+                var cust = firstOrder?.customer;
+                var barangay = cust?.barangay;
+
+                return new OrderDisplayItem
+                {
+                    PaymentID = payment.Payment_ID,
+                    CustomerName = cust == null
+                        ? ""
+                        : $"{cust.First_Name} {cust.Last_Name}".Trim(),
+                    CustomerAddress = string.Join(", ",
+                        new[] { cust?.Street, barangay?.Name }
+                        .Where(x => !string.IsNullOrWhiteSpace(x))
+                    ),
+                    Barangay_ID = barangay?.Barangay_ID,  // nullable int
+                    Service = payment.Service,
+                    Quantity = payment.Quantity ?? 0,      // handle int? safely
+                    Total = payment.Total,
+                    Balanced = payment.Balanced ?? 0,
+                    Note = payment.Note,
+                    Date = payment.Date
+                };
+            })
+            .ToList();
+
+        // Step 3: Apply search filter
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var keyword = search.ToLower().Trim();
+            payments = payments
+                .Where(p => 
+                    p.CustomerName.ToLower().Contains(keyword) ||
+                    p.CustomerAddress.ToLower().Contains(keyword))
+                .ToList();
+        }
+
+        // Step 4: Filter by selected Barangay
+        if (selectedBarangayID.HasValue)
+        {
+            payments = payments
+                .Where(p => p.Barangay_ID == selectedBarangayID)
+                .ToList();
+        }
+
+        // Step 5: Filter by date range
+        if (!string.IsNullOrWhiteSpace(dateFrom) && DateTime.TryParse(dateFrom, out var df))
+        {
+            var from = DateOnly.FromDateTime(df);
+            payments = payments.Where(p => p.Date >= from).ToList();
+        }
+
+        if (!string.IsNullOrWhiteSpace(dateTo) && DateTime.TryParse(dateTo, out var dt))
+        {
+            var to = DateOnly.FromDateTime(dt);
+            payments = payments.Where(p => p.Date <= to).ToList();
+        }
+
+        // Step 6: Pagination calculations
+        int total = payments.Count;
+        int totalPages = (int)Math.Ceiling((double)total / pageSize);
+
+        int windowSize = 5;
+        int startPage = ((window - 1) * windowSize) + 1;
+        int endPage = Math.Min(startPage + windowSize - 1, totalPages);
+
+        var paged = payments
+            .OrderBy(p => p.PaymentID)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        // Step 7: Pass pagination and filter info to the view
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.StartPage = startPage;
+        ViewBag.EndPage = endPage;
+        ViewBag.Window = window;
+        ViewBag.Search = search;
+        ViewBag.DateFrom = dateFrom;
+        ViewBag.DateTo = dateTo;
+
+        // Step 8: Prepare Barangay list for dropdown
+        var brgy = _context.Barangay.ToList();
+        ViewBag.barangayList = new SelectList(
+            brgy.Select(b => new SelectListItem
+            {
+                Value = b.Barangay_ID.ToString(),
+                Text = b.Name
+            }),
+            "Value",
+            "Text"
+        );
+
+        return View("~/Views/Monitoring/Credit/Index.cshtml", paged);
     }
+
 
     public IActionResult CreditActionPay()
     {
@@ -226,9 +347,124 @@ public class MonitoringController : Controller
     //////////////////////////////// Top Customer Module /////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    public IActionResult TopCustomer()
+    public IActionResult TopCustomer(
+        int id,
+        int page = 1,
+        int pageSize = 5,
+        int window = 1,
+        string search = "",
+        int? selectedBarangayID = null,
+        string dateFrom = "",
+        string dateTo = "")
     {
-        return View("~/Views/Monitoring/TopCustomer/Index.cshtml");
+        // Step 1: Load payments with related data
+        var payments = _context.Payment
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.customer)
+                    .ThenInclude(c => c.barangay)
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.userAccount)
+            .ToList();
+
+        // Step 2: Flatten payments into orders with customers
+        var paymentOrders = payments
+            .SelectMany(p => p.Orders.Select(o => new { Payment = p, Customer = o.customer }))
+            .Where(x => x.Customer != null);
+
+        // Step 3: Apply date filters before aggregation
+        if (!string.IsNullOrWhiteSpace(dateFrom) && DateTime.TryParse(dateFrom, out var df))
+        {
+            var from = DateOnly.FromDateTime(df);
+            paymentOrders = paymentOrders.Where(x => x.Payment.Date >= from);
+        }
+
+        if (!string.IsNullOrWhiteSpace(dateTo) && DateTime.TryParse(dateTo, out var dt))
+        {
+            var to = DateOnly.FromDateTime(dt);
+            paymentOrders = paymentOrders.Where(x => x.Payment.Date <= to);
+        }
+
+        // Step 4: Group by customer and aggregate
+        var customerPayments = paymentOrders
+            .GroupBy(x => x.Customer.Customer_ID)
+            .Select(g =>
+            {
+                var cust = g.First().Customer;
+                var barangay = cust.barangay;
+
+                // Get latest payment for PaymentID and LastPurchased
+                var lastPayment = g.OrderByDescending(x => x.Payment.Date).First().Payment;
+
+                return new OrderDisplayItem
+                {
+                    PaymentID = lastPayment.Payment_ID,
+                    CustomerName = $"{cust.First_Name} {cust.Last_Name}".Trim(),
+                    CustomerAddress = string.Join(", ",
+                        new[] { cust.Street, barangay?.Name }
+                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                    ),
+                    Barangay_ID = barangay?.Barangay_ID,
+                    Quantity = g.Sum(x => x.Payment.Quantity ?? 0),
+                    Total = g.Sum(x => x.Payment.Total),
+                    LastPurchased = lastPayment.Date
+                };
+            })
+            .ToList();
+
+        // Step 5: Apply search filter
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            var keyword = search.ToLower().Trim();
+            customerPayments = customerPayments
+                .Where(p => p.CustomerName.ToLower().Contains(keyword) ||
+                            p.CustomerAddress.ToLower().Contains(keyword))
+                .ToList();
+        }
+
+        // Step 6: Filter by selected Barangay
+        if (selectedBarangayID.HasValue)
+        {
+            customerPayments = customerPayments
+                .Where(p => p.Barangay_ID == selectedBarangayID)
+                .ToList();
+        }
+
+        // Step 7: Pagination
+        int total = customerPayments.Count;
+        int totalPages = (int)Math.Ceiling((double)total / pageSize);
+
+        int windowSize = 5;
+        int startPage = ((window - 1) * windowSize) + 1;
+        int endPage = Math.Min(startPage + windowSize - 1, totalPages);
+
+        var paged = customerPayments
+            .OrderBy(p => p.CustomerName)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        // Step 8: Pass pagination and filter info to view
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.StartPage = startPage;
+        ViewBag.EndPage = endPage;
+        ViewBag.Window = window;
+        ViewBag.Search = search;
+        ViewBag.DateFrom = dateFrom;
+        ViewBag.DateTo = dateTo;
+
+        var brgy = _context.Barangay.ToList();
+        ViewBag.barangayList = new SelectList(
+            brgy.Select(b => new SelectListItem
+            {
+                Value = b.Barangay_ID.ToString(),
+                Text = b.Name
+            }),
+            "Value",
+            "Text"
+        );
+
+        return View("~/Views/Monitoring/TopCustomer/Index.cshtml", paged);
     }
 
 

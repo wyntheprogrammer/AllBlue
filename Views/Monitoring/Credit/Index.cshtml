@@ -2,6 +2,8 @@
     ViewData["Title"] = "Monitoring";
 }
 
+@model List<OrderDisplayItem>
+
 <div class="shadow-all-sides p-3 align-items-center d-flex flex-column gap-3">
 
     <div class="d-flex justify-content-between w-100">
@@ -46,41 +48,43 @@
         </div>
     </div>
 
-    <div class="d-flex flex-row gap-2 border  p-2 w-100">
+    <form class="form-group d-flex flex-row gap-2 border  p-2 w-100" asp-controller="Monitoring" asp-action="Credit" method="get">
 
         <div class="form-group flex-grow-1">
             <label class="fw-bold">Search</label>
-            <input type="text" class="form-control" required/>
+            <input type="text" name="search" placeholder="Search by name" class="form-control"/>
         </div>
 
         <div class="form-group flex-grow-1">
             <label class="fw-bold">Barangay</label>
-            <select  class="form-select" required>
+            <select id="filterBarangay" name="selectedBarangayID" class="form-select">
                 <option value="">All Barangay</option>
-                <option value="Barangay 1">Barangay 1</option>
-                <option value="Barangay 2">Barangay 2</option>
+                @foreach (var barangay in ViewBag.BarangayList as SelectList)
+                {
+                    <option value="@barangay.Value">@barangay.Text</option>
+                }
             </select>
         </div>
 
         <div class="form-group flex-grow-1">
             <label class="fw-bold">Date From</label>
-            <input type="date" class="form-control" required/>
+            <input id="dateForm" name="dateFrom" type="date" class="form-control"/>
         </div>
 
         <div class="form-group flex-grow-1">
             <label class="fw-bold">Date To</label>
-            <input type="date" class="form-control" required/>
+            <input id="dateTo" name="dateFrom" type="date" class="form-control"/>
         </div>
 
         <div class="d-flex flex-column">
             <label class="text-white">Filter</label>
-            <button class="bg-primary text-white h-100 px-3 rounded" id="openSearchCustomerModal" style="border: none">
+            <button class="bg-primary text-white h-100 px-3 rounded"  style="border: none">
             <i class="fs-6 bi-funnel"></i> 
                 Filter Record
             </button>
         </div>
         
-    </div>
+    </form>
 
     <table class="table table-striped" style="width: 100%; table-layout: fixed;">
         <thead class="table-dark">
@@ -97,72 +101,86 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="font-small" scope="row">1</td>
-                <td class="font-small" scope="row">
-                    <div class="font-small">JUAN DELA CRUZ</div>
-                    <div class="font-extra-small">Inanlorenza, Bayambang</div>
-                    <div class="font-extra-small">Tabi ng bahay ni Rosie</div>
-                </td>
-                <td class="font-small text-center">
-                    <div class="bg-success text-white px-2 d-inline rounded-pill">Deliver</div>
-                </td>
-                <td class="font-small text-center">6</td>
-                <td class="font-small text-center">100.00</td>
-                <td class="font-small text-center">100.00</td>
-                <td class="font-small text-center">Wala sa bahay, utang muna</td>
-                <td class="font-small text-center">November 15, 2019</td>
-                <td class="text-center">
-                    <div class="dropdown">
-                        <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-gear"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="dropdown-item" id="openActionPayModal">
-                                    <i class="bi bi-cash"></i> Pay
-                                </div>
-                            </li>
-                            <li>
-                                <div class="dropdown-item" id="openActionNoteModal">
-                                    <i class="bi bi-journal-text"></i> Note
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var payment in Model)
+                {
+                    <tr>
+                        <td class="font-small" scope="row">@payment.PaymentID</td>
+                        <td class="font-small" scope="row">
+                            <div class="font-small">@payment.CustomerName</div>
+                            <div class="font-extra-small">@payment.CustomerAddress</div>
+                            <div class="font-extra-small">Tabi ng bahay ni Rosie</div>
+                        </td>
+                        <td class="font-small text-center">
+                            <div class="bg-success text-white px-2 d-inline rounded-pill">@payment.Service</div>
+                        </td>
+                        <td class="font-small text-center">@payment.Quantity</td>
+                        <td class="font-small text-center">@payment.Total</td>
+                        <td class="font-small text-center">@payment.Balanced</td>
+                        <td class="font-small text-center">@payment.Note</td>
+                        <td class="font-small text-center">@payment.Date</td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="dropdown-item" id="openActionPayModal">
+                                            <i class="bi bi-cash"></i> Pay
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item" id="openActionNoteModal">
+                                            <i class="bi bi-journal-text"></i> Note
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            } else 
+            {
+                <tr>
+                    <td colspan="9" class="text-center text-muted">No items found.</td>
+                </tr>
+            }
+            
         </tbody>
     </table>  
 
     <nav aria-label="Pagination">
         <ul class="pagination">
-            <li class="page-item ">
+            <li class="page-item @(ViewBag.Window == 1 ? "disabled" : "")">
                 <a class="page-link" 
-                    href="/Search?page=1&window=1&search=John&gender=Male">
+                    asp-action="Credit"
+                    asp-route-page="@((ViewBag.StartPage - 5) > 0 ? ViewBag.StartPage - 5 : 1)"
+                    asp-route-window="@(ViewBag.Window - 1)">
                     Previous
                 </a>
             </li>
 
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
-            </li>
+            @for (int i = ViewBag.StartPage; i <= ViewBag.EndPage; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                    <a class="page-link"
+                        asp-action="Credit"
+                        asp-route-page="@i"
+                        asp-route-window="@ViewBag.Window"
+                        asp-route-search="@ViewBag.Search">
+                        @i
+                    </a>
+                </li>
+            }
 
-            <li class="page-item">
-                <a class="page-link" 
-                    href="/Search?page=11&window=3&search=John&gender=Male">
+            <li class="page-item @(ViewBag.EndPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link"
+                    asp-action="Credit"
+                    asp-route-page="@((ViewBag.EndPage + 1) <= ViewBag.TotalPages ? ViewBag.EndPage + 1 : ViewBag.TotalPages)" 
+                    asp-route-window="@(ViewBag.Window + 1)"
+                    asp-route-search="@ViewBag.Search">
                     Next
                 </a>
             </li>

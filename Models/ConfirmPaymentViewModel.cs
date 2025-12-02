@@ -22,6 +22,7 @@
         public int TotalPrice { get; set; }
         public string SelectedService { get; set; }
         public string Status { get; set; }
+        public string? Note { get; set; }
         public DateOnly Date { get; set; }
 
         public int SelectedUserID { get; set; } 

@@ -18,6 +18,7 @@ namespace AllBlue.Models
         public int Total { get; set; }
         public string? Service { get; set; }
         public string Status { get; set; }
+        public string? Note { get; set; }
         public DateOnly Date { get; set; }
 
         public ICollection<Order> Orders { get; set; }

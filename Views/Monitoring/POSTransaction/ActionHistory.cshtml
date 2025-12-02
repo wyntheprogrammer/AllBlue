@@ -1,66 +1,129 @@
 @{
     Layout = null;
-};
+}
 
-@model AllBlue.Models.Order
+@model List<AllBlue.Models.Payment>
 
-<!-- Action History Modal -->
 <div class="modal fade" id="actionHistoryModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">
-                    <i class="bi bi-clock-history"></i> 
-                      Transaction History
+                <h5 class="modal-title">
+                    <i class="bi bi-clock-history"></i> Transaction History
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <div class="modal-body d-flex flex-column p-2">
 
                 <div class="border d-flex flex-column gap-2 p-2">
-                    <div class="d-flex flex-column border-bottom pb-2">
-                        <span class="fs-5 fw-bold">JORGE CASINGAL</span>
-                        <span class="font-small">Tanolong, Bayambang</span>
-                    </div>
-                    
+
+                    <!-- CUSTOMER INFO -->
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        var firstOrder = Model.First().Orders.FirstOrDefault();
+                        if (firstOrder != null)
+                        {
+                            <div class="d-flex flex-column border-bottom pb-2">
+                                <span class="fs-5 fw-bold">
+                                    @firstOrder.customer?.First_Name @firstOrder.customer?.Last_Name
+                                </span>
+                                <span class="font-small">
+                                    @firstOrder.customer?.Street,
+                                    @(firstOrder.customer?.barangay?.Name ?? "")
+                                </span>
+                            </div>
+                        }
+                    }
+
+
+                    <!-- TABLE -->
                     <table class="table table-striped" style="width: 100%; table-layout: fixed;">
                         <thead class="table-dark">
                             <tr>
-                                <th class="font-small text-center" style="width: 40px" scope="col">#</th>
-                                <th class="font-small text-center" scope="col">SERVICE</th>
-                                <th class="font-small text-center" scope="col">QUANTITY</th>
-                                <th class="font-small text-center" scope="col">FREE</th>
-                                <th class="font-small text-center" scope="col">TOTAL</th>
-                                <th class="font-small text-center" scope="col">STATUS</th>
-                                <th class="font-small text-center" scope="col">INCHARGE</th>
-                                <th class="font-small text-center" scope="col">DATE</th>
+                                <th class="font-small text-center">#</th>
+                                <th class="font-small text-center">SERVICE</th>
+                                <th class="font-small text-center">QUANTITY</th>
+                                <th class="font-small text-center">FREE</th>
+                                <th class="font-small text-center">TOTAL</th>
+                                <th class="font-small text-center">STATUS</th>
+                                <th class="font-small text-center">INCHARGE</th>
+                                <th class="font-small text-center">DATE</th>
                             </tr>
                         </thead>
+
                         <tbody>
+                        @if (Model!= null && Model.Any())
+                        {
+                            foreach (var payment in Model)
+                            {
+                                var firstOrder = payment.Orders.FirstOrDefault();
+                                var handledBy = firstOrder?.userAccount;
+
+                                <tr>
+                                    <td class="font-extra-small text-center">@payment.Payment_ID</td>
+
+                                    <td class="font-extra-small text-center">
+                                        @payment.Service
+                                    </td>
+
+                                    <td class="font-extra-small text-center">
+                                        @(payment.Quantity ?? 0)
+                                    </td>
+
+                                    <td class="font-extra-small text-center">
+                                        @(payment.Free ?? 0)
+                                    </td>
+
+                                    <td class="font-extra-small text-center">
+                                        ₱@payment.Total.ToString("N2")
+                                    </td>
+
+                                    <td class="font-extra-small text-center">
+                                        @{
+                                            string statusClass = payment.Status switch
+                                            {
+                                                "Paid" => "bg-success",
+                                                "Unpaid" => "bg-danger",
+                                                _ => "bg-warning"
+                                            };
+                                        }
+                                        <span class="@statusClass text-white px-2 rounded-pill">
+                                            @payment.Status
+                                        </span>
+                                    </td>
+
+                                    <td class="font-extra-small text-center">
+                                        @if (handledBy != null)
+                                        {
+                                            @handledBy.Firstname @handledBy.Lastname
+                                        }
+                                        else
+                                        {
+                                            <span>N/A</span>
+                                        }
+                                    </td>
+
+                                    <td class="font-extra-small text-center">
+                                        @payment.Date.ToString("yyyy-MM-dd")
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
                             <tr>
-                                <td class="font-extra-small text-center" scope="row">1</td>
-                                <td class="font-extra-small text-center">
-                                    <div class="bg-success text-white px-2 d-inline rounded-pill">Deliver</div>
-                                </td>
-                                <td class="font-extra-small text-center">6</td>
-                                <td class="font-extra-small text-center">1</td>
-                                <td class="font-extra-small text-center">100.00</td>
-                                <td class="font-extra-small text-center">
-                                    <div class="bg-success text-white px-2 d-inline rounded-pill">Paid</div>
-                                </td>
-                                <td class="font-extra-small text-center">Marimar Toralba</td>
-                                <td class="font-extra-small text-center">2019-11-15</td>
+                                <td colspan="8" class="text-center">No orders found.</td>
                             </tr>
-                           
+                        }
                         </tbody>
                     </table>
-                </div>   
-                
-                
-            </div>
-            <div class="modal-footer">
+
+                </div>
 
             </div>
+
         </div>
     </div>
 </div>

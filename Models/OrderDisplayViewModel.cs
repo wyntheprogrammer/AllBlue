@@ -17,7 +17,8 @@ namespace AllBlue.Models
 
     public class OrderDisplayItem
     {
-        public int OrderID { get; set; }
+        public int? PaymentID { get; set;}
+        public int? OrderID { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public string UserName { get; set; }
@@ -33,7 +34,9 @@ namespace AllBlue.Models
         public int Total { get; set; }
         public string Service { get; set; }
         public string Status { get; set; }
+        public string Note { get; set; }
         public DateOnly Date {  get; set; }
+        public DateOnly LastPurchased { get; set; }
 
 
         public int? Barangay_ID { get; set;}

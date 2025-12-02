@@ -79,7 +79,7 @@
 
         <div class="d-flex flex-column">
             <label class="text-white">Filter</label>
-            <button class="bg-primary text-white h-100 px-3 rounded" id="openSearchCustomerModal" style="border: none">
+            <button class="bg-primary text-white h-100 px-3 rounded"  style="border: none">
             <i class="fs-6 bi-funnel"></i> 
                 Filter Record
             </button>
@@ -103,25 +103,29 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model !=null && Model.Any())
+            @if (Model != null && Model.Any())
             {
-                @foreach (var order in Model){
+                @foreach (var payment in Model)
+                {
                     <tr>
-                        <td class="font-small" scope="row">@order.OrderID</td>
-                        <td class="font-small" scope="row">
-                            <div class="font-small">@order.CustomerName</div>
-                            <div class="font-extra-small">@order.CustomerAddress</div>
-                            <div class="font-extra-small">Tabi ng bahay ni Rosie</div>
+                        <td class="font-small text-center">@payment.PaymentID</td>
+
+                        <td class="font-small">
+                            <div class="font-small">@payment.CustomerName</div>
+                            <div class="font-extra-small">@payment.CustomerAddress</div>
                         </td>
+
                         <td class="font-small text-center">
-                            <div class="bg-success text-white px-2 d-inline rounded-pill">@order.Service</div>
+                            <div class="bg-success text-white px-2 d-inline rounded-pill">@payment.Service</div>
                         </td>
-                        <td class="font-small text-center">@order.Quantity</td>
-                        <td class="font-small text-center">@order.Free</td>
-                        <td class="font-small text-center">@order.Total</td>
-                        <td class="font-small text-center">@order.Balanced</td>
-                        <td class="font-small text-center">@order.Status</td>
-                        <td class="font-small text-center">@order.Date</td>
+
+                        <td class="font-small text-center">@payment.Quantity</td>
+                        <td class="font-small text-center">@payment.Free</td>
+                        <td class="font-small text-center">@payment.Total</td>
+                        <td class="font-small text-center">@payment.Balanced</td>
+                        <td class="font-small text-center">@payment.Status</td>
+                        <td class="font-small text-center">@payment.Date.ToString("yyyy-MM-dd")</td>
+
                         <td class="text-center">
                             <div class="dropdown">
                                 <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -129,8 +133,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <div class="dropdown-item openActionHistoryModal" 
-                                            data-id="@order.OrderID">
+                                        <div class="dropdown-item openActionHistoryModal" data-id="@payment.PaymentID">
                                             <i class="bi bi-clock-history"></i> History
                                         </div>
                                     </li>
@@ -144,12 +147,15 @@
                         </td>
                     </tr>
                 }
-            } else {
+            }
+            else
+            {
                 <tr>
-                    <td colspan="10" class="text-center text-muted">No Item found.</td>
+                    <td colspan="10" class="text-center text-muted">No items found.</td>
                 </tr>
             }
         </tbody>
+
     </table>  
 
     <nav aria-label="Pagination">
