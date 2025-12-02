@@ -285,81 +285,85 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var order in Model.Orders)
+                @if (Model != null && Model.Orders != null && Model.Orders.Any())    
                 {
-                    <tr>
-                        <th class="font-small text-center" scope="row">@order.OrderID</th>
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <th class="font-small text-center" scope="row">@order.OrderID</th>
 
-                        <td class="font-small">
-                            <div>
-                                <i class="bi bi-three-dots-vertical"></i>
-                                <span>@order.CustomerName</span>
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical"></i>
-                                <span class="font-extra-small">Ate Gina -Likod Pwesto</span>
-                            </div>
-                            <div>
-                                <i class="bi bi-three-dots-vertical"></i>
-                                <span class="font-extra-small">@order.CustomerAddress</span>
-                            </div>
-                        </td>
+                            <td class="font-small">
+                                <div>
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                    <span>@order.CustomerName</span>
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                    <span class="font-extra-small">Ate Gina -Likod Pwesto</span>
+                                </div>
+                                <div>
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                    <span class="font-extra-small">@order.CustomerAddress</span>
+                                </div>
+                            </td>
 
-                        <td class="font-small text-center">
-                            <table class="table table-striped" style="width: 100%; table-layout: fixed;">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th class="font-extra-small text-center" scope="col">ITEM</th>
-                                        <th class="font-extra-small text-center" scope="col">Client</th>
-                                        <th class="font-extra-small text-center" scope="col">WRS</th>
-                                        <th class="font-extra-small text-center" scope="col">QTY</th>
-                                        <th class="font-extra-small text-center" scope="col">FREE</th>
-                                        <th class="font-extra-small text-center" scope="col">Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var product in order.Products)
-                                    {
+                            <td class="font-small text-center">
+                                <table class="table table-striped" style="width: 100%; table-layout: fixed;">
+                                    <thead class="thead-light">
                                         <tr>
-                                            <td class="font-extra-small text-center">@product.ItemName</td>
-                                            <td class="font-extra-small text-center">@product.ClientGal</td>
-                                            <td class="font-extra-small text-center">@product.WRSGal</td>
-                                            <td class="font-extra-small text-center">@product.QTY</td>
-                                            <td class="font-extra-small text-center">@product.FreeGal</td>
-                                            <td class="font-extra-small text-center">@product.Price</td>
+                                            <th class="font-extra-small text-center" scope="col">ITEM</th>
+                                            <th class="font-extra-small text-center" scope="col">Client</th>
+                                            <th class="font-extra-small text-center" scope="col">WRS</th>
+                                            <th class="font-extra-small text-center" scope="col">QTY</th>
+                                            <th class="font-extra-small text-center" scope="col">FREE</th>
+                                            <th class="font-extra-small text-center" scope="col">Price</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var product in order.Products)
+                                        {
+                                            <tr>
+                                                <td class="font-extra-small text-center">@product.ItemName</td>
+                                                <td class="font-extra-small text-center">@product.ClientGal</td>
+                                                <td class="font-extra-small text-center">@product.WRSGal</td>
+                                                <td class="font-extra-small text-center">@product.QTY</td>
+                                                <td class="font-extra-small text-center">@product.FreeGal</td>
+                                                <td class="font-extra-small text-center">@product.Price</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
 
-                        </td>
+                            </td>
 
-                        @{
-                            string bgClass = order.Status switch
-                            {
-                                "Unpaid" => "bg-danger",
-                                "Discount" => "bg-warning", // orange
-                                _ => "bg-success"  // default for Paid or others
-                            };
-                        }
+                            @{
+                                string bgClass = order.Status switch
+                                {
+                                    "Unpaid" => "bg-danger",
+                                    "Discount" => "bg-warning", // orange
+                                    _ => "bg-success"  // default for Paid or others
+                                };
+                            }
 
-                        <td class="align-middle text-center text-white">
-                            <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
-                                @order.Service
-                            </div>
-                            <div class="font-extra-small @bgClass p-2 rounded-pill" style="display: inline-block;">
-                                @order.Status
-                            </div>
-                        </td>
+                            <td class="align-middle text-center text-white">
+                                <div class="font-extra-small bg-success p-2 rounded-pill" style="display: inline-block;">
+                                    @order.Service
+                                </div>
+                                <div class="font-extra-small @bgClass p-2 rounded-pill" style="display: inline-block;">
+                                    @order.Status
+                                </div>
+                            </td>
 
-                        <td class="text-center align-middle">
-                            <span class="font-small">@order.Date.ToString("MMMM dd, yyyy")</span>
-                        </td>
+                            <td class="text-center align-middle">
+                                <span class="font-small">@order.Date.ToString("MMMM dd, yyyy")</span>
+                            </td>
+                        </tr>
+                    }
+                } else {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No Item found.</td>
                     </tr>
                 }
-
-                
-
             </tbody>
         </table>
 
@@ -369,7 +373,7 @@
                     <a class="page-link" 
                         asp-action="Index"
                         asp-route-page="@((ViewBag.StartPage - 5) > 0 ? ViewBag.StartPage - 5 : 1)"
-                        asp-route-window="@ViewBag.Window - 1">
+                        asp-route-window="@(ViewBag.Window -1)">
                         Previous
                     </a>
                 </li>
@@ -533,46 +537,55 @@
         const button = document.getElementById("openConfirmPaymentModal");
         const container = document.getElementById("confirmPaymentContainer");
 
+        if (!button) {
+            console.warn("No button with id 'openConfirmPaymentModal' found.");
+            return; // Exit if button doesn't exist
+        }
+
+        if (!container) {
+            console.warn("No container with id 'confirmPaymentContainer' found.");
+            return;
+        }
+
         button.addEventListener("click", function () {
             const customerID = button.dataset.customerId;
 
-            const selectedUserId = document.getElementById("select-user").value;
-
-            if(!selectedUserId) {
+            const selectUserElem = document.getElementById("select-user");
+            const selectedUserId = selectUserElem ? selectUserElem.value : null;
+            if (!selectedUserId) {
                 alert("Please select a user first.");
                 return;
             }
 
-            const selectService = document.getElementById("select-service").value
-            if(!selectService){
+            const selectServiceElem = document.getElementById("select-service");
+            const selectedService = selectServiceElem ? selectServiceElem.value : null;
+            if (!selectedService) {
                 alert("Please select a service first.");
                 return;
             }
 
-
-            const date = document.getElementById("date").value
+            const dateElem = document.getElementById("date");
+            const date = dateElem ? dateElem.value : null;
 
             // Collect all rows
-            const rows = document.querySelectorAll("#gallonContainer tbody tr,  #bottleContainer tbody tr");
+            const rows = document.querySelectorAll("#gallonContainer tbody tr, #bottleContainer tbody tr");
             const items = [];
 
             rows.forEach(row => {
                 const itemIdCell = row.querySelector("th[scope=row]");
-                if (!itemIdCell) return; // skip "No Item found" row
+                if (!itemIdCell) return;
 
-                const itemID = itemIdCell.innerText.trim();
+                const itemID = parseInt(itemIdCell.innerText.trim(), 10);
                 const clientGal = parseInt(row.querySelector(".client-gal")?.value || "0", 10);
                 const wrsGal = parseInt(row.querySelector(".wrs-gal")?.value || "0", 10);
                 const freeGal = parseInt(row.querySelector(".free-gal")?.value || "0", 10);
-                const total = row.querySelector(".total-cell")?.innerText.trim() || "";
+                const total = parseInt(parseFloat(row.querySelector(".total-cell")?.innerText.trim()) || 0, 10);
 
-                // ? Calculate Qty as sum of all gallons for this row
                 const qty = clientGal + wrsGal + freeGal;
 
-                // Only include rows where user entered something
-                if (clientGal || wrsGal || freeGal) {
+                if (qty > 0) {
                     items.push({
-                        ItemID: parseInt(itemID, 10),
+                        ItemID: itemID,
                         ClientGal: clientGal,
                         WRSGal: wrsGal,
                         FreeGal: freeGal,
@@ -587,22 +600,29 @@
                 return;
             }
 
-                const totalQty = document.querySelector("#summaryTable #total-qty")?.innerText.trim() || "";
-                const totalPrice = document.querySelector("#summaryTable #total-price")?.innerText.trim() || "";
+            const totalQtyElem = document.querySelector("#summaryTable #total-qty");
+            const totalPriceElem = document.querySelector("#summaryTable #total-price");
+
+            const totalQty = totalQtyElem ? parseInt(totalQtyElem.innerText.trim() || "0", 10) : 0;
+            const totalPrice = totalPriceElem ? parseInt(parseFloat(totalPriceElem.innerText.trim() || "0"), 10) : 0;
+            const totalFree = items.reduce((sum, item) => sum + item.FreeGal, 0);
 
             const payload = {
                 CustomerID: parseInt(customerID, 10),
                 SelectedUserID: parseInt(selectedUserId, 10),
-                SelectedService: selectService,
-                Date: date,
+                SelectedService: selectedService,
                 Items: items,
                 TotalQty: totalQty,
-                TotalPrice: totalPrice
+                Free: totalFree,
+                TotalPrice: totalPrice,
+                Discount: "",
+                Cash: 0,
+                Changed: 0,
+                Status: "Unpaid",
+                Date: date
             };
 
-
             console.log("Payload:", JSON.stringify(payload));
-
 
             fetch("/POS/ConfirmPayment", {
                 method: "POST",
@@ -611,55 +631,69 @@
                 },
                 body: JSON.stringify(payload)
             })
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) throw new Error("Server returned " + response.status);
+                return response.text();
+            })
             .then(html => {
                 container.innerHTML = html;
                 const modal = document.getElementById("confirmPaymentModal");
-                if (modal) {
-                    const modalInstance = new bootstrap.Modal(modal);
-                    modalInstance.show();
+                if (!modal) {
+                    console.warn("No modal element found in the response.");
+                    return;
                 }
 
+                const modalInstance = new bootstrap.Modal(modal);
+                modalInstance.show();
 
                 const totalDue = document.getElementById('totalDue');
                 const cashInput = document.getElementById('cashInput');
                 const changeInput = document.getElementById('changeInput');
                 const statusInput = document.getElementById('status');
                 const discountInput = document.getElementById('discountInput');
+                const balancedInput = document.getElementById('balanced');
+
+
+                if (!totalDue || !cashInput || !changeInput || !statusInput || !discountInput) {
+                    console.warn("Some modal input elements are missing.");
+                    return;
+                }
 
                 function updateStatus() {
-                        console.log('updateStatus triggered'); // <-- debug line
-
                     let total = parseFloat(totalDue.textContent) || 0;
                     let cash = parseFloat(cashInput.value) || 0;
                     let discountText = discountInput.value.trim();
 
-                    if (discountText !== ""){
+                    let balance = Math.max(total - cash, 0);
+
+                    balancedInput.value = balance;
+
+                    if (discountText !== "") {
                         statusInput.value = 'Discount';
                         changeInput.value = 0;
-                    } else if (cash >= total ){
+                    } else if (cash >= total) {
                         statusInput.value = 'Paid';
-                        changeInput.value = cash - total;
-                    } else if  (cash > 0 && cash < total) {
-                        statusInput.value = `Balance remaining: ${ (total - cash).toFixed(2)}`;
+                        changeInput.value = (cash - total);
+                    } else if (cash > 0 && cash < total) {
+                        statusInput.value = `Balance: ${(balance)}`;
                         changeInput.value = 0;
                     } else {
                         statusInput.value = 'Unpaid';
                         changeInput.value = 0;
                     }
-
                 }
 
                 cashInput.addEventListener('input', updateStatus);
                 discountInput.addEventListener('input', updateStatus);
-
             })
             .catch(error => {
                 console.error("Error loading modal:", error);
+                alert("Failed to load payment modal. Check console for details.");
             });
         });
     });
 </script>
+
 
 
 <script>

@@ -21,10 +21,10 @@
                     <input type="hidden" name="CustomerID" id="CustomerID" value="@Model.CustomerID" />
 
                     @* User ID *@
-                    <input type="hidden" name="selectedUserID" id="selectedUserID" value="@Model.SelectedUserID" />
+                    <input type="hidden" name="SelectedUserID" id="SelectedUserID" value="@Model.SelectedUserID" />
 
                     @* Service *@
-                    <input type="hidden" name="SelectedService" id="selectedService" value="@Model.SelectedService" />
+                    <input type="hidden" name="SelectedService" id="SelectedService" value="@Model.SelectedService" />
 
                     @* Date *@
                     <input type="hidden" name="Date" value="@Model.Date" />
@@ -40,6 +40,8 @@
                         <input type="hidden" name="Items[@i].Total"  value="@Model.Items[i].Total" />
                     }
 
+                    <input type="hidden" name="Free" id="Free" value="@Model.Free" />
+
                     @* Total QTY *@
                     <input type="hidden" name="TotalQty" id="TotalQty" value="@Model.TotalQty" />
                     @* Total Price *@
@@ -53,7 +55,7 @@
                         <div class="d-flex flex-row w-100">
                             <span class="w-50 d-flex justify-content-end align-items-center px-4">Discount</span>
                             <span class="w-50 d-flex justify-content-end align-items-center">
-                                    <input type="text" id="discountInput" class="w-100" />
+                                    <input type="text" name="Discount" id="discountInput" class="w-100" />
                             </span>
                         </div>
                     </div>
@@ -72,10 +74,13 @@
                         </div>
                         <div class="d-flex flex-row w-100">
                             <span class="w-50 d-flex justify-content-end align-items-center px-4 text-success">Changed</span>
-                            <span class="w-50 d-flex justify-content-end align-items-center"><input type="number" name="Changed" id="changeInput" class="w-100" /></span>
+                            <span class="w-50 d-flex justify-content-end align-items-center">
+                                <input type="number" name="Changed" id="changeInput" class="w-100" step="1" />
+                            </span>
                         </div>
                     </div>
 
+                    <input type="text" id="balanced" name="Balanced"  class="w-100" value="@Model.TotalPrice" readonly />
                     <input type="text" id="status" name="Status"  class="w-100" value="Unpaid" readonly />
 
                 </div>
@@ -94,37 +99,3 @@
 </div>
 
 
-<script>
-    const totalDue = document.getElementById('totalDue');
-    const cashInput = document.getElementById('cashInput');
-    const changeInput = document.getElementById('changeInput');
-    const statusInput = document.getElementById('status');
-    const discountInput = document.getElementById('discountInput');
-
-    function updateStatus() {
-            console.log('updateStatus triggered'); // <-- debug line
-
-        let total = parseFloat(totalDue.textContent) || 0;
-        let cash = parseFloat(cashInput.value) || 0;
-        let discountText = discountInput.value.trim();
-        
-        if (discountText !== ""){
-            statusInput.value = 'Discount';
-            changeInput.value = 0;
-        } else if (cash >= total ){
-            statusInput.value = 'Paid';
-            changeInput.value = cash - total;
-        } else if  (cash > 0 && cash < total) {
-            statusInput.value = `Balance remaining: ${ (total - cash).toFixed(2)}`;
-            changeInput.value = 0; 
-        } else {
-            statusInput.value = 'Unpaid';
-            changeInput.value = 0;
-        }
-
-    }
-
-    cashInput.addEventListener('input', updateStatus);
-    discountInput.addEventListener('input', updateStatus);
-
-</script>

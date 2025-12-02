@@ -316,7 +316,6 @@ C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\staticwebassets.build.j
 C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\AllBlue.csproj.Up2Date
 C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\AllBlue.dll
 C:\Users\jpbacolod\source\repos\AllBlue\obj\Debug\net8.0\refint\AllBlue.dll

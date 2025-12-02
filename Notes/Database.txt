@@ -253,6 +253,11 @@ Total
 Payment Table
 Payment_ID
 Quantity 
+Free
+Discount
+Cash
+Changed
+Balanced
 Total
 Service 
 Status

@@ -78,7 +78,7 @@ public class POSController : Controller
                     WRSGal = o.WRS_Gal ?? 0,
                     QTY = o.Quantity ?? 0,
                     FreeGal = o.Free_Gal ?? 0,
-                    Price = o.Total
+                    Price = o.Total ?? 0
                 }).ToList()
 
             }).ToList();
@@ -264,11 +264,21 @@ public class POSController : Controller
     ////////////////////////////////////////////////////////////////////////////////////////
     public IActionResult ConfirmPayment([FromBody] ConfirmPaymentViewModel model)
     {
-        if (!ModelState.IsValid)
+       if (!ModelState.IsValid)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+            var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                        .Select(e => e.ErrorMessage)
+                                        .ToList();
+
+            // Log to console
+            foreach (var error in errors)
+            {
+                Console.WriteLine("ModelState error: " + error);
+            }
+
             return BadRequest(string.Join("; ", errors));
         }
+
 
         return View(model);
     }
@@ -291,9 +301,13 @@ public class POSController : Controller
             // 1. Save Payment
             var payment = new Payment
             {
-                Quantity = int.TryParse(model.TotalQty, out var qty) ? qty : 0,
-                Total = model.TotalPrice,
+                Quantity = model.TotalQty,
+                Free = model.Free,
+                Discount = model.Discount,
+                Cash = model.Cash,
                 Changed = model.Changed,
+                Balanced = model.Balanced,
+                Total = model.TotalPrice,
                 Service = model.SelectedService,
                 Status = model.Status,
                 Date = model.Date

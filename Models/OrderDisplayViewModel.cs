@@ -11,7 +11,7 @@ namespace AllBlue.Models
         public int WRSGal { get; set; }
         public int QTY { get; set; }
         public int FreeGal { get; set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
 
     }
 
@@ -21,10 +21,22 @@ namespace AllBlue.Models
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public string UserName { get; set; }
+
         public List<OrderProductItem> Products { get; set; }
+        
+        public int Quantity { get; set;}
+        public int? Free { get; set;}
+        public string Discount { get; set;}
+        public int Cash { get; set; }
+        public int Changed { get; set; }
+        public int Balanced  { get; set;}
+        public int Total { get; set; }
         public string Service { get; set; }
-        public string? Status { get; set; }
+        public string Status { get; set; }
         public DateOnly Date {  get; set; }
+
+
+        public int? Barangay_ID { get; set;}
     }
 
     // ViewModel for the Index page

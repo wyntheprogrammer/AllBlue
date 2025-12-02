@@ -18,7 +18,7 @@ namespace AllBlue.Models
         public int? WRS_Gal { get; set; }
         public int? Free_Gal { get; set; }
         public int? Quantity { get; set; }
-        public string Total { get; set; }
+        public int? Total { get; set; }
 
         [ForeignKey("Payment_ID")]
         [ValidateNever]
