@@ -1,9 +1,10 @@
 @{
     Layout = null;
 };
+s
+@model AllBlue.Models.StockHistoryPageViewModel 
 
-
-<!-- Action History Modal -->
+<!-- Stock History Modal -->
 <div class="modal fade" id="stockHistoryModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -16,7 +17,7 @@
                 <div class="border d-flex flex-column gap-2 p-2">
                 
                     <div class="d-flex flex-row justify-content-between align-items-center border-bottom pb-2 w-100">
-                        <span class="fs-5 fw-bold">5 Gallon - Slim</span>
+                        <span class="fs-5 fw-bold">Item</span>
                         <button class="bg-danger text-white p-2 rounded" id="openAddCustomerModal" style="border: none">
                             <i class="fs-6 bi-printer"></i> 
                             <span class="font-small">Print History</span>
@@ -37,23 +38,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="font-small text-center" scope="row">1</td>
-                                <td class="font-small text-center">5</td>
-                                <td class="font-small text-center">0.00</td>
-                                <td class="font-small text-center">Buy item in POS</td>
-                                <td class="font-small text-center">
-                                    <div class="bg-warning text-white px-2 d-inline rounded-pill">Out</div>
-                                </td>
-                                <td class="font-small text-center">
-                                    <div class="bg-success text-white px-2 d-inline rounded-pill">Buy</div>
-                                </td>
-                                <td class="font-small text-center">2019-11-15</td>
-                                <td class="fs-4 text-center">
-                                    <i class="bi bi-x-square-fill text-danger"></i>
-                                </td>
-                            </tr>
-                           
+                            @foreach (var record in Model.History)
+                            {
+                                <tr>
+                                    <td class="font-small text-center" scope="row">@record.ID</td>
+                                    <td class="font-small text-center">@record.Quantity</td>
+                                    <td class="font-small text-center">@record.Price</td>
+                                    <td class="font-small text-center">@record.Comment</td>
+                                    <td class="font-small text-center">
+                                        <div class="bg-warning text-white px-2 d-inline rounded-pill">@record.Status</div>
+                                    </td>
+                                    <td class="font-small text-center">
+                                        <div class="bg-success text-white px-2 d-inline rounded-pill">@record.Type</div>
+                                    </td>
+                                    <td class="font-small text-center">@record.Date.ToString("yyyy-MM-dd")</td>
+                                    <td class="fs-4 text-center">
+                                        <i class="bi bi-x-square-fill text-danger"></i>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>   

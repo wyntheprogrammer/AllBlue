@@ -2,6 +2,8 @@
     ViewData["Title"] = "Stock";
 }
 
+@model List<Stock>
+
 <div class="shadow-all-sides p-3 d-flex flex-column align-items-center gap-3">
     <div class="d-flex justify-content-between w-100">
         <div class="d-flex gap-2">
@@ -26,12 +28,28 @@
         </div>
     </div>
 
-    <div class="d-flex flex-row w-100" >
-        <input type="text" class="form-control" style="width: 300px;" required/>
+    <form class="form-group d-flex flex-row w-100" asp-controller="Stock" asp-action="Stock" method="get">
+        <input type="text" name="search" placeholder="Search by item" class="form-control" style="width: 300px;"/>
         <button class="border bg-white">
             <i class="bi bi-search"></i>
         </button>
-    </div>
+    </form>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show w-100 m-0" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show w-100 m-0" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
     <table class="table table-striped" style="width: 100%; table-layout: fixed;">
         <thead class="table-dark">
@@ -47,74 +65,90 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="font-small" scope="row">1</td>
-                <td class="font-small" scope="row">5 Gallon Slim</td>
-                <td class="font-small text-center">
-                    <div class="bg-success text-white px-2 d-inline rounded-pill">Customer</div>
-                </td>
-                <td class="font-small text-center">500</td>
-                <td class="font-small text-center">7</td>
-                <td class="font-small text-center">499</td>
-                <td class="font-small text-center">63,500.00</td>
-                <td class="text-center">
-                    <div class="dropdown">
-                        <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-gear"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="dropdown-item" id="openStockInModal">
-                                    <i class="bi bi-box-arrow-in-down"></i> Stock in
-                                </div>
-                            </li>
-                            <li>
-                                <div class="dropdown-item" id="openStockOutModal">
-                                    <i class="bi bi-box-arrow-up"></i> Stock out
-                                </div>
-                            </li>
-                            <hr class="m-1"/>
-                             <li>
-                                <div class="dropdown-item" id="openStockHistoryModal">
-                                    <i class="bi bi-clock-history"></i> History
-                                </div>
-                            </li>
+            @if (Model !=null && Model.Any())
+            {
+                @foreach (var stock in Model) {
+                    <tr>
+                        <td class="font-small" scope="row">@stock.Stock_ID</td>
+                        <td class="font-small" scope="row">@stock.item.Title</td>
+                        <td class="font-small text-center">
+                            <div class="bg-success text-white px-2 d-inline rounded-pill">@stock.item.Item_Type</div>
+                        </td>
+                        <td class="font-small text-center">@stock.In</td>
+                        <td class="font-small text-center">@stock.Out</td>
+                        <td class="font-small text-center">@stock.OnHand</td>
+                        <td class="font-small text-center">@stock.Worth</td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="dropdown-item openStockInModal"
+                                            data-id="@stock.Stock_ID">
+                                            <i class="bi bi-box-arrow-in-down"></i> Stock in
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item openStockOutModal"
+                                            data-id="@stock.Stock_ID">
+                                            <i class="bi bi-box-arrow-up"></i> Stock out
+                                        </div>
+                                    </li>
+                                    <hr class="m-1"/>
+                                    <li>
+                                        <div class="dropdown-item openStockHistoryModal"
+                                            data-id="@stock.Stock_ID">
+                                            <i class="bi bi-clock-history"></i> History
+                                        </div>
+                                    </li>
 
-                        </ul>
-                    </div>
-                </td>
-            </tr>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            } else {
+                <tr>
+                    <td colspan="8" class="text-center text-muted">No Item found.</td>
+                </tr>
+            }
+            
         </tbody>
     </table>  
 
     <nav aria-label="Pagination">
         <ul class="pagination">
-            <li class="page-item ">
+            <li class="page-item @(ViewBag.Window == 1 ? "disabled" : "")">
                 <a class="page-link" 
-                    href="/Search?page=1&window=1&search=John&gender=Male">
+                    asp-action="Stock"
+                    asp-route-page="@((ViewBag.StartPage - 5) > 0 ?  ViewBag.StartPage - 5 : 1)"
+                    asp-route-window="@(ViewBag.Window - 1)"
+                    asp-route-search="@ViewBag.Search">
                     Previous
                 </a>
             </li>
 
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
-            </li>
-            <li class="page-item active">
-                <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
-            </li>
-
-            <li class="page-item">
+            @for (int i = ViewBag.StartPage; i <= ViewBag.EndPage; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                    <a class="page-link" 
+                        asp-action="Stock"
+                        asp-route-page="@i"
+                        asp-route-window="@ViewBag.Window"
+                        asp-route-search="@ViewBag.Search">
+                        @i
+                    </a>
+                </li>
+            }
+            
+            <li class="page-item @(ViewBag.EndPage == ViewBag.TotalPages ? "disabled" : "")">
                 <a class="page-link" 
-                    href="/Search?page=11&window=3&search=John&gender=Male">
+                    asp-action="Stock"
+                    asp-route-page="@((ViewBag.EndPage + 1) <=  ViewBag.TotalPages? ViewBag.EndPage + 1 : ViewBag.TotalPages)"
+                    asp-route-window="@(ViewBag.Window + 1)"
+                    asp-route-search="@ViewBag.Search">
                     Next
                 </a>
             </li>
@@ -127,74 +161,84 @@
 <div id="stockInContainer"></div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById("openStockInModal");
+        const button = document.querySelectorAll(".openStockInModal");
         const container = document.getElementById("stockInContainer");
 
-        button.addEventListener("click", function (){
-            fetch("/Stock/StockIn")
-                .then(response => response.text())
-                .then(html => {
-                    container.innerHTML = html;
-                    const modal = document.getElementById("stockInModal");
-                    if(modal) {
-                        const modalInstance = new bootstrap.Modal(modal);
-                        modalInstance.show();
-                    }
-                })
-                .catch(error => {
-                    console.error("Error loading modal:", error);
-                });
-             });
-         });
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+                const stockId = this.getAttribute("data-id");
+
+                fetch(`/Stock/StockIn?id=${stockId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                        const modal = document.getElementById("stockInModal");
+                        if(modal) {
+                            const modalInstance = new bootstrap.Modal(modal);
+                            modalInstance.show();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error loading modal:", error);
+                    });
+            });
+        });
+    });
 </script>
 
 <div id="stockOutContainer"></div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById("openStockOutModal");
+        const button = document.querySelectorAll(".openStockOutModal");
         const container = document.getElementById("stockOutContainer");
 
-        button.addEventListener("click", function (){
-            fetch("/Stock/StockOut")
-                .then(response => response.text())
-                .then(html => {
-                    container.innerHTML = html;
-                    const modal = document.getElementById("stockOutModal");
-                    if(modal) {
-                        const modalInstance = new bootstrap.Modal(modal);
-                        modalInstance.show();
-                    }
-                })
-                .catch(error => {
-                    console.error("Error loading modal:", error);
-                });
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+                const stockId = this.getAttribute("data-id");
+                fetch(`/Stock/StockOut?id=${stockId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                        const modal = document.getElementById("stockOutModal");
+                        if(modal) {
+                            const modalInstance = new bootstrap.Modal(modal);
+                            modalInstance.show();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error loading modal:", error);
+                    });
              });
-         });
+        })
+    });
 </script>
 
 
 <div id="stockHistoryContainer"></div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById("openStockHistoryModal");
+        const button = document.querySelectorAll(".openStockHistoryModal");
         const container = document.getElementById("stockHistoryContainer");
 
-        button.addEventListener("click", function (){
-            fetch("/Stock/StockHistory")
-                .then(response => response.text())
-                .then(html => {
-                    container.innerHTML = html;
-                    const modal = document.getElementById("stockHistoryModal");
-                    if(modal) {
-                        const modalInstance = new bootstrap.Modal(modal);
-                        modalInstance.show();
-                    }
-                })
-                .catch(error => {
-                    console.error("Error loading modal:", error);
-                });
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+                const stockId = this.getAttribute("data-id");
+                fetch(`/Stock/StockHistory?id=${stockId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML = html;
+                        const modal = document.getElementById("stockHistoryModal");
+                        if(modal) {
+                            const modalInstance = new bootstrap.Modal(modal);
+                            modalInstance.show();
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error loading modal:", error);
+                    });
              });
-         });
+        })
+    });
 </script>
 
 

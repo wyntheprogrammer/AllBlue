@@ -475,8 +475,40 @@ public class MonitoringController : Controller
     //////////////////////////////// Need Deliver Module /////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    public IActionResult NeedDeliver()
+    public IActionResult NeedDeliver(
+        int id,
+        int page = 1,
+        int pageSize = 5,
+        int window = 1,
+        string search = "",
+        int? selectedBarangayID = null,
+        string dateFrom = "",
+        string dateTo = "")
     {
+        var payments = _context.Payment
+            .Include(p => p.Orders)
+                .ThenInclude(o => o.customer)
+                    .ThenInclude(c => c.barangay)
+            .Include(p => p.Orders)
+            .ToList();
+
+        var paymentOrders = payments   
+            .SelectMany(p => p.Orders.Select(o => new { Payment = p, Customer = o.customer }))
+            .Where(x => x.Customer !=null);
+
+        if (!string.IsNullOrWhiteSpace(dateFrom) && DateTime.TryParse(dateFrom, out var df))
+        {
+            var from = DateOnly.FromDateTime(df);
+            paymentOrders = paymentOrders.Where(x => x.Payment.Date >= from);
+        }
+
+
+        if (!string.IsNullOrWhiteSpace(dateTo) && DateTime.TryParse(dateTo, out var dt))
+        {
+            var to = DateOnly.FromDateTime(dt);
+            paymentOrders = paymentOrders.Where(x => x.Payment.Date <=to);
+        } 
+
         return View("~/Views/Monitoring/NeedDeliver/Index.cshtml");
     }
 

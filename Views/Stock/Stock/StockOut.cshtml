@@ -2,12 +2,13 @@
     Layout = null;
 };
 
+@model AllBlue.Models.Stock
 
-<!-- Action History Modal -->
+<!-- Stock Out Modal -->
 <div class="modal fade" id="stockOutModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="addForm" asp-action="AddCustomer" method="post" enctype="multipart/form-data">
+            <form asp-controller="Stock" asp-action="StockOut" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addModalLabel">Stock Out</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -16,32 +17,34 @@
 
                     <div class="d-flex flex-column gap-2 p-2" style="width: 67%">
                        
+                        <input name="Stock_ID" type="hidden" class="form-control" value="@Model.Stock_ID" />
+
                         <div class="d-flex flex-row gap-2">
 
                             <div class="form-group w-100">
-                                <label class="fw-bold">Quantity</label>
-                                <input type="text" class="form-control" required/>
+                                <label for="Quantity" class="fw-bold">Quantity</label>
+                                <input name="Quantity" type="number" class="form-control" required/>
                             </div>
 
                             <div class="form-group w-100">
-                                <label class="fw-bold">Status</label>
-                                <select class="form-select" required>
-                                    <option value="s">Consume</option>
-                                    <option value="s">Damage</option>
-                                    <option value="s">Other</option>
+                                <label for="Status" class="fw-bold">Status</label>
+                                <select name="Status" class="form-select" required>
+                                    <option value="Consume">Consume</option>
+                                    <option value="Damage">Damage</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
 
                             <div class="form-group w-100">
-                                <label class="fw-bold">Date</label>
-                                <input type="date" class="form-control" required/>
+                                <label for="Date" class="fw-bold">Date</label>
+                                <input name="Date" type="date" class="form-control" required/>
                             </div>
                         </div>
 
 
                         <div class="d-flex flex-column">
-                            <label class="fw-bold">Comments</label>
-                            <textarea class="form-control">
+                            <label for="Comment" class="fw-bold">Comments</label>
+                            <textarea name="Comment" class="form-control">
                             </textarea>
                         </div>
                         
@@ -51,18 +54,27 @@
                         <div class="d-flex flex-column align-items-center">
                             <label for="">Preview</label>
                             <div class="border" style="width: 100px; height: 100px; background-color: #dee2e6;"> 
+                                @if (!string.IsNullOrEmpty(Model.item.Image))
+                                {
+                                    <img src ="~/Images/Item/@Model.item.Image"
+                                        class="img-fluid"
+                                        style="width: 100%; height: 100%; object-fit: cover" />
+                                }
+                                else {
+                                    <span>No Image</span>
+                                }
                             </div>
                         </div>
 
                         <div class="w-100 d-flex justify-content-center gap-2 text-white">
-                            <div class="bg-success text-center p-2 d-inline-block">
+                            <button type="submit" class="btn btn-success text-center p-2 d-inline-block">
                                 <i class="bi bi-check-lg"></i>
                                 Save Stock Out
-                            </div>
-                            <div class="bg-danger text-center p-2 d-inline-block">
+                            </button>
+                            <button type="button" class="btn btn-danger text-center p-2 d-inline-block">
                                 <i class="bi bi-x"></i>
                                 Close
-                            </div>
+                            </button>
                         </div>
 
                     </div>

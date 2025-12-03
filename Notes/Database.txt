@@ -43,6 +43,40 @@ Buy
 Date
 
 
+Stock Table
+Stock ID
+Item ID
+In
+Out
+On Hand 
+Worth
+
+
+Stock In Table
+Stock_In_ID
+Stock_ID
+Quantity
+Price
+Comment
+Date
+
+
+
+StockOut Table
+Stock_Out_ID
+Stock_ID
+Quantity
+Status
+Comment
+Date
+
+
+
+Expense Table
+Expense ID
+Item ID
+
+
 Payment Table
 Customer ID
 Item ID
