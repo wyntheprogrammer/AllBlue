@@ -8,7 +8,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-
             <div class="modal-header">
                 <h5 class="modal-title">Confirm Payment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -80,9 +79,18 @@
                         </div>
                     </div>
 
-                    <input type="text" id="note" name="Note"  class="w-100" value="@Model.Note" />
-                    <input type="text" id="balanced" name="Balanced"  class="w-100" value="@Model.TotalPrice" readonly />
-                    <input type="text" id="status" name="Status"  class="w-100" value="Unpaid" readonly />
+
+                    @* Note *@
+                    <div id="noteContainer" class="align-items-center" style="display:none; width: 80%;">
+                        <label class="form-group w-100">Note</label>
+                        <textarea class="form-control w-100" id="note" name="Note" value="@Model.Note">
+                        </textarea>
+                    </div>
+
+                    @* Balanced *@
+                    <input type="hidden" id="balanced" name="Balanced"  class="w-100" value="@Model.TotalPrice" />
+                    @* Unpaid *@
+                    <input type="hidden" id="status" name="Status"  class="w-100" value="Unpaid" />
 
                 </div>
 

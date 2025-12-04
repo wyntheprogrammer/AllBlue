@@ -339,15 +339,18 @@ public class POSController : Controller
 
                         _context.Order.Add(order);
                         _context.SaveChanges(); // save each order separately
+
+                        TempData["SuccessMessage"] = "Payment added successfully.";
+                        return RedirectToAction("Index");
                     }
                     catch (Exception ex)
                     {
                         var msg = $"Failed inserting Order: Payment_ID={payment.Payment_ID}, Customer_ID={model.CustomerID}, User_ID={model.SelectedUserID}, Item_ID={item.ItemID}";
                         return StatusCode(500, $"FK Error: {msg}\nException: {ex.InnerException?.Message}");
+
+                        TempData["ErrorMessage"] = ex.Message;
                     }
                 }
-
-
             }
 
             return RedirectToAction("Index");
