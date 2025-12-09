@@ -19,4 +19,8 @@ public class AppDbContext : DbContext
     public DbSet<Stock> Stock { get; set; }
     public DbSet<StockIn> StockIn { get; set; }
     public DbSet<StockOut> StockOut { get; set; }
+
+
+    public DbSet<Expense> Expense { get; set; }
+    public DbSet<ExpenseCategory> ExpenseCategory { get; set; }
 }

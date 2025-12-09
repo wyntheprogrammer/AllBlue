@@ -299,3 +299,24 @@ Note
 Date 
 
 
+ExpenseCategory
+ExpenseCategoryID
+Name
+Image
+
+
+Expense Table
+ExpenseID
+ExpenseCategoryID
+TotalValue
+Date
+Comment
+
+RHU -Water Test Laboratory
+Cenpelde
+Man Power
+Gasoline
+
+
+
+

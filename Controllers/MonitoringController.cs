@@ -485,31 +485,123 @@ public class MonitoringController : Controller
         string dateFrom = "",
         string dateTo = "")
     {
-        var payments = _context.Payment
-            .Include(p => p.Orders)
-                .ThenInclude(o => o.customer)
-                    .ThenInclude(c => c.barangay)
-            .Include(p => p.Orders)
+        var orders  = _context.Order
+            .Include(o => o.customer)
+                .ThenInclude(c => c.barangay)
+            .Include(o => o.payment)
             .ToList();
 
-        var paymentOrders = payments   
-            .SelectMany(p => p.Orders.Select(o => new { Payment = p, Customer = o.customer }))
-            .Where(x => x.Customer !=null);
+        var customers = orders
+            .GroupBy(o => o.Customer_ID)
+            .Select(g =>
+            {
+                var customer = g.First().customer;
+                var barangay = customer?.barangay;
 
-        if (!string.IsNullOrWhiteSpace(dateFrom) && DateTime.TryParse(dateFrom, out var df))
+                var payments = g
+                    .Where(o => o.payment != null)
+                    .Select(o => o.payment)
+                    .ToList();
+                
+                var lastPayment = payments
+                    .OrderByDescending(p => p.Date)
+                    .FirstOrDefault();
+
+                var lastSales = payments
+                    .Where(p => p.Status == "Paid")
+                    .OrderByDescending(p => p.Date)
+                    .Select(p => p.Total)
+                    .FirstOrDefault();
+
+                var lastUnpaid = payments
+                    .Where(p => p.Status == "Unpaid")
+                    .OrderByDescending(p => p.Date)
+                    .Select(p => p.Balanced ?? 0)
+                    .FirstOrDefault();
+
+                return new NeedDeliver
+                {
+                    CustomerID = customer.Customer_ID,
+                    Name = $"{customer.First_Name} {customer.Last_Name}",
+                    Service =lastPayment?.Service ?? "",
+                    LastSales = lastSales,
+                    LastUnpaid =lastUnpaid,
+                    ClientGallon = g.Sum(o => o.Client_Gal ?? 0),
+                    WRSGallon = g.Sum(o => o.WRS_Gal ?? 0),
+                    LastPurchased = lastPayment?.Date,
+                    BarangayID = barangay?.Barangay_ID ?? 0
+                };
+            }).ToList();
+
+        if(!string.IsNullOrWhiteSpace(search))
         {
-            var from = DateOnly.FromDateTime(df);
-            paymentOrders = paymentOrders.Where(x => x.Payment.Date >= from);
+            var keyword = search.ToLower().Trim();
+            customers = customers
+                .Where(c => c.Name.ToLower().Contains(keyword))
+                .ToList();
+        }    
+
+        if(selectedBarangayID.HasValue)
+        {
+            customers = customers
+                .Where(c => c.BarangayID == selectedBarangayID.Value)
+                .ToList();
         }
 
 
-        if (!string.IsNullOrWhiteSpace(dateTo) && DateTime.TryParse(dateTo, out var dt))
+        if(DateTime.TryParse(dateFrom, out var df))
+        {
+            var from = DateOnly.FromDateTime(df);
+            customers = customers
+                .Where(c => c.LastPurchased >= from)
+                .ToList();
+        }
+
+        if(DateTime.TryParse(dateTo, out var dt))
         {
             var to = DateOnly.FromDateTime(dt);
-            paymentOrders = paymentOrders.Where(x => x.Payment.Date <=to);
-        } 
+            customers = customers
+                .Where(c => c.LastPurchased <= to)
+                .ToList();
+        }
 
-        return View("~/Views/Monitoring/NeedDeliver/Index.cshtml");
+
+        int total = customers.Count;
+        int totalPages = (int)Math.Ceiling((double)total / pageSize);
+
+        int windowSize = 5;
+        int startPage = ((window - 1) * windowSize) + 1;
+        int endPage = Math.Min(startPage +  windowSize - 1, totalPages);
+
+        var paged = customers
+            .OrderBy(c => c.Name)
+            .Skip((page - 1 ) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.StartPage = startPage;
+        ViewBag.EndPage =  endPage;
+        ViewBag.Window = window;
+        ViewBag.Search = search;
+        ViewBag.DateFrom = dateFrom;
+        ViewBag.DateTo =dateTo;
+        ViewBag.SelectedBarangayID = selectedBarangayID;
+
+        var brgy = _context.Barangay.ToList();
+
+        ViewBag.barangayList = new SelectList(
+            brgy.Select(b => new SelectListItem
+            {
+                Value = b.Barangay_ID.ToString(),
+                Text = b.Name
+            }),
+            "Value",
+            "Text"
+        );
+
+        return View("~/Views/Monitoring/NeedDeliver/Index.cshtml", paged);
     }
 
 

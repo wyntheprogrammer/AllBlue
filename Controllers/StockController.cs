@@ -161,20 +161,6 @@ public class StockController : Controller
     }
     
 
-    // [HttpGet]    
-    // public IActionResult StockHistory(int id)
-    // {
-    //     var stock = _context.Stock.FirstOrDefault(s => s.Stock_ID == id);
-    //     if (stock == null)
-    //     {
-    //         return NotFound();
-    //     }
-
-    //     return View("~/Views/Stock/Stock/StockHistory.cshtml", stock);
-    // }
-
-    // [HttpPost]
-
     public async Task<IActionResult> StockHistory(int id)
     {
         var stock = await _context.Stock
@@ -233,15 +219,107 @@ public class StockController : Controller
     ////////////////////////////////// Expenses Module /////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    public IActionResult Expenses()
+    public IActionResult Expenses(string search, int page = 1, int pageSize = 5, int window = 1, int month = 1, int year = 2019)
     {
-        return View("~/Views/Stock/Expenses/Index.cshtml");
+        var query = _context.ExpenseCategory
+            .Select(c => new ExpenseMonthlyViewModel
+            {
+                ExpenseCategoryID = c.ExpenseCategoryID,
+                CategoryName = c.Name,
+
+                Jan = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 1).Sum(e => e.TotalValue),
+                Feb = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 2).Sum(e => e.TotalValue),
+                Mar = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 3).Sum(e => e.TotalValue),
+                Apr = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 4).Sum(e => e.TotalValue),
+                May = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 5).Sum(e => e.TotalValue),
+                Jun = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 6).Sum(e => e.TotalValue),
+                Jul = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 7).Sum(e => e.TotalValue),
+                Aug = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 8).Sum(e => e.TotalValue),
+                Sep = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 9).Sum(e => e.TotalValue),
+                Oct = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 10).Sum(e => e.TotalValue),
+                Nov = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 11).Sum(e => e.TotalValue),
+                Dec = c.Expenses.Where(e => e.Date.Year == year && e.Date.Month == 12).Sum(e => e.TotalValue),            
+            
+                YearlyTotal = c.Expenses
+                    .Where(e => e.Date.Year == year)
+                    .Sum(e => e.TotalValue)
+            });
+
+        if (!string.IsNullOrEmpty(search?.Trim()))
+        {
+            string keyword = search.Trim().ToLower();
+            query = query.Where(e => e.CategoryName.ToLower().Contains(keyword));
+        }
+
+        var allExpenses = query.ToList();
+
+        int totalExpense = allExpenses.Count();
+        int totalPages = (int)Math.Ceiling((double)totalExpense / pageSize);
+
+        int windowSize = 5;
+        int startPage = ((window - 1) * windowSize) + 1;
+        int endPage = Math.Min(startPage + windowSize - 1, totalPages);
+
+        var pagedExpense = allExpenses 
+            .OrderBy(e => e.ExpenseCategoryID)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+
+        int monthlyTotal = _context.Expense
+            .Where(e => e.Date.Year == year && e.Date.Month == month)
+            .Sum(e => (int?)e.TotalValue) ?? 0;
+        
+        int yearlyTotal = _context.Expense
+            .Where(e => e.Date.Year == year)
+            .Sum(e => (int?)e.TotalValue) ?? 0;
+
+
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.StartPage = startPage;
+        ViewBag.EndPage = endPage;
+        ViewBag.Window = window;
+        ViewBag.Search = search;
+
+
+        ViewBag.MonthlyTotal = monthlyTotal;
+        ViewBag.YearlyTotal = yearlyTotal;
+
+        ViewBag.SelectedMonth = month;
+        ViewBag.SelectedYear = year;
+
+        return View("~/Views/Stock/Expenses/Index.cshtml", pagedExpense);
     }
 
+    [HttpGet]
     public IActionResult AddExpenses()
     {
         return View("~/Views/Stock/Expenses/AddExpenses.cshtml");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> AddExpenses(Expense expense)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                _context.Expense.Add(expense);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Expense added successfully.";
+                return RedirectToAction("Expenses");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+        }
+        return RedirectToAction("Expenses");
+    }
+
 
     public IActionResult ExpensesHistory()
     {
