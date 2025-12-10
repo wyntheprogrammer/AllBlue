@@ -140,7 +140,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <div class="dropdown-item" id="openExpensesHistoryModal">
+                                    <div class="dropdown-item openExpensesHistoryModal"
+                                        data-id="@item.ExpenseCategoryID">
                                         <i class="bi bi-clock-history"></i> History
                                     </div>
                                 </li>
@@ -227,11 +228,14 @@
 <div id="expensesHistoryContainer"></div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const button = document.getElementById("openExpensesHistoryModal");
+        const button = document.querySelectorAll(".openExpensesHistoryModal");
         const container = document.getElementById("expensesHistoryContainer");
 
-        button.addEventListener("click", function (){
-            fetch("/Stock/ExpensesHistory")
+        button.forEach(button => {
+            button.addEventListener("click", function (){
+            const historyId = this.getAttribute("data-id");
+             
+            fetch(`/Stock/ExpensesHistory?id=${historyId}`)
                 .then(response => response.text())
                 .then(html => {
                     container.innerHTML = html;
@@ -245,7 +249,8 @@
                     console.error("Error loading modal:", error);
                 });
              });
-         });
+        });
+    });
 </script>
 
 

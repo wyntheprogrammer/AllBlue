@@ -2,6 +2,8 @@
     ViewData["Title"] = "Report";
 }
 
+@model ReportViewModel
+
 <div class="d-flex flex-column gap-5">
 
     <div class="shadow-all-sides p-3 d-flex flex-column align-items-center gap-3">
@@ -22,54 +24,63 @@
             <div class="d-flex flex-row gap-5">
                 <div class="d-flex flex-column">
                     <span class="font-small">Deliver</span>
-                    <span class="fs-6 fw-bold">23 GAL</span>
+                    <span class="fs-6 fw-bold">@Model.MonthlyReport.DeliverGallons GAL</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Pick-up</span>
-                    <span class="fs-6 fw-bold">155 GAL</span>
+                    <span class="fs-6 fw-bold">@Model.MonthlyReport.PickupGallons GAL</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Sales</span>
-                    <span class="fs-6 fw-bold">3,565.00</span>
+                    <span class="fs-6 fw-bold">@Model.MonthlyReport.TotalSales.ToString("N2")</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Unpaid</span>
-                    <span class="fs-6 fw-bold">50.00</span>
+                    <span class="fs-6 fw-bold">@Model.MonthlyReport.TotalUnpaid.ToString("N2")</span>
                 </div>
-                            <div class="d-flex flex-column">
+                <div class="d-flex flex-column">
                     <span class="font-small">Void</span>
-                    <span class="fs-6 fw-bold">0.00</span>
+                    <span class="fs-6 fw-bold">@Model.MonthlyReport.TotalVoid.ToString("N2")</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Expenses</span>
-                    <span class="fs-6 fw-bold">200.00</span>
+                    <span class="fs-6 fw-bold">@Model.MonthlyReport.TotalExpenses.ToString("N2")</span>
                 </div>
             </div>
 
-            <div class="d-flex flex-row gap-5">
+            <form method="get" asp-action="Index" class="d-flex flex-row gap-5">
                 <div class="d-flex flex-column">
                     <span class="font-small fw-bold">Month</span>
-                    <select  class="border px-4 py-1 font-small" required>
-                        <option value="">November</option>
-                        <option value="1"> 1</option>
-                        <option value="2"> 2</option>
+                    <select name="month" class="border px-4 py-1 font-small" onchange="this.form.submit()">
+                        @foreach (var month in ViewBag.Months)
+                        {
+                            <option value="@month.Value" selected="@(month.Value == ViewBag.SelectedMonth)">
+                                @month.Text
+                            </option>
+                        }
                     </select>
                 </div>
 
                 <div class="d-flex flex-column">
                     <span class="font-small fw-bold">Year</span>
-                    <select  class="border px-4 py-1 font-small" required>
-                        <option value="">2025</option>
-                        <option value="1"> 1</option>
-                        <option value="2"> 2</option>
+                    <select name="year"  class="border px-4 py-1 font-small" onchange="this.form.submit()">
+                        @foreach (var year in ViewBag.Years)
+                        {
+                            <option value="@year" selected="@(year == ViewBag.SelectedYear)">@year</option>
+                        }
                     </select>
                 </div>
 
-            </div>
+            </form>
+            
         </div>
 
 
+        <!-- Chart Placeholder -->
         <div class="w-100" style="height:350px; background-color: #dee2e6">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <span class="text-muted">Chart visualization coming soon</span>
+            </div>
         </div>
 
 
@@ -88,66 +99,93 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="font-small" scope="row">1</td>
-                    <td class="font-small text-center">Novermber 1, 2019</td>
-                    <td class="font-small text-center"  scope="row" style="width: 200px;">
-                        <div class="d-flex flex-column font-small">
-                            <div class="d-flex flex-row">
-                                <div class="w-100">
-                                <i class="bi-truck"></i>
-                                Pickup 0
+                @if (Model.MonthlyReport.DailyData != null && Model.MonthlyReport.DailyData.Any())
+                {
+                    int rowNum = 1;
+                    @foreach (var day in Model.MonthlyReport.DailyData)
+                    {
+                        <tr>
+                            <td class="font-small" scope="row">@rowNum</td>
+                            <td class="font-small text-center">@day.Date.ToString("MMMM dd, yyyy")</td>
+                            <td class="font-small text-center"  scope="row" style="width: 200px;">
+                                <div class="d-flex flex-column font-small">
+                                    <div class="d-flex flex-row">
+                                        <div class="w-100">
+                                        <i class="bi-truck"></i>
+                                            Pickup @day.PickupCount
+                                        </div>
+                                        <div class="w-100">
+                                            <i class="bi bi-box-seam"></i>
+                                            Deliver @day.DeliverCount
+                                        </div>
+                                    </div>
+                                    <div class="w-100">
+                                        <i class="bi bi-tag"></i>   
+                                        Free @day.FreeCount
+                                    </div>
                                 </div>
-                                <div class="w-100">
-                                    <i class="bi bi-box-seam"></i>
-                                    Deliver 0
-                                </div>
-                            </div>
-                            <div class="w-100">
-                                <i class="bi bi-tag"></i>
-                                Free 5
-                            </div>
-                        </div>
-                    </td>
-                    <td class="font-small text-center">0</td>
-                    <td class="font-small text-center">0.00</td>
-                    <td class="font-small text-center">0.00</td>
-                    <td class="font-small text-center">0.00</td>
-                    <td class="font-small text-center">0.00</td>
-                    <td class="font-small text-center"></td>
-                </tr>
+                            </td>
+                            <td class="font-small text-center">@day.Quantity.ToString("N2")</td>
+                            <td class="font-small text-center">@day.Total.ToString("N2")</td>
+                            <td class="font-small text-center">@day.Unpaid.ToString("N2")</td>
+                            <td class="font-small text-center">@day.Expenses.ToString("N2")</td>
+                            <td class="font-small text-center">@day.Net.ToString("N2")</td>
+                            <td class="font-small text-center">@day.InCharge</td>
+                        </tr>
+                        rowNum++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="9" class="text-center text-muted">No data available for this period.</td>
+                    </tr>
+                }
             </tbody>
         </table>  
 
 
-        <nav aria-label="Pagination">
+        <!-- Monthly Pagination -->
+        <nav aria-label="Monthly Report Pagination">
             <ul class="pagination">
-                <li class="page-item ">
+                <li class="page-item @(ViewBag.MonthlyWindow == 1 ? "disabled" : "")">
                     <a class="page-link" 
-                        href="/Search?page=1&window=1&search=John&gender=Male">
+                        asp-action="Index"
+                        asp-route-month="@ViewBag.SelectedMonth"
+                        asp-route-year="@ViewBag.SelectedYear"
+                        asp-route-monthlyPage="@((ViewBag.MonthlyStartPage - 5) > 0 ? ViewBag.MonthlyStartPage - 5 : 1)"
+                        asp-route-monthlyWindow="@(ViewBag.MonthlyWindow - 1)"
+                        asp-route-yearlyPage="@ViewBag.YearlyCurrentPage"
+                        asp-route-yearlyWindow="@ViewBag.YearlyWindow">
                         Previous
                     </a>
                 </li>
 
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
-                </li>
+                @for (int i = ViewBag.MonthlyStartPage; i <= ViewBag.MonthlyEndPage; i++)
+                {
+                    <li class="page-item @(ViewBag.MonthlyCurrentPage == i ? "active" : "")">
+                        <a class="page-link"
+                            asp-action="Index"
+                            asp-route-month="@ViewBag.SelectedMonth"
+                            asp-route-year="@ViewBag.SelectedYear"
+                            asp-route-monthlyPage="@i"
+                            asp-route-monthlyWindow="@ViewBag.MonthlyWindow"
+                            asp-route-yearlyPage="@ViewBag.YearlyCurrentPage"
+                            asp-route-yearlyWindow="@ViewBag.YearlyWindow">
+                            @i
+                        </a>
+                    </li>
+                }
 
-                <li class="page-item">
-                    <a class="page-link" 
-                        href="/Search?page=11&window=3&search=John&gender=Male">
+                <li class="page-item @(ViewBag.MonthlyEndPage == ViewBag.MonthlyTotalPages ? "disabled" : "")">
+                    <a class="page-link"
+                        asp-action="Index"
+                        asp-route-month="@ViewBag.SelectedMonth"
+                        asp-route-year="@ViewBag.SelectedYear"
+                        asp-route-monthlyPage="@((ViewBag.MonthlyEndPage + 1) <= ViewBag.MonthlyTotalPages ? ViewBag.MonthlyEndPage + 1 : ViewBag.MonthlyTotalPages)"
+                        asp-route-monthlyWindow="@(ViewBag.MonthlyWindow + 1)"
+                        asp-route-yearlyPage="@ViewBag.YearlyCurrentPage"
+                        asp-route-yearlyWindow="@ViewBag.YearlyWindow">
                         Next
                     </a>
                 </li>
@@ -175,45 +213,50 @@
             <div class="d-flex flex-row gap-5">
                 <div class="d-flex flex-column">
                     <span class="font-small">Deliver</span>
-                    <span class="fs-6 fw-bold">23 GAL</span>
+                    <span class="fs-6 fw-bold">@Model.YearlyReport.DeliverGallons GAL</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Pick-up</span>
-                    <span class="fs-6 fw-bold">155 GAL</span>
+                    <span class="fs-6 fw-bold">@Model.YearlyReport.PickupGallons GAL</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Sales</span>
-                    <span class="fs-6 fw-bold">3,565.00</span>
+                    <span class="fs-6 fw-bold">@Model.YearlyReport.TotalSales.ToString("N2")</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Unpaid</span>
-                    <span class="fs-6 fw-bold">50.00</span>
+                    <span class="fs-6 fw-bold">@Model.YearlyReport.TotalUnpaid.ToString("N2")</span>
                 </div>
                             <div class="d-flex flex-column">
                     <span class="font-small">Void</span>
-                    <span class="fs-6 fw-bold">0.00</span>
+                    <span class="fs-6 fw-bold">@Model.YearlyReport.TotalVoid.ToString("N2")</span>
                 </div>
                 <div class="d-flex flex-column">
                     <span class="font-small">Expenses</span>
-                    <span class="fs-6 fw-bold">200.00</span>
+                    <span class="fs-6 fw-bold">@Model.YearlyReport.TotalExpenses.ToString("N2")</span>
                 </div>
             </div>
 
-            <div class="d-flex flex-column">
+            <form method="get" asp-action="Index" class="d-flex flex-column">
                 <span class="font-small fw-bold">Year</span>
-                <select  class="border px-4 py-1 font-small" required>
-                    <option value="">2025</option>
-                    <option value="1"> 1</option>
-                    <option value="2"> 2</option>
+                <select name="year" class="border px-4 py-1 font-small" onchange="this.form.submit()">
+                    @foreach (var year in ViewBag.Years)
+                    {
+                        <option value ="@year" selected="@(year == ViewBag.SelectedYear)">@year</option>
+                    }
                 </select>
-            </div>
+                <input type="hidden" name="month" value="@ViewBag.SelectedMonth" />
+            </form>
     
         </div>
 
 
+        <!-- Chart Placeholder -->
         <div class="w-100" style="height:350px; background-color: #dee2e6">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <span class="text-muted">Chart visualization coming soon</span>
+            </div>
         </div>
-
 
         <table class="table table-striped" style="width: 100%; table-layout:;">
             <thead class="table-dark">
@@ -230,65 +273,92 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="font-small" scope="row">1</td>
-                    <td class="font-small text-center"  scope="row">Novermber</td>
-                    <td class="font-small text-center"  scope="row" style="width: 200px;">
-                        <div class="d-flex flex-column font-small">
-                            <div class="d-flex flex-row">
-                                <div class="w-100">
-                                <i class="bi-truck"></i>
-                                Pickup 0
+                @if (Model.YearlyReport.MonthlyData != null && Model.YearlyReport.MonthlyData.Any())
+                {
+                    int rowNum = 1;
+                    @foreach (var month in Model.YearlyReport.MonthlyData)
+                    {
+                        <tr>
+                            <td class="font-small" scope="row">@rowNum</td>
+                            <td class="font-small text-center"  scope="row">@month.Month</td>
+                            <td class="font-small text-center"  scope="row" style="width: 200px;">
+                                <div class="d-flex flex-column font-small">
+                                    <div class="d-flex flex-row">
+                                        <div class="w-100">
+                                        <i class="bi-truck"></i>
+                                        Pickup @month.PickupCount
+                                        </div>
+                                        <div class="w-100">
+                                            <i class="bi bi-box-seam"></i>
+                                            Deliver @month.DeliverCount
+                                        </div>
+                                    </div>
+                                    <div class="w-100">
+                                        <i class="bi bi-tag"></i>
+                                        Free @month.FreeCount
+                                    </div>
                                 </div>
-                                <div class="w-100">
-                                    <i class="bi bi-box-seam"></i>
-                                    Deliver 0
-                                </div>
-                            </div>
-                            <div class="w-100">
-                                <i class="bi bi-tag"></i>
-                                Free 5
-                            </div>
-                        </div>
-                    </td>
-                    <td class="font-small text-center"  scope="row">0</td>
-                    <td class="font-small text-center"  scope="row">0.00</td>
-                    <td class="font-small text-center"  scope="row">0.00</td>
-                    <td class="font-small text-center"  scope="row">0.00</td>
-                    <td class="font-small text-center"  scope="row">0.00</td>
-                    <td class="font-small text-center"  scope="row"></td>
-                </tr>
+                            </td>
+                            <td class="font-small text-center"  scope="row">@month.Quantity</td>
+                            <td class="font-small text-center"  scope="row">@month.Total.ToString("N2")</td>
+                            <td class="font-small text-center"  scope="row">@month.Unpaid.ToString("N2")</td>
+                            <td class="font-small text-center"  scope="row">@month.Expenses.ToString("N2")</td>
+                            <td class="font-small text-center"  scope="row">@month.Net.ToString("N2")</td>
+                            <td class="font-small text-center"  scope="row">@month.InCharge</td>
+                        </tr>
+                        rowNum++;
+                    }
+                }
+                else 
+                {
+                    <tr>
+                        <td colspan="9" class="text-center text-muted">No data available for this year.</td>
+                    </tr>
+                }
             </tbody>
         </table>  
 
-        <nav aria-label="Pagination">
+        <!-- Yearly Pagination -->
+        <nav aria-label="Yearly Report Pagination">
             <ul class="pagination">
-                <li class="page-item ">
+                <li class="page-item @(ViewBag.YearlyWindow == 1 ? "disabled" : "")">
                     <a class="page-link" 
-                        href="/Search?page=1&window=1&search=John&gender=Male">
+                        asp-action="Index"
+                        asp-route-month="@ViewBag.SelectedMonth"
+                        asp-route-year="@ViewBag.SelectedYear"
+                        asp-route-monthlyPage="@ViewBag.MonthlyCurrentPage"
+                        asp-route-monthlyWindow="@ViewBag.MonthlyWindow"
+                        asp-route-yearlyPage="@((ViewBag.YearlyStartPage - 5) > 0 ? ViewBag.YearlyStartPage - 5 : 1)"
+                        asp-route-yearlyWindow="@(ViewBag.YearlyWindow - 1)">
                         Previous
                     </a>
                 </li>
 
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=6&window=2&search=John&gender=Male">6</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="/Search?page=7&window=2&search=John&gender=Male">7</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=8&window=2&search=John&gender=Male">8</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=9&window=2&search=John&gender=Male">9</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="/Search?page=10&window=2&search=John&gender=Male">10</a>
-                </li>
+                @for (int i = ViewBag.YearlyStartPage; i <= ViewBag.YearlyEndPage; i++)
+                {
+                    <li class="page-item @(ViewBag.YearlyCurrentPage == i ? "active" : "")">
+                        <a class="page-link"
+                            asp-action="Index"
+                            asp-route-month="@ViewBag.SelectedMonth"
+                            asp-route-year="@ViewBag.SelectedYear"
+                            asp-route-monthlyPage="@ViewBag.MonthlyCurrentPage"
+                            asp-route-monthlyWindow="@ViewBag.MonthlyWindow"
+                            asp-route-yearlyPage="@i"
+                            asp-route-yearlyWindow="@ViewBag.YearlyWindow">
+                            @i
+                        </a>
+                    </li>
+                }
 
-                <li class="page-item">
-                    <a class="page-link" 
-                        href="/Search?page=11&window=3&search=John&gender=Male">
+                <li class="page-item @(ViewBag.YearlyEndPage == ViewBag.YearlyTotalPages ? "disabled" : "")">
+                    <a class="page-link"
+                        asp-action="Index"
+                        asp-route-month="@ViewBag.SelectedMonth"
+                        asp-route-year="@ViewBag.SelectedYear"
+                        asp-route-monthlyPage="@ViewBag.MonthlyCurrentPage"
+                        asp-route-monthlyWindow="@ViewBag.MonthlyWindow"
+                        asp-route-yearlyPage="@((ViewBag.YearlyEndPage + 1) <= ViewBag.YearlyTotalPages ? ViewBag.YearlyEndPage + 1 : ViewBag.YearlyTotalPages)"
+                        asp-route-yearlyWindow="@(ViewBag.YearlyWindow + 1)">
                         Next
                     </a>
                 </li>

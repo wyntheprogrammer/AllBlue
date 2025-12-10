@@ -2,8 +2,9 @@
     Layout = null;
 };
 
+@model ExpensesHistoryViewModel
 
-<!-- Action History Modal -->
+<!-- Expenses History Modal -->
 <div class="modal fade" id="expensesHistoryModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -16,7 +17,7 @@
                 <div class="border d-flex flex-column gap-2 p-2">
                 
                     <div class="d-flex flex-row justify-content-between align-items-center border-bottom pb-2 w-100">
-                        <span class="fs-5 fw-bold">5 Gallon - Slim</span>
+                        <span class="fs-5 fw-bold">@Model.CategoryName</span>
                         <button class="bg-danger text-white p-2 rounded" id="openAddCustomerModal" style="border: none">
                             <i class="fs-6 bi-printer"></i> 
                             <span class="font-small">Print History</span>
@@ -36,20 +37,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="font-small text-center" scope="row">1</td>
-                                <td class="font-small text-center">500</td>
-                                <td class="font-small text-center">400.00</td>
-                                <td class="font-small text-center"></td>
-                                <td class="font-small text-center">
-                                    <div class="bg-warning text-white px-2 d-inline rounded-pill">In</div>
-                                </td>
-                                <td class="font-small text-center">
-                                    <div class="bg-success text-white px-2 d-inline rounded-pill">New Stock</div>
-                                </td>
-                                <td class="font-small text-center">2019-11-15</td>
-                            </tr>
-                           
+                            @if (Model.Items.Any())
+                            {
+                                var i = 1;
+                                foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                    <td class="font-small text-center" scope="row">@i</td>
+                                    <td class="font-small text-center">@item.Qty</td>
+                                    <td class="font-small text-center">@item.Price.ToString("N2")</td>
+                                    <td class="font-small text-center">@item.Comment</td>
+                                    <td class="font-small text-center">
+                                        <div class="bg-warning text-white px-2 d-inline rounded-pill">@item.Status</div>
+                                    </td>
+                                    <td class="font-small text-center">
+                                        <div class="bg-success text-white px-2 d-inline rounded-pill">@item.Transaction</div>
+                                    </td>
+                                    <td class="font-small text-center">@item.Date</td>
+                                </tr>
+                                    i++;
+                                }
+                            } else {
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">No history found.</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>   

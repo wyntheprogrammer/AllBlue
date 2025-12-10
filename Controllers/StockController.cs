@@ -321,11 +321,37 @@ public class StockController : Controller
     }
 
 
-    public IActionResult ExpensesHistory()
+    public IActionResult ExpensesHistory(int id)
     {
-        return View("~/Views/Stock/Expenses/ExpensesHistory.cshtml");
+        var category = _context.ExpenseCategory
+            .FirstOrDefault(x => x.ExpenseCategoryID == id );
+
+        if (category == null)
+        {
+            return Content("<div class='p-3 text-danger'>Category not found. </div>");
+        }
+
+        var items = _context.Expense
+            .Where(x => x.ExpenseCategoryID == id)
+            .OrderByDescending(x => x.Date)
+            .Select(x => new ExpensesHistoryItemViewModel
+            {
+                ExpenseID = x.ExpenseID,
+                Qty = 1,
+                Price = x.TotalValue,
+                Comment = x.Comment,
+                Status = "In",
+                Transaction = "New Stock",
+                Date = x.Date.ToString("yyyy-MM-dd")
+            }).ToList();
+
+        var vm = new ExpensesHistoryViewModel{
+            CategoryName = category.Name,
+            Items = items
+        };
+
+
+        return PartialView("~/Views/Stock/Expenses/ExpensesHistory.cshtml", vm);
     }
-
-
 
 }
