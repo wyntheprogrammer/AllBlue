@@ -23,4 +23,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Expense> Expense { get; set; }
     public DbSet<ExpenseCategory> ExpenseCategory { get; set; }
+
+    public DbSet<Settings> Settings{ get; set; }
+
 }

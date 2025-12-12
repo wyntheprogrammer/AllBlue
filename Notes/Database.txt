@@ -320,3 +320,62 @@ Gasoline
 
 
 
+Settings
+SettingsID
+Title
+Footer
+System
+Contact1
+Contact2
+Contact3
+Barangay 
+City
+Province
+Zip Code
+Country
+Delivery Interval
+Local Address
+Favicon
+Logo
+Banner
+
+
+
+INSERT INTO Settings (
+    Title,
+    Footer,
+    System,
+    Contact1,
+    Contact2,
+    Contact3,
+    Barangay_ID,
+    City_ID,
+    Province,
+    ZipCode,
+    Country,
+    DeliveryInternal,
+    LocalAddress,
+    Favicon,
+    Logo,
+    Banner
+)
+VALUES (
+    'AllBlue',
+    'All rights reserved',
+    'POS',
+    '1234567890',
+    '0987654321',
+    '000111222',
+    1,              -- Barangay_ID
+    5,              -- City_ID
+    'Manila',
+    1205,
+    'Philippines',
+    1,
+    '123 Main St',
+    'favicon.png',
+    'logo.png',
+    'banner.png'
+);
+
+
